@@ -1,67 +1,142 @@
 <!DOCTYPE html>
-<html ng-app="CH_SMS_App">
+<html lang="en" ng-app="CH_SMS_App">
 	<head>
 		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE-edge">
-		<title></title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="">
-		<meta name="viewport" content="width=device-width">
+		<meta name="author" content="">
+		<title>College Hotline - Chat</title>
+
+		<!-- Bootstrap core CSS -->
+		<link href="css/bootstrap.css" rel="stylesheet">
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
 	</head>
+
 	<body>
 
-		<!-- Incoming Texts Feed -->
-		<div ng-controller="textsController" style="border:5px solid black; float: left; width: 25%; height: 100%">
-			<h1 align="center"> Incoming Messages </h1>
-			<h2 align="center"> There are {{texts.length}} In Queue </h2>
-			<ul style="list-style-type:none">	
-				<li ng-repeat="text in texts">
-					<form ng-submit="acceptText()">
-						<h3>{{text.message}}</h3>
-						<button align="center" type ="submit">Answer</button>
-					</form>
-				</li>
-			</ul>
-			<form ng-submit="createTextMessage()">
-				<input style="width:99%" type="text" placeholder="Message Text" ng-model="newMessage"></input>
-				<button type="submit">Send</button>
-			</form>
+		<!--header navbar-->
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="#">College Hotline</a>
+		    </div>
+
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav">
+		        <li class="active"><a href="#">Student database perhaps?</a></li>
+		        <li><a href="#">something appropriate</a></li>
+		      </ul>
+
+		      <ul class="nav navbar-nav navbar-right">
+		        <li><a href="#">Sign Out</a></li>
+		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown">I'm Available <span class="caret"></span></a>
+		          <ul class="dropdown-menu" role="menu">
+		            <li><a href="#">I'm Occupied</a></li>
+		            <li><a href="#">I'm Away</a></li>
+		            <li><a href="#">I'm Not Taking Calls</a></li>
+		          </ul>
+		        </li>
+		      </ul>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>	
+		
+		
+		<div ng-controller="textsController" class = "container-fluid" style = "margin-top: 70px">
+			<div class = "row">
+				<div class = "col-sm-3">
+					<div class="panel panel-default pre-scrollable">
+						<div ng-repeat="text in texts" class="list-group-item">
+							<form ng-submit="acceptText( text.message, text.phoneNumber, text.mid )">
+								<h6>{{text.message}}</h6>
+								<button align="center" type ="submit">Answer</button>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class = "col-sm-7">
+					<div class = "row">
+						<div class="panel panel-default pre-scrollable">
+							<div class = "panel-header">
+								<h2 class = "text-center">#student number</h2>
+								only show this if the question is acceptted. my suggesttion at least
+							</div>
+							<div class="panel-body">
+							<h4> time </h4>
+							<p>Emma Charlotte Duerre Watson[3] (born 15 April 1990) is an English actress and model. She rose to prominence playing Hermione Granger in the Harry Potter film series; she was cast as Hermione at the age of nine, having previously acted only in school plays.[4] She starred in all eight Harry Potter films, alongside Daniel Radcliffe and Rupert Grint.[5] Watson's work on the Harry Potter series has earned her several awards and more than £10 million.[6] She made her modelling debut for Burberry's autumn/winter campaign in 2009. In October 2013, she was voted Sexiest Female Movie Star in a worldwide poll conducted by Empire magazine.[7] In May 2014, BuzzFeed dubbed her the "most flawless woman of the decade".[8]
+								In 2007, Watson announced her involvement in The Tale of Despereaux and the television adaptation of the novel Ballet Shoes, which was broadcast on 26 December 2007 to an audience of 5.2 million. The Tale of Despereaux, based on the novel by Kate DiCamillo, was released in 2008 and grossed more than US$86 million in worldwide sales.[9] In 2012, she starred in Stephen Chbosky's film adaptation of The Perks of Being a Wallflower, and in 2014, she played Ila in Darren Aronofsky's biblical epic Noah.[10]
+								Watson was appointed as a UN Women Goodwill Ambassador in 2014. She helped launch the UN Women campaign HeForShe, which calls for men to advocate for "gender equality".[11]</p>
+							</div>
+											<div class="panel-body">
+											<h4> time </h4>
+							<p>Emma Charlotte Duerre Watson[3] (born 15 April 1990) is an English actress and model. She rose to prominence playing Hermione Granger in the Harry Potter film series; she was cast as Hermione at the age of nine, having previously acted only in school plays.[4] She starred in all eight Harry Potter films, alongside Daniel Radcliffe and Rupert Grint.[5] Watson's work on the Harry Potter series has earned her several awards and more than £10 million.[6] She made her modelling debut for Burberry's autumn/winter campaign in 2009. In October 2013, she was voted Sexiest Female Movie Star in a worldwide poll conducted by Empire magazine.[7] In May 2014, BuzzFeed dubbed her the "most flawless woman of the decade".[8]
+								In 2007, Watson announced her involvement in The Tale of Despereaux and the television adaptation of the novel Ballet Shoes, which was broadcast on 26 December 2007 to an audience of 5.2 million. The Tale of Despereaux, based on the novel by Kate DiCamillo, was released in 2008 and grossed more than US$86 million in worldwide sales.[9] In 2012, she starred in Stephen Chbosky's film adaptation of The Perks of Being a Wallflower, and in 2014, she played Ila in Darren Aronofsky's biblical epic Noah.[10]
+								Watson was appointed as a UN Women Goodwill Ambassador in 2014. She helped launch the UN Women campaign HeForShe, which calls for men to advocate for "gender equality".[11]</p>
+							</div>
+							
+						</div>
+					</div>
+					<div class = "row">
+						<div class = "panel-footer text-center">
+							<button class = "btn-lg"> Help this student</button>
+							
+							only show the upper button or the lower things, depending on context
+							<form ng-submit="createTextMessage()">
+								<input ng-model="newMessage" placeholder="Message Text" class="form-control" rows="3"></input>
+								<button type="submit" class = "btn-lg"> Send</button>
+							</form>
+						</div>
+					</div>
+
+				</div>
+				<div class = "col-sm-2">
+					<ul class="list-group pre-scrollable">
+						<li ng-repeat="active in actives" class="list-group-item">
+							<form ng-submit="rejectText( active.message, active.phoneNumber, active.mid )">
+								<span class="badge">14</span>
+								student phone #
+								<h6>{{active.message}}</h6>
+								<button type ="submit">Return to Queue</button>
+							</form>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</div>
 
-		<!-- Meetups View -->
-		<!--div ng-controller="meetupsController">
-			<h1>There are {{meetups.length}} meetups</h1>
-			<ul>
-				<li ng-repeat="meetup in meetups">
-					{{meetup.name}}
-				</li>
-			</ul>
-			<form ng-submit="createMeetup()">
-				<input type="text" placeholder="Meetup Name" ng-model="meetupName"></input>
-				<button type="submit">Add</button>
-			</form>
-		</div>
 
-		<!-- Current Chats -->
+		<!-- Bootstrap core JavaScript
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
 
-		<div ng-controller="textsController" style="border: 5px solid black; float: right; width: 25%; height: 100%">
-			<h1 align="center">Current Chats </h1>
-			<h2 align="center">{{actives.length}} Active </h2>
-			<ul style="list-style-type:none">	
-				<li ng-repeat="active in actives">
-					<form ng-submit="acceptText()">
-						<h3>{{active.message}}</h3>
-						<button type ="submit">Return to Queue</button>
-					</form>
-				</li>
-			</ul>
-		</div>
-
-		<!-- Scripts -->
-
+		<!--Google Angular
 		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.js"></script>
 		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-resource.js"></script>
+-->
+		<!-- Local Angular-->
+		<script type="text/javascript" src="/js/angular.js"></script>
+		<script type="text/javascript" src="/js/angular-resource.js"></script>
+
+		 
+		<!--Local Scripts-->
 		<script type="text/javascript" src="/js/app.js"></script>
 		<script type="text/javascript" src="/js/controllers/textsController.js"></script>
-
 	</body>
 </html>

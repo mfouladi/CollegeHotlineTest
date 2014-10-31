@@ -18,6 +18,7 @@ app.use('/css', express.static(__dirname+'/client/views/css'));
 //REST API
 app.get('/api/sms', textsController.list);
 app.post('/api/sms', textsController.create);
+app.all( '/api/sms/:mid', textsController.remove);
 
 app.listen(3000, function(){
 	console.log('I\'m Listening...');

@@ -1,5 +1,10 @@
 var mongoose = require('mongoose');
 
 module.exports = mongoose.model('SMS',{
-	message: String
+	mid: Number, 
+	message: String,
+	uid: Number,
+	tid: Number,
+	phoneNumber: Number,
+	active: Boolean
 });
