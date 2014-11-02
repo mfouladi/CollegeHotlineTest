@@ -2,7 +2,8 @@ var express 		= require('express'),
 	app				= express(),
 	bodyParser 		= require('body-parser'),
 	mongoose		= require('mongoose'),
-	textsController = require('./server/controllers/textsController');
+	textsController = require('./server/controllers/textsController'),
+	conversationController = require('./server/controllers/conversationController');
 
 mongoose.connect('mongodb://localhost:27017/SMS');
 
