@@ -8,12 +8,10 @@ app.controller('textsController',['$scope', '$resource', function ($scope, $reso
 	var Accept = $resource('/api/sms/:mid');
 
 	SMS.query({active: false}, function (results){
-		console.log(results);
 		$scope.texts = results;
 	});
 
 	SMS.query({active: true}, function (results){
-		console.log(results);
 		$scope.actives = results;
 	});
 
@@ -49,7 +47,7 @@ app.controller('textsController',['$scope', '$resource', function ($scope, $reso
 		});
 		accept.mid = id;
 		accept.message = message;
-		accept.phoneNUmber = phoneNumber;
+		accept.phoneNumber = phoneNumber;
 		accept.uid = 1;
 		accept.active = true;
 		accept.$save(function (result) {
@@ -70,7 +68,7 @@ app.controller('textsController',['$scope', '$resource', function ($scope, $reso
 		});
 		accept.mid = id;
 		accept.message = message;
-		accept.phoneNUmber = phoneNumber;
+		accept.phoneNumber = phoneNumber;
 		accept.uid = 0;
 		accept.active = false;
 		accept.$save(function (result) {

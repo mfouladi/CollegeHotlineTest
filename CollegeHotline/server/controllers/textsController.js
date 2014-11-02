@@ -20,6 +20,7 @@ module.exports.remove = function(req, res){
 	SMS.find( req.params, function ( err, sms ){
 		console.log(sms);
 	    sms[0].remove( function ( err, sms ){
+	    	res.json(sms);
 	    });
   	});
 }
