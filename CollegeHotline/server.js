@@ -5,7 +5,7 @@ var express 		= require('express'),
 	textsController = require('./server/controllers/textsController'),
 	conversationController = require('./server/controllers/conversationController');
 
-mongoose.connect('mongodb://localhost:27017/SMS');
+mongoose.connect('mongodb://localhost:27017/CollegeHotline');
 
 app.use(bodyParser());
 

@@ -109,8 +109,7 @@
 						<li ng-repeat="active in actives" class="list-group-item">
 							<form ng-submit="rejectText( active.message, active.phoneNumber, active.mid )">
 								<span class="badge">14</span>
-								student phone #
-								<h6>{{active.message}}</h6>
+								<p>{{active.phoneNumber}}</p>
 								<button type ="submit">Return to Queue</button>
 							</form>
 						</li>
