@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>College Hotline - Chat</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="css/bootstrap.css" rel="stylesheet">
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+  </head>
+
+  <body>
+
+	<!--header navbar-->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">College Hotline</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Student database perhaps?</a></li>
+        <li><a href="#">something appropriate</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Sign Out</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">I'm Available <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">I'm Occupied</a></li>
+            <li><a href="#">I'm Away</a></li>
+            <li><a href="#">I'm Not Taking Calls</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>	
+	
+	
+<div class = "container-fluid" style = "margin-top: 70px">
+	<div class = "row">
+		<div ng-controller="notesBasicController" class = "col-resize" >
+			<div class="panel panel-default pre-scrollable">
+				<div class = "panel-header">
+					<h2 class = "text-center">Basic Information</h2>
+				</div>		
+				<form role="form">
+					<div class="form-group">
+						<label>First Name</label>
+						<input type="text" class="form-control" placeholder="First Name">
+					</div>
+					<div class="form-group">
+						<label>Last Name</label>
+						<input type="text" class="form-control" placeholder="Last Name">
+					</div>	
+					<div class="form-group">
+						<label>Phone Number</label>
+						<input type="tel" class="form-control" placeholder="Preferred format">
+					</div>	
+					<div class="form-group">
+						<label>School</label>
+						<input type="text" class="form-control" placeholder="School Name">
+					</div>		
+					<div class="form-group">
+						<label>GPA</label>
+						<input type="number" step = ".01" class="form-control" placeholder="4.00">
+					</div>		
+					<div class="form-group">
+						<label>Expected Graduation Data</label>
+						<input type="date" class="form-control" >
+					</div>	
+				</form>
+			</div>
+		</div>
+		<div ng-controller="notesShortTermController" class = "col-resize">
+			<div class="panel panel-default pre-scrollable">
+				<div class = "panel-header">
+					<h2 class = "text-center">Shorterm Goals</h2>
+				</div>
+				Emily Olivia Leah Blunt (born 23 February 1983)[1] is an English actress. She has appeared in The Devil Wears Prada (2006), The Young Victoria (2009), The Adjustment Bureau (2011), Looper (2012), and Edge of Tomorrow (2014). She has been nominated for four Golden Globe Awards, two London Film Critics' Circle Awards, and one BAFTA Award. She won a Golden Globe Award for her work in the BBC television drama Gideon's Daughter (2007).[2] In 2009, she received the BAFTA Britannia Award for British Artist of the Year.[3]
+
+				Emily Olivia Leah Blunt (born 23 February 1983)[1] is an English actress. She has appeared in The Devil Wears Prada (2006), The Young Victoria (2009), The Adjustment Bureau (2011), Looper (2012), and Edge of Tomorrow (2014). She has been nominated for four Golden Globe Awards, two London Film Critics' Circle Awards, and one BAFTA Award. She won a Golden Globe Award for her work in the BBC television drama Gideon's Daughter (2007).[2] In 2009, she received the BAFTA Britannia Award for British Artist of the Year.[3]
+			</div>
+		</div>
+		<div ng-controller="notesLongTermController" class = "col-resize">
+			<div class="panel panel-default pre-scrollable">
+				<div class = "panel-header">
+					<h2 class = "text-center">Longterm Goals</h2>
+				</div>	
+					Anna Kendrick (born August 9, 1985)[1] is an American actress and singer. She rose to international fame after her performance as Natalie Keener in Up in the Air (2009), for which she received Academy Award, BAFTA, Golden Globe, and Screen Actors Guild Award nominations for Best Supporting Actress. She played Dinah Lord in the Broadway musical High Society (1998), for which she was nominated for a Tony Award. Her other notable roles include Fritzi Wagner in Camp (2003), Jessica Stanley in The Twilight Saga (2008–11), Stacey Pilgrim in Scott Pilgrim vs. the World (2010), Beca Mitchell in Pitch Perfect (2012) and Janet in End of Watch (2012). She will appear as Cinderella in Into the Woods, which is set to be released on December 25, 2014.
+		
+					Anna Kendrick (born August 9, 1985)[1] is an American actress and singer. She rose to international fame after her performance as Natalie Keener in Up in the Air (2009), for which she received Academy Award, BAFTA, Golden Globe, and Screen Actors Guild Award nominations for Best Supporting Actress. She played Dinah Lord in the Broadway musical High Society (1998), for which she was nominated for a Tony Award. Her other notable roles include Fritzi Wagner in Camp (2003), Jessica Stanley in The Twilight Saga (2008–11), Stacey Pilgrim in Scott Pilgrim vs. the World (2010), Beca Mitchell in Pitch Perfect (2012) and Janet in End of Watch (2012). She will appear as Cinderella in Into the Woods, which is set to be released on December 25, 2014.
+			</div>
+		</div>
+	</div>
+</div>
+
+
+	<!-- Bootstrap core JavaScript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="/js/client_modules/jquery.min.js"></script>
+	<script src="/js/frontend/notes.js"></script>
+  </body>
+</html>

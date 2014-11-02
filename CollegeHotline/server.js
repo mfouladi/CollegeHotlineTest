@@ -12,6 +12,9 @@ app.use(bodyParser());
 app.get('/', function (req, res){
 	res.sendFile(__dirname + '/client/views/index.html');
 });
+app.get('/notes', function (req, res){
+	res.sendFile(__dirname + '/client/views/notes.html');
+});
 
 app.use('/js', express.static(__dirname+'/client/js'));
 app.use('/css', express.static(__dirname+'/client/views/css'));
@@ -20,6 +23,7 @@ app.use('/css', express.static(__dirname+'/client/views/css'));
 app.get('/api/sms', textsController.list);
 app.post('/api/sms', textsController.create);
 app.all( '/api/sms/:mid', textsController.remove);
+app.post('/api/notes/basic/:phoneNumber')
 
 app.listen(3000, function(){
 	console.log('I\'m Listening...');
