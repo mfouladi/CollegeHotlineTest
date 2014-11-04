@@ -57,13 +57,14 @@
 		</nav>	
 		
 		
-		<div ng-controller="textsController" class = "container-fluid" style = "margin-top: 70px">
+		<div ng-controller="messageController" class = "container-fluid" style = "margin-top: 70px">
 			<div class = "row">
 				<div class = "col-sm-3">
 					<div class="panel panel-default pre-scrollable">
-						<div ng-repeat="text in texts" class="list-group-item">
-							<form ng-submit="acceptText( text.message, text.phoneNumber, text.mid )">
-								<h6>{{text.message}}</h6>
+						<div ng-repeat="message in messages" class="list-group-item">
+							<form ng-submit="acceptMessage( message.text, message.phoneNumber, message.mid )">
+								<h4>{{message.text}}</h4>
+								<!--p>{{message.timeStamp}}</p-->
 								<button align="center" type ="submit">Answer</button>
 							</form>
 						</div>
@@ -96,8 +97,8 @@
 							<button class = "btn-lg"> Help this student</button>
 							
 							only show the upper button or the lower things, depending on context
-							<form ng-submit="createTextMessage()">
-								<input ng-model="newMessage" placeholder="Message Text" class="form-control" rows="3"></input>
+							<form ng-submit="createMessage()">
+								<input ng-model="newText" placeholder="Message Text" class="form-control" rows="3"></input>
 								<button type="submit" class = "btn-lg"> Send</button>
 							</form>
 						</div>
@@ -106,10 +107,10 @@
 				</div>
 				<div class = "col-sm-2">
 					<ul class="list-group pre-scrollable">
-						<li ng-repeat="active in actives" class="list-group-item">
-							<form ng-submit="rejectText( active.message, active.phoneNumber, active.mid )">
+						<li ng-repeat="conversation in conversations" class="list-group-item">
+							<form ng-submit="rejectMessage( conversation.text, conversation.phoneNumber, conversation.mid )">
 								<span class="badge">14</span>
-								<p>{{active.phoneNumber}}</p>
+								<p>{{conversation.phoneNumber}}</p>
 								<button type ="submit">Return to Queue</button>
 							</form>
 						</li>
@@ -136,6 +137,7 @@
 		 
 		<!--Local Scripts-->
 		<script type="text/javascript" src="/js/app.js"></script>
-		<script type="text/javascript" src="/js/controllers/textsController.js"></script>
+		<script type="text/javascript" src="/js/controllers/messageController.js"></script>
+		<script type="text/javascript" src="/js/controllers/conversationController.js"></script>
 	</body>
 </html>
