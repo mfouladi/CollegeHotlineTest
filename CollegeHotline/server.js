@@ -3,7 +3,8 @@ var express 		= require('express'),
 	bodyParser 		= require('body-parser'),
 	mongoose		= require('mongoose'),
 	textsController = require('./server/controllers/textsController'),
-	conversationController = require('./server/controllers/conversationController');
+	conversationController = require('./server/controllers/conversationController'),
+	notesBasicController = require("./server/controllers/notesBasicController");
 
 mongoose.connect('mongodb://localhost:27017/CollegeHotline');
 
@@ -22,8 +23,9 @@ app.use('/css', express.static(__dirname+'/client/views/css'));
 //REST API
 app.get('/api/sms', textsController.list);
 app.post('/api/sms', textsController.create);
+
 app.all( '/api/sms/:mid', textsController.remove);
-app.post('/api/notes/basic/:phoneNumber')
+app.get('/api/notes/basic', notesBasicController.list);
 
 app.listen(3000, function(){
 	console.log('I\'m Listening...');

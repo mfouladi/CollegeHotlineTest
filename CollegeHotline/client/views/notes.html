@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app = "CH_SMS_App">
   <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -64,35 +64,15 @@
 				<div class = "panel-header">
 					<h2 class = "text-center">Basic Information</h2>
 				</div>		
-				<form role="form">
+				<form role="form" ng-repeat = "item in parsedInfo">
 					<div class="form-group">
-						<label>First Name</label>
-						<input type="text" class="form-control" placeholder="First Name">
+						<label>{{item.key}}</label>
+						<input type="text" class="form-control" placeholder="First Name" value = "{{item.val}}">
 					</div>
-					<div class="form-group">
-						<label>Last Name</label>
-						<input type="text" class="form-control" placeholder="Last Name">
-					</div>	
-					<div class="form-group">
-						<label>Phone Number</label>
-						<input type="tel" class="form-control" placeholder="Preferred format">
-					</div>	
-					<div class="form-group">
-						<label>School</label>
-						<input type="text" class="form-control" placeholder="School Name">
-					</div>		
-					<div class="form-group">
-						<label>GPA</label>
-						<input type="number" step = ".01" class="form-control" placeholder="4.00">
-					</div>		
-					<div class="form-group">
-						<label>Expected Graduation Data</label>
-						<input type="date" class="form-control" >
-					</div>	
 				</form>
 			</div>
 		</div>
-		<div ng-controller="notesShortTermController" class = "col-resize">
+		<div class = "col-resize">
 			<div class="panel panel-default pre-scrollable">
 				<div class = "panel-header">
 					<h2 class = "text-center">Shorterm Goals</h2>
@@ -102,7 +82,7 @@
 				Emily Olivia Leah Blunt (born 23 February 1983)[1] is an English actress. She has appeared in The Devil Wears Prada (2006), The Young Victoria (2009), The Adjustment Bureau (2011), Looper (2012), and Edge of Tomorrow (2014). She has been nominated for four Golden Globe Awards, two London Film Critics' Circle Awards, and one BAFTA Award. She won a Golden Globe Award for her work in the BBC television drama Gideon's Daughter (2007).[2] In 2009, she received the BAFTA Britannia Award for British Artist of the Year.[3]
 			</div>
 		</div>
-		<div ng-controller="notesLongTermController" class = "col-resize">
+		<div  class = "col-resize">
 			<div class="panel panel-default pre-scrollable">
 				<div class = "panel-header">
 					<h2 class = "text-center">Longterm Goals</h2>
@@ -119,7 +99,17 @@
 	<!-- Bootstrap core JavaScript
 	================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
+	
+	<!-- Client Side Scripts-->
 	<script src="/js/client_modules/jquery.min.js"></script>
 	<script src="/js/frontend/notes.js"></script>
+
+		<!-- Local Angular-->
+		<script type="text/javascript" src="/js/client_modules/angular.js"></script>
+		<script type="text/javascript" src="/js/client_modules/angular-resource.js"></script>
+	
+	<!--Local Scripts-->
+	<script type="text/javascript" src="/js/app.js"></script>
+	<script src = "/js/controllers/notesBasicController.js"></script>
   </body>
 </html>
