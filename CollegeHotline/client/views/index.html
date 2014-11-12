@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="CH_SMS_App">
+<html lang="en" ng-app="CH_Messaging_App">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -57,14 +57,16 @@
 		</nav>	
 		
 		
-		<div ng-controller="messageController" class = "container-fluid" style = "margin-top: 70px">
+		<div ng-controller="conversationController" class = "container-fluid" style = "margin-top: 70px">
 			<div class = "row">
 				<div class = "col-sm-3">
 					<div class="panel panel-default pre-scrollable">
-						<div ng-repeat="message in messages" class="list-group-item">
-							<form ng-submit="acceptMessage( message.text, message.phoneNumber, message.mid )">
-								<h4>{{message.text}}</h4>
-								<!--p>{{message.timeStamp}}</p-->
+						<div ng-repeat="conversation in inactiveConversations" class="list-group-item">
+							<!-- <form ng-submit="activateConversation( conversation.phoneNumber )"> -->
+							<form ng-submit="activateConversation( $index, conversation.phoneNumber )">
+								<h4>{{conversation.messages[0].text}}</h4>
+								<!-- <p>{{conversation.phoneNumber}}</p> -->
+								<p>{{message.timeStamp}}</p>
 								<button align="center" type ="submit">Answer</button>
 							</form>
 						</div>
@@ -74,20 +76,15 @@
 					<div class = "row">
 						<div class="panel panel-default pre-scrollable">
 							<div class = "panel-header">
-								<h2 class = "text-center">#student number</h2>
-								only show this if the question is acceptted. my suggesttion at least
+								<h2 class = "text-center">John Doe</h2>
 							</div>
 							<div class="panel-body">
-							<h4> time </h4>
-							<p>Emma Charlotte Duerre Watson[3] (born 15 April 1990) is an English actress and model. She rose to prominence playing Hermione Granger in the Harry Potter film series; she was cast as Hermione at the age of nine, having previously acted only in school plays.[4] She starred in all eight Harry Potter films, alongside Daniel Radcliffe and Rupert Grint.[5] Watson's work on the Harry Potter series has earned her several awards and more than £10 million.[6] She made her modelling debut for Burberry's autumn/winter campaign in 2009. In October 2013, she was voted Sexiest Female Movie Star in a worldwide poll conducted by Empire magazine.[7] In May 2014, BuzzFeed dubbed her the "most flawless woman of the decade".[8]
-								In 2007, Watson announced her involvement in The Tale of Despereaux and the television adaptation of the novel Ballet Shoes, which was broadcast on 26 December 2007 to an audience of 5.2 million. The Tale of Despereaux, based on the novel by Kate DiCamillo, was released in 2008 and grossed more than US$86 million in worldwide sales.[9] In 2012, she starred in Stephen Chbosky's film adaptation of The Perks of Being a Wallflower, and in 2014, she played Ila in Darren Aronofsky's biblical epic Noah.[10]
-								Watson was appointed as a UN Women Goodwill Ambassador in 2014. She helped launch the UN Women campaign HeForShe, which calls for men to advocate for "gender equality".[11]</p>
+							<p> Nov 4, 3:10pm </p>
+							<h4>What is the SAT?</h4>
 							</div>
 											<div class="panel-body">
-											<h4> time </h4>
-							<p>Emma Charlotte Duerre Watson[3] (born 15 April 1990) is an English actress and model. She rose to prominence playing Hermione Granger in the Harry Potter film series; she was cast as Hermione at the age of nine, having previously acted only in school plays.[4] She starred in all eight Harry Potter films, alongside Daniel Radcliffe and Rupert Grint.[5] Watson's work on the Harry Potter series has earned her several awards and more than £10 million.[6] She made her modelling debut for Burberry's autumn/winter campaign in 2009. In October 2013, she was voted Sexiest Female Movie Star in a worldwide poll conducted by Empire magazine.[7] In May 2014, BuzzFeed dubbed her the "most flawless woman of the decade".[8]
-								In 2007, Watson announced her involvement in The Tale of Despereaux and the television adaptation of the novel Ballet Shoes, which was broadcast on 26 December 2007 to an audience of 5.2 million. The Tale of Despereaux, based on the novel by Kate DiCamillo, was released in 2008 and grossed more than US$86 million in worldwide sales.[9] In 2012, she starred in Stephen Chbosky's film adaptation of The Perks of Being a Wallflower, and in 2014, she played Ila in Darren Aronofsky's biblical epic Noah.[10]
-								Watson was appointed as a UN Women Goodwill Ambassador in 2014. She helped launch the UN Women campaign HeForShe, which calls for men to advocate for "gender equality".[11]</p>
+											<p align="right"> Nov 4, 3:15pm </p>
+							<h4 align="right">It's a test designed to see how prepared you are for college.</h4>
 							</div>
 							
 						</div>
@@ -95,10 +92,9 @@
 					<div class = "row">
 						<div class = "panel-footer text-center">
 							<button class = "btn-lg"> Help this student</button>
-							
-							only show the upper button or the lower things, depending on context
-							<form ng-submit="createMessage()">
+							<form ng-submit="createConversation()">
 								<input ng-model="newText" placeholder="Message Text" class="form-control" rows="3"></input>
+								<input ng-model="newNumber" placeholder="Phone Number" class="form-control" rows='1'></input>
 								<button type="submit" class = "btn-lg"> Send</button>
 							</form>
 						</div>
@@ -107,11 +103,14 @@
 				</div>
 				<div class = "col-sm-2">
 					<ul class="list-group pre-scrollable">
-						<li ng-repeat="conversation in conversations" class="list-group-item">
-							<form ng-submit="rejectMessage( conversation.text, conversation.phoneNumber, conversation.mid )">
+						<li ng-repeat="conversation in activeConversations" class="list-group-item">
+							<form ng-submit="deactivateConversation( $index, conversation.phoneNumber)">
 								<span class="badge">14</span>
 								<p>{{conversation.phoneNumber}}</p>
 								<button type ="submit">Return to Queue</button>
+							</form>
+							<form ng-submit="openConversation( $index, conversation.phoneNumber)">
+								<button type ="submit">Open</button>
 							</form>
 						</li>
 					</ul>
@@ -137,7 +136,6 @@
 		 
 		<!--Local Scripts-->
 		<script type="text/javascript" src="/js/app.js"></script>
-		<script type="text/javascript" src="/js/controllers/messageController.js"></script>
 		<script type="text/javascript" src="/js/controllers/conversationController.js"></script>
 	</body>
 </html>

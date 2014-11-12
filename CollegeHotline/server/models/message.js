@@ -7,6 +7,6 @@ module.exports = mongoose.model('Message',{
 	isVolunteer		: {type: Boolean, default: false},
 	volunteerID		: Number, 
 	hasBeenRead		: {type: Boolean, default: false},
-	phoneNumber		: Number,
+	phoneNumber		: {type: Number, default: 3108675309},//remove default in production
 	active			: {type: Boolean, default: false}
 });
