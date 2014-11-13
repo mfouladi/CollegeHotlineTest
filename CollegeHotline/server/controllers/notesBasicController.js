@@ -1,12 +1,14 @@
-var NotesBasic = require('../models/NotesBasic');
+var NotesBasic = require('../models/notesBasic');
 
 module.exports.list = function(req, res){
-	//eventually were gonna wanna
-	var query = {phoneNumber : '1234567890'};
-	//console.log(NotesBasic.find(query));
-	NotesBasic.find(query, function (err, results){
-	console.log(err);
-	console.log(results);
+	NotesBasic.find(req.query, function (err, results){
 		res.json(results);
+	});
+}
+
+module.exports.create = function(req, res){
+	var newNote = new NotesBasic(req.body);
+	newNote.save(function (err, result){
+		res.json(result);
 	});
 }

@@ -4,7 +4,10 @@ var express 		= require('express'),
 	mongoose		= require('mongoose'),
 	textsController = require('./server/controllers/textsController'),
 	conversationController = require('./server/controllers/conversationController'),
-	notesBasicController = require("./server/controllers/notesBasicController");
+	notesBasicController = require("./server/controllers/notesBasicController"),
+	notesShortTermController = require("./server/controllers/notesShortTermController");
+
+
 
 mongoose.connect('mongodb://localhost:27017/CollegeHotline');
 
@@ -26,6 +29,8 @@ app.post('/api/sms', textsController.create);
 
 app.all( '/api/sms/:mid', textsController.remove);
 app.get('/api/notes/basic', notesBasicController.list);
+app.post('/api/notes/basic', notesBasicController.create);
+app.post('/api/notes/short/goal', notesShortTermController.create);
 
 app.listen(3000, function(){
 	console.log('I\'m Listening...');

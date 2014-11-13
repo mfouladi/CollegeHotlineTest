@@ -68,27 +68,28 @@
 							</form>
 						</div>
 					</div>
+					<form ng-submit="createTextMessage()">
+						<input ng-model="newMessage" placeholder="Message Text" class="form-control" rows="3"></input>
+						<button type="submit" class = "btn-lg"> Send</button>
+					</form>
 				</div>
 				<div class = "col-sm-7">
 					<div class = "row">
 						<div class="panel panel-default pre-scrollable">
 							<div class = "panel-header">
 								<h2 class = "text-center">#student number</h2>
-								only show this if the question is acceptted. my suggesttion at least
 							</div>
-							<div class="panel-body">
-							<h4> time </h4>
-							<p>Emma Charlotte Duerre Watson[3] (born 15 April 1990) is an English actress and model. She rose to prominence playing Hermione Granger in the Harry Potter film series; she was cast as Hermione at the age of nine, having previously acted only in school plays.[4] She starred in all eight Harry Potter films, alongside Daniel Radcliffe and Rupert Grint.[5] Watson's work on the Harry Potter series has earned her several awards and more than £10 million.[6] She made her modelling debut for Burberry's autumn/winter campaign in 2009. In October 2013, she was voted Sexiest Female Movie Star in a worldwide poll conducted by Empire magazine.[7] In May 2014, BuzzFeed dubbed her the "most flawless woman of the decade".[8]
-								In 2007, Watson announced her involvement in The Tale of Despereaux and the television adaptation of the novel Ballet Shoes, which was broadcast on 26 December 2007 to an audience of 5.2 million. The Tale of Despereaux, based on the novel by Kate DiCamillo, was released in 2008 and grossed more than US$86 million in worldwide sales.[9] In 2012, she starred in Stephen Chbosky's film adaptation of The Perks of Being a Wallflower, and in 2014, she played Ila in Darren Aronofsky's biblical epic Noah.[10]
-								Watson was appointed as a UN Women Goodwill Ambassador in 2014. She helped launch the UN Women campaign HeForShe, which calls for men to advocate for "gender equality".[11]</p>
+							<div ng-repeat="message in conversation">
+								<div style="" class="list-group-item">
+									<li align="left" width="10px">{{message.student}}</li>
+								</div>
+								<div style=" class="list-group-item">
+									<li align="right" width="10px">{{message.volunteer}}</li>
+								</div>
+
+
+
 							</div>
-											<div class="panel-body">
-											<h4> time </h4>
-							<p>Emma Charlotte Duerre Watson[3] (born 15 April 1990) is an English actress and model. She rose to prominence playing Hermione Granger in the Harry Potter film series; she was cast as Hermione at the age of nine, having previously acted only in school plays.[4] She starred in all eight Harry Potter films, alongside Daniel Radcliffe and Rupert Grint.[5] Watson's work on the Harry Potter series has earned her several awards and more than £10 million.[6] She made her modelling debut for Burberry's autumn/winter campaign in 2009. In October 2013, she was voted Sexiest Female Movie Star in a worldwide poll conducted by Empire magazine.[7] In May 2014, BuzzFeed dubbed her the "most flawless woman of the decade".[8]
-								In 2007, Watson announced her involvement in The Tale of Despereaux and the television adaptation of the novel Ballet Shoes, which was broadcast on 26 December 2007 to an audience of 5.2 million. The Tale of Despereaux, based on the novel by Kate DiCamillo, was released in 2008 and grossed more than US$86 million in worldwide sales.[9] In 2012, she starred in Stephen Chbosky's film adaptation of The Perks of Being a Wallflower, and in 2014, she played Ila in Darren Aronofsky's biblical epic Noah.[10]
-								Watson was appointed as a UN Women Goodwill Ambassador in 2014. She helped launch the UN Women campaign HeForShe, which calls for men to advocate for "gender equality".[11]</p>
-							</div>
-							
 						</div>
 					</div>
 					<div class = "row">
@@ -96,8 +97,8 @@
 							<button class = "btn-lg"> Help this student</button>
 							
 							only show the upper button or the lower things, depending on context
-							<form ng-submit="createTextMessage()">
-								<input ng-model="newMessage" placeholder="Message Text" class="form-control" rows="3"></input>
+							<form>
+								<input placeholder="Message Text" class="form-control" rows="3"></input>
 								<button type="submit" class = "btn-lg"> Send</button>
 							</form>
 						</div>

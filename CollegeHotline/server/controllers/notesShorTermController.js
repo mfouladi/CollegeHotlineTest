@@ -1,1 +1,0 @@
-var NotesShortTerm = require('../models/NotesShortTerm');

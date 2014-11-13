@@ -1,9 +1,15 @@
 var mongoose = require('mongoose');
 
-module.exports = mongoose.model('NotesBasic',{
-	phoneNumber			: Number,
-	studentName			: {first: String, last: String},
-	schoolName			: String,
-	gpa					: Number,
-	graduationDate		: Date
+var basicNoteSchema = new mongoose.Schema({
+	phoneNumber 	: Number,
+	studentName		: 
+					{
+					    first: String,
+					    last: String
+ 				 	},
+ 	schoolName		: String,
+ 	gpa				: Number,
+ 	graduationYear 	: Number
 });
+
+module.exports = mongoose.model('basicnote', basicNoteSchema);

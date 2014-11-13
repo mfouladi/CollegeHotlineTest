@@ -76,4 +76,12 @@ app.controller('textsController',['$scope', '$resource', function ($scope, $reso
 		});
 	}
 
+	$scope.conversation = [
+		{student: "Hi, can I get some help?", volunteer: "Yes! I am here to serve."},
+		{student: "How much wood can I woodchuck chuck if a woodchuck could chuck wood? ", volunteer: "24,000 metric tons in a lifetime"},
+		{student: "Really? Wow! Thansk!", volunteer: "Now let me ask you a question."},
+		{student: "Um... okay. What is the question?", volunteer: "If you had to get a cabbage, a wolf, and a sheep across a river on a boat but could only take two of them with you at a time what would you do?"},
+		{student: "Easy. I would shoot the wolf, and take the dead wolf and the sheep across. Then I would come back for the cabbage.", volunteer: "Nice! Thinking outside the box I see. You will make it far kid."}
+	];
+
 }]);
