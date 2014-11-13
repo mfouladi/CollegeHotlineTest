@@ -2,7 +2,6 @@ var express 		= require('express'),
 	app				= express(),
 	bodyParser 		= require('body-parser'),
 	mongoose		= require('mongoose'),
-	textsController = require('./server/controllers/textsController'),
 	conversationController = require('./server/controllers/conversationController'),
 	notesBasicController = require("./server/controllers/notesBasicController"),
 	notesShortTermController = require("./server/controllers/notesShortTermController");
