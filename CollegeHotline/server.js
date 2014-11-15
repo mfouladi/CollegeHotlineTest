@@ -2,6 +2,7 @@ var express 		= require('express'),
 	app				= express(),
 	bodyParser 		= require('body-parser'),
 	mongoose		= require('mongoose'),
+	wordpress		= require('wordpress'),
 	conversationController = require('./server/controllers/conversationController'),
 	notesBasicController = require("./server/controllers/notesBasicController"),
 	notesShortTermController = require("./server/controllers/notesShortTermController");
