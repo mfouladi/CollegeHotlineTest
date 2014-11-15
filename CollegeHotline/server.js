@@ -3,6 +3,7 @@ var express 		= require('express'),
 	bodyParser 		= require('body-parser'),
 	mongoose		= require('mongoose'),
 	wordpress		= require('wordpress'),
+	php				= require('node-php'),
 	conversationController = require('./server/controllers/conversationController'),
 	notesBasicController = require("./server/controllers/notesBasicController"),
 	notesShortTermController = require("./server/controllers/notesShortTermController");
@@ -11,9 +12,16 @@ mongoose.connect('mongodb://localhost:27017/CollegeHotline');
 
 app.use(bodyParser());
 
-app.get('/', function (req, res){
-	res.sendFile(__dirname + '/client/views/index.html');
-});
+isWordpressServer = false;
+
+if(isWordpressServer){
+	app.use("/", php.cgi("../index.php")); 
+}
+else{
+	app.get('/', function (req, res){
+		res.sendFile(__dirname + '/client/views/index.html');
+	});
+}
 app.get('/notes', function (req, res){
 	res.sendFile(__dirname + '/client/views/notes.html');
 });
