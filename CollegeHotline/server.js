@@ -19,6 +19,7 @@ app.get('/notes', function (req, res){
 
 app.use('/js', express.static(__dirname+'/client/js'));
 app.use('/css', express.static(__dirname+'/client/views/css'));
+app.use('/views', express.static(__dirname+'/client/views'));
 
 //REST API
 app.get('/api/notes/basic', notesBasicController.list);
