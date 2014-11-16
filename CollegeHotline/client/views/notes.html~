@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" ng-app = "CH_Messaging_App">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>College Hotline - Chat</title>
+
+		<!-- Bootstrap core CSS -->
+		<link href="css/bootstrap.css" rel="stylesheet">
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<!--header navbar-->
+		<div ng-include src="'/views/navbar.html'"></div>
+	
+		<div class = "container-fluid" style = "margin-top: 70px">
+			<div class = "row">
+				<div ng-controller="notesBasicController" class = "col-resize" >
+					<div class = "panel-header">
+						<h2 class = "text-center">Basic Information</h2>
+					</div>
+					<div class="panel panel-default pre-scrollable">
+						<form ng-submit="createNewNote()">
+							<label>{{phoneNumber.placeholder}}</label>
+							<input type="text" class="form-control" placeholder="{{phoneNumber.placeholder}}" value = "{{phoneNumber.value}}" ng-model="phoneNumber.value" >
+							<button align="center" type ="submit">Search</button>
+						</form> 
+						<div ng-repeat = "item in basicInfo">		
+							<form ng-submit="createNewNote()">
+								<div class="form-group">
+									<label>{{item.placeholder}}</label>
+									<input type="text" class="form-control" placeholder="{{item.placeholder}}" value = "{{item.value}}">
+									<input type="hidden" align="center"/>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class = "col-resize" ng-controller="notesShortTermController" >
+					<div class = "panel-header">
+						<h2 class = "text-center">Short Term Goals</h2>
+					</div>
+					<div class="panel panel-default pre-scrollable">
+						<div ng-repeat = "goal in goals">	
+							<form>
+								<input type="checkbox">{{goal.body}}</h6>
+							</form>
+						</div>
+					</div>
+					<form ng-submit="createNewGoal()">
+						<input ng-model="newGoal" placeholder="Message Text" class="form-control" rows="3"></input>
+						<button type="submit" class = "btn-md"> Update</button>
+					</form>
+				</div>
+				<div  class = "col-resize">
+					<div class = "panel-header">
+						<h2 class = "text-center">Longterm Goals</h2>
+					</div>
+					<div class="panel panel-default pre-scrollable">
+							David Starr Jordan High School is a public comprehensive four-year high school in the Los Angeles neighborhood of [[long Beach , Los Angeles]] in California. The school was named after David Starr Jordan, the first President of Stanford University (from 1891–1913).
+
+							Some sections of Florence-Graham, an unincorporated neighborhood in Los Angeles County, are jointly zoned to Jordan and John C. Fremont High School. The Gonzaque Village, Imperial Courts, Jordan Downs, and Nickerson Gardens public housing developments of Los Angeles are zoned to Jordan.
+
+							The school colors are blue and white and the mascot is a bulldog.
+
+							Prior to the 2005 opening of South East High School, Jordan served portions of the City of South Gate.[1][2]
+
+							Jordan High School is one of a few high schools to have three, unrelated, Olympic gold medalists come from the same high school in Hayes Edward Sanders, Florence Griffith-Joyner and Kevin Young. Sanders, in 1952, became the first African American to win the Olympic Heavyweight Boxing Championship while both Griffith-Joyner and Young still hold the current World Record in their respective events.
+
+							King Drew Magnet High School of Medicine and Science opened in bungalows of Jordan in 1982.[3] In 1999 it moved to a standalone campus in Willowbrook.[4]
+					</div>
+				</div>
+			</div>
+		</div>
+
+		
+		<!-- Client Side Scripts-->
+		<script src="/js/client_modules/jquery.min.js"></script>
+		<script src="/js/frontend/notes.js"></script>
+
+		<!-- Local Angular-->
+		<script type="text/javascript" src="/js/client_modules/angular.js"></script>
+		<script type="text/javascript" src="/js/client_modules/angular-resource.js"></script>
+		
+		<!--Local Scripts-->
+		<script type="text/javascript" src="/js/app.js"></script>
+		<script src = "/js/controllers/notesBasicController.js"></script>
+		<script src = "/js/controllers/notesShortTermController.js"></script>
+  	</body>
+</html>

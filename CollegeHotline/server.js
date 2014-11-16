@@ -5,7 +5,8 @@ var express 		= require('express'),
 	wordpress		= require('wordpress'),
 	conversationController = require('./server/controllers/conversationController'),
 	notesBasicController = require("./server/controllers/notesBasicController"),
-	notesShortTermController = require("./server/controllers/notesShortTermController");
+	notesShortTermController = require("./server/controllers/notesShortTermController"),
+	cloudPhoneController = require("./server/controllers/cloudPhoneController.js");
 
 mongoose.connect('mongodb://localhost:27017/CollegeHotline');
 
@@ -33,6 +34,11 @@ app.get('/api/conversation', conversationController.listConversations);
 app.post('/api/conversation', conversationController.createConversation);
 app.get('/api/conversation/activate/:phoneNumber', conversationController.activateConversation);
 app.get('/api/conversation/deactivate/:phoneNumber', conversationController.deactivateConversation);
+
+//CloudPhone things
+app.get('/api/cloudPhone/receiveMsg', cloudPhoneController.receiveMsg);
+app.get('/api/cloudPhone/sendMsg', cloudPhoneController.sendMsg);
+app.get('/api/cloudPhone/forwardCall', cloudPhoneController.forwardCall);
 
 app.listen(3000, function(){
 	console.log('I\'m Listening...');
