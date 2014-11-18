@@ -45,19 +45,12 @@
 				</div>
 				<div class = "col-sm-7">
 					<div class = "row">
+						<h2 align = "center"> Current Conversation </h2>
 						<div class="panel panel-default pre-scrollable">
-							<div class = "panel-header">
-
-								<h2 class = "text-center">John Doe</h2>
-							</div>
-							<div class="panel-body">
-							<p> Nov 4, 3:10pm </p>
-							<h4>What is the SAT?</h4>
-							</div>
-											<div class="panel-body">
-											<p align="right"> Nov 4, 3:15pm </p>
-							<h4 align="right">It's a test designed to see how prepared you are for college.</h4>
-							</div>
+							<li ng-repeat="message in currentConversation" class="list-group-item">
+								<!--p>{{message.timeStamp}}</p-->
+								<h4>{{message.text}}</h4>
+							</li>	
 						</div>
 					</div>
 					<div class = "row">
@@ -77,8 +70,9 @@
 					<ul class="list-group pre-scrollable">
 						<li ng-repeat="conversation in activeConversations" class="list-group-item">
 							<form ng-submit="deactivateConversation( $index, conversation.phoneNumber)">
-								<span class="badge">14</span>
-								<p>{{conversation.phoneNumber}}</p>
+								<span class="badge">{{conversation.unreadMessageCount}} Unread</span>
+								<!-- <p>{{conversation.phoneNumber}}</p> -->
+								<h4>{{conversation.messages[0].text}}</h4>
 								<button type ="submit">Return to Queue</button>
 							</form>
 							<form ng-submit="openConversation( $index, conversation.phoneNumber)">

@@ -34,15 +34,7 @@ module.exports.createConversation = function(req, res){
 							phoneNumber		: req.body.phoneNumber,
 							active			: false
 						  };
-  	conversation.messages[1] = {
-							text			: req.body.text,
-							timeStamp		: Date.now,
-							isVolunteer		: false,
-							volunteerID		: 0, 
-							hasBeenRead		: false,
-							phoneNumber		: req.body.phoneNumber,
-							active			: false
-						  };
+  	
 	//conversation.messages.push(message);
 	//console.log(req.body);
 	conversation.phoneNumber = conversation.messages[0].phoneNumber;
@@ -78,5 +70,13 @@ module.exports.listConversations = function(req, res){
 	//Conversation.find({messages: {"$elemMatch": {phoneNumber: 1234}}}, function (results){
 		res.json(results);
 		console.log("Found conversations:\n ", results, "\n");
+	});
+}
+
+module.exports.openConversation = function (req, res){
+	Conversation.update(req.params, {$set: {unreadMessageCount : 0}}, function (err, conversation){
+	});
+	Conversation.find(req.params, function (err, conversation){
+		res.json(conversation);
 	});
 }

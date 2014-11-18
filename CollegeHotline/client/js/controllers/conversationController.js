@@ -3,6 +3,7 @@ app.controller('conversationController',['$scope', '$resource', function ($scope
 	$scope.inactiveConversations 	= [ ];
 	$scope.activeConversations		= [ ];
 	$scope.currentConversation		= [ ];
+	$scope.currentConversationPhoneNumber = 0;
 
 	var Message 		= $resource('/api/conversation');//to be removed
 	var Accept 			= $resource('/api/message/:mid');//to be removed
@@ -10,12 +11,12 @@ app.controller('conversationController',['$scope', '$resource', function ($scope
 	var Conversation 	= $resource('/api/conversation');
 	var Activate 		= $resource('/api/conversation/activate/:phoneNumber');
 	var Deactivate 		= $resource('/api/conversation/deactivate/:phoneNumber');
-
+	var Open 			= $resource('/api/conversation/open/:phoneNumber');
+	
 	//Query inactive conversations
 	Conversation.query({active: false}, function (results){
 		$scope.inactiveConversations = results;
 	});
-
 
 	//db.test.find({shapes: {"$elemMatch": {color: "red"}}}, {"shapes.color":1})
 
@@ -39,13 +40,6 @@ app.controller('conversationController',['$scope', '$resource', function ($scope
 	}
 
 	$scope.activateConversation = function(index, activatePhoneNumber) {
-		// for(var i=0; i< $scope.inactiveConversations.length; i++){
-		// 	if($scope.inactiveConversations[i].phoneNumber == activatePhoneNumber){
-		// 		$scope.inactiveConversations.splice(i, 1);
-		// 		break;
-		// 	}
-		// }
-
 		Activate.query({phoneNumber : activatePhoneNumber}, function (results){
 			//console.log(results[0]);
 			$scope.activeConversations.push(results[0]);
@@ -54,21 +48,22 @@ app.controller('conversationController',['$scope', '$resource', function ($scope
 	}
 
 	$scope.deactivateConversation = function(index, deactivatePhoneNumber) {
-		// for(var i=0; i< $scope.inactiveConversations.length; i++){
-		// 	if($scope.inactiveConversations[i].phoneNumber == activatePhoneNumber){
-		// 		$scope.inactiveConversations.splice(i, 1);
-		// 		break;
-		// 	}
-		// }
 		Deactivate.query({phoneNumber : deactivatePhoneNumber}, function (results){
 			//console.log(results[0]);
 			$scope.inactiveConversations.push(results[0]);
 		});
+		if($scope.activeConversations[index].phoneNumber == $scope.currentConversationPhoneNumber){
+			$scope.currentConversation = [];
+		}
 		$scope.activeConversations.splice(index, 1);
 	}
 
 	$scope.openConversation = function(index, openPhoneNumber){
-		
+		Open.query({phoneNumber: openPhoneNumber}, function (results){
+			$scope.activeConversations[index] = results[0];
+		});
+		$scope.currentConversation = $scope.activeConversations[index].messages;
+		$scope.currentConversationPhoneNumber = $scope.activeConversations[index].phoneNumber;
 	}
 
 /*
@@ -93,45 +88,44 @@ app.controller('conversationController',['$scope', '$resource', function ($scope
 	//Send the server info for which message you want to accept
 	//This should search the conversations db for all other messages
 	//from the same number and add the conversation to the right column
-	$scope.acceptMessage = function(text, phoneNumber, id) {
-		var accept = new Message();
-		for(var i=0; i< $scope.inactiveConversations.length; i++){
-			if($scope.inactiveConversations[i].mid == id){
-				$scope.inactiveConversations.splice(i, 1);
-				break;
-			}
-		}
-		Accept.delete({mid: id}, function (results){
+// 	$scope.acceptMessage = function(text, phoneNumber, id) {
+// 		var accept = new Message();
+// 		for(var i=0; i< $scope.inactiveConversations.length; i++){
+// 			if($scope.inactiveConversations[i].mid == id){
+// 				$scope.inactiveConversations.splice(i, 1);
+// 				break;
+// 			}
+// 		}
+// 		Accept.delete({mid: id}, function (results){
 			
-		});
-		accept.mid = id;
-		accept.text = text;
-		accept.phoneNumber = phoneNumber;
-		accept.active = true;
-		accept.$save(function (result) {
-			$scope.activeConversations.push(result);
-		});
-	}
+// 		});
+// 		accept.mid = id;
+// 		accept.text = text;
+// 		accept.phoneNumber = phoneNumber;
+// 		accept.active = true;
+// 		accept.$save(function (result) {
+// 			$scope.activeConversations.push(result);
+// 		});
+// 	}
 
-	//Rework this to drop a whole conversation
-	$scope.rejectMessage = function(text, phoneNumber, id)  {
-		var accept = new Message();
-		for(var i=0; i< $scope.activeConversations.length; i++){
-			if($scope.activeConversations[i].mid == id){
-				$scope.activeConversations.splice(i, 1);
-				break;
-			}
-		}
-		Accept.delete({mid: id}, function (results){
+// 	//Rework this to drop a whole conversation
+// 	$scope.rejectMessage = function(text, phoneNumber, id)  {
+// 		var accept = new Message();
+// 		for(var i=0; i< $scope.activeConversations.length; i++){
+// 			if($scope.activeConversations[i].mid == id){
+// 				$scope.activeConversations.splice(i, 1);
+// 				break;
+// 			}
+// 		}
+// 		Accept.delete({mid: id}, function (results){
 			
-		});
-		accept.mid = id;
-		accept.text = text;
-		accept.phoneNumber = phoneNumber;
-		accept.active = false;
-		accept.$save(function (result) {
-			$scope.inactiveConversations.push(result);
-		});
-	}
-
-}]);
+// 		});
+// 		accept.mid = id;
+// 		accept.text = text;
+// 		accept.phoneNumber = phoneNumber;
+// 		accept.active = false;
+// 		accept.$save(function (result) {
+// 			$scope.inactiveConversations.push(result);
+// 		});
+// 	}
+ }]);

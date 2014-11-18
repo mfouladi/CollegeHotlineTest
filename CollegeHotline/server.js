@@ -34,6 +34,7 @@ app.get('/api/conversation', conversationController.listConversations);
 app.post('/api/conversation', conversationController.createConversation);
 app.get('/api/conversation/activate/:phoneNumber', conversationController.activateConversation);
 app.get('/api/conversation/deactivate/:phoneNumber', conversationController.deactivateConversation);
+app.get('/api/conversation/open/:phoneNumber', conversationController.openConversation);
 
 //CloudPhone things
 app.get('/api/cloudPhone/receiveMsg', cloudPhoneController.receiveMsg);
