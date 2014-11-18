@@ -31,7 +31,7 @@
 						<div ng-repeat="conversation in inactiveConversations" class="list-group-item">
 							<!-- <form ng-submit="activateConversation( conversation.phoneNumber )"> -->
 							<form ng-submit="activateConversation( $index, conversation.phoneNumber )">
-								<h4>{{conversation.messages[0].text}}</h4>
+								<h4>{{conversation.messages[conversation.messageCount-1].text}}</h4>
 								<!-- <p>{{conversation.phoneNumber}}</p> -->
 								<p>{{message.timeStamp}}</p>
 								<button align="center" type ="submit">Answer</button>
@@ -46,11 +46,15 @@
 				<div class = "col-sm-7">
 					<div class = "row">
 						<h2 align = "center"> Current Conversation </h2>
-						<div class="panel panel-default pre-scrollable">
-							<li ng-repeat="message in currentConversation" class="list-group-item">
-								<!--p>{{message.timeStamp}}</p-->
-								<h4>{{message.text}}</h4>
-							</li>	
+						<!--div class="panel panel-default pre-scrollable"-->
+						<div>
+							<ul class="list-group pre-scrollable">
+								<li ng-repeat="message in currentConversation" class="list-group-item">
+									<!--p>{{message.timeStamp}}</p-->
+									<p>{{message.timeStamp}}</p>
+									<h4>{{message.text}}</h4>
+								</li>	
+							</ul>
 						</div>
 					</div>
 					<div class = "row">
@@ -72,7 +76,7 @@
 							<form ng-submit="deactivateConversation( $index, conversation.phoneNumber)">
 								<span class="badge">{{conversation.unreadMessageCount}} Unread</span>
 								<!-- <p>{{conversation.phoneNumber}}</p> -->
-								<h4>{{conversation.messages[0].text}}</h4>
+								<h4>{{conversation.messages[conversation.messageCount-1].text}}</h4>
 								<button type ="submit">Return to Queue</button>
 							</form>
 							<form ng-submit="openConversation( $index, conversation.phoneNumber)">
