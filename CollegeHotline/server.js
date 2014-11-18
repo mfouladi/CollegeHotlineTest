@@ -31,7 +31,7 @@ app.post('/api/notes/short/goal', notesShortTermController.create);
 
 //Conversation Calls
 app.get('/api/conversation', conversationController.listConversations);
-app.post('/api/conversation', conversationController.createConversation);
+app.post('/api/conversation/create', conversationController.createConversation);
 app.get('/api/conversation/activate/:phoneNumber', conversationController.activateConversation);
 app.get('/api/conversation/deactivate/:phoneNumber', conversationController.deactivateConversation);
 app.get('/api/conversation/open/:phoneNumber', conversationController.openConversation);
