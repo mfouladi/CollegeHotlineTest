@@ -35,13 +35,13 @@
 							<input type="text" class="form-control" placeholder="{{phoneNumber.placeholder}}" value = "{{phoneNumber.value}}" ng-model="phoneNumber.value" >
 							<button align="center" type ="submit">Search</button>
 						</form> 
-						<div ng-repeat = "item in basicInfo">		
+						<div>		
 							<form ng-submit="createNewNote()">
-								<div class="form-group">
+								<div class="form-group" ng-repeat = "item in basicInfo">
 									<label>{{item.placeholder}}</label>
 									<input type="text" class="form-control" placeholder="{{item.placeholder}}" value = "{{item.value}}">
-									<input type="hidden" align="center"/>
 								</div>
+								<input type="submit" align="center"/>
 							</form>
 						</div>
 					</div>
