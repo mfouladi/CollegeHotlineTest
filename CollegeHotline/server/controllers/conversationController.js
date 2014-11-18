@@ -24,22 +24,19 @@ module.exports.removeMessage = function(req, res){
 */
 module.exports.createConversation = function(req, res){
 	var conversation = new Conversation();
+	console.log(req.body);
 	//var message = new Message(req.body);
-	conversation.messages[0] = {
+	var newMessage = {
 							text			: req.body.text,
-							timeStamp		: Date.now,
+							timeStamp		: Date.now(),
 							isVolunteer		: false,
 							volunteerID		: 0, 
 							hasBeenRead		: false,
 							phoneNumber		: req.body.phoneNumber,
 							active			: false
 						  };
-  	
-	//conversation.messages.push(message);
-	//console.log(req.body);
-	conversation.phoneNumber = conversation.messages[0].phoneNumber;
-	console.log("Received new conversation parameters:\n", req.body, "\n");
-	console.log("Created new conversation:\n", conversation, "\n");
+	conversation.messages.push(newMessage);
+	conversation.phoneNumber = req.body.phoneNumber
 	conversation.save(function (err, result){
 		console.log(err);
 		res.json(result);
