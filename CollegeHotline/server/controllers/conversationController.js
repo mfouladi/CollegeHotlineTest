@@ -11,7 +11,7 @@ module.exports.createConversation = function(req, res){
 			var conversation = new Conversation();
 			var newMessage = {
 								text			: req.body.text,
-								timeStamp		: Date.now,
+								timeStamp		: Date.now(),
 								isVolunteer		: false,
 								volunteerID		: 0, 
 								hasBeenRead		: false,
@@ -31,7 +31,7 @@ module.exports.createConversation = function(req, res){
 								{$push: {"messages": 
 											{
 												text			: req.body.text,
-												timeStamp		: Date.now,
+												timeStamp		: Date.now(),
 												isVolunteer		: false,
 												volunteerID		: 0, 
 												hasBeenRead		: false,
