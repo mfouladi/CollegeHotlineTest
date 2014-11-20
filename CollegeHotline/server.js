@@ -40,6 +40,7 @@ app.get('/api/conversation/open/:phoneNumber', conversationController.openConver
 app.get('/api/cloudPhone/receiveMsg', cloudPhoneController.receiveMsg);
 app.get('/api/cloudPhone/sendMsg', cloudPhoneController.sendMsg);
 app.get('/api/cloudPhone/forwardCall', cloudPhoneController.forwardCall);
+app.get('/api/cloudPhone/hangUp', cloudPhoneController.hangUp);
 
 app.listen(3000, function(){
 	console.log('I\'m Listening...');

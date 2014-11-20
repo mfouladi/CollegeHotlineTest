@@ -3,6 +3,8 @@ var Conversation 	= require('../models/conversation.js')
 
 
 module.exports.createConversation = function(req, res){
+	req.body.text = req.body.Text;
+    req.body.phoneNumber = req.body.From;
 	console.log("Received New Message:", req.body, "\n");
 	Conversation.find({phoneNumber: req.body.phoneNumber}, function (err, result){
 		console.log("Found", result.length, "existing conversation with phone number", req.body.phoneNumber, "\n");
