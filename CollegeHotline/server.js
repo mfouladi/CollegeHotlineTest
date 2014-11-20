@@ -1,16 +1,25 @@
-var express 		= require('express'),
-	app				= express(),
-	bodyParser 		= require('body-parser'),
-	mongoose		= require('mongoose'),
-	wordpress		= require('wordpress'),
-	conversationController = require('./server/controllers/conversationController'),
-	notesBasicController = require("./server/controllers/notesBasicController"),
+var express      = require('express'),
+	app	           = express(),
+	bodyParser 		 = require('body-parser'),
+	mongoose       = require('mongoose'),
+  mysql          = require('mysql'),
+  cookieParser   = require('cookie-parser'),
+	wordpress		   = require('wordpress'),
+	passport		   = require('passport'),
+  expressSession = require('express-session'),
+  WordpressStrategy        = require('passport-wordpress').Strategy,
+	conversationController   = require('./server/controllers/conversationController'),
+	notesBasicController     = require("./server/controllers/notesBasicController"),
 	notesShortTermController = require("./server/controllers/notesShortTermController"),
-	cloudPhoneController = require("./server/controllers/cloudPhoneController.js");
+	cloudPhoneController     = require("./server/controllers/cloudPhoneController.js");
 
 mongoose.connect('mongodb://localhost:27017/CollegeHotline');
 
+app.use(cookieParser());
 app.use(bodyParser());
+app.use(expressSession({ secret: 'keyboard cat' }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.get('/', function (req, res){
 	res.sendFile(__dirname + '/client/views/index.html');

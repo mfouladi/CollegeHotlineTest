@@ -3,8 +3,7 @@ var Conversation 	= require('../models/conversation.js')
 
 
 module.exports.createConversation = function(req, res){
-	req.body.text = req.body.Text;
-    req.body.phoneNumber = req.body.From;
+	
 	Conversation.find({phoneNumber: req.body.phoneNumber}, function (err, result){
 		if(result.length == 0){
 
@@ -19,7 +18,7 @@ module.exports.createConversation = function(req, res){
 								active			: false
 							 };
 			conversation.messages.push(newMessage);
-			conversation.phoneNumber = req.body.phoneNumber
+			conversation.phoneNumber = req.body.phoneNumber;
 			conversation.save(function (err, result){
 				res.json(result);
 			});
