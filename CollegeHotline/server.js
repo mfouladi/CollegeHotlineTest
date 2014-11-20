@@ -26,7 +26,8 @@ app.use('/views', express.static(__dirname+'/client/views'));
 
 //REST API
 app.get('/api/notes/basic', notesBasicController.list);
-app.post('/api/notes/basic', notesBasicController.create);
+app.post('/api/notes/basic/create', notesBasicController.create);
+app.post('/api/notes/basic/update', notesBasicController.update);
 app.post('/api/notes/short/goal', notesShortTermController.create);
 
 //Conversation Calls

@@ -8,8 +8,7 @@ var basicNoteSchema = new mongoose.Schema({
 					    last: String
  				 	},
  	schoolName		: String,
- 	gpa				: Number,
- 	graduationYear 	: Number
+ 	currentYear 	: String
 });
 
 module.exports = mongoose.model('basicnote', basicNoteSchema);

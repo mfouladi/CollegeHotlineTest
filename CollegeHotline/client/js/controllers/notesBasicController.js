@@ -1,32 +1,21 @@
 app.controller('notesBasicController',['$scope', '$resource', function ($scope, $resource) {
 
-	$scope.phoneNumber = {key: "phoneNumber", value: "", placeholder:"Search by Phone Number"};
-
-	$scope.basicInfo = [
-	{key: "firstName", value:"", placeholder:"First Name"},
-	{key: "lastName", value: "", placeholder:"Last Name"},
-	{key: "schoolName", value: "", placeholder: "School Name"},
-	{key: "graduationYear", value: "", placeholder: "Graduation Year"},
-	{key: "gpa", value:"", placeholder: "GPA"}
-	];
-
-	$scope.parsedInfo = [];
-
 	var NotesBasic = $resource('/api/notes/basic');
+	var NotesBasicCreate = $resource('/api/notes/basic/create');
+	var NotesBasicUpdate = $resource('/api/notes/basic/update'); 
 
 	$scope.phoneSearch = function() {
 		var searchNote = new NotesBasic();
-		searchNote.phoneNumber = $scope.phoneNumber.value;
+		searchNote.phoneNumber = $scope.phoneNumberSearch;
 		console.log(searchNote);
 		NotesBasic.query(searchNote, function (results){
 			if(results.length > 0){
 				console.log(results[0]);
-				$scope.basicInfo[0].value = results[0].studentName.first;
-				$scope.basicInfo[1].value = results[0].studentName.last;
-				$scope.basicInfo[2].value = results[0].schoolName;
-				$scope.basicInfo[3].value = results[0].graduationYear;
-				$scope.basicInfo[4].value = results[0].gpa;
-
+				$scope.phoneNumber = results[0].phoneNumber;
+				$scope.firstName = results[0].studentName.first;
+				$scope.lastName = results[0].studentName.last;
+				$scope.schoolName = results[0].schoolName;
+				$scope.currentYear = results[0].currentYear;
 			}
 			else{
 				alert("Phone Number Does Not Exist");
@@ -35,17 +24,44 @@ app.controller('notesBasicController',['$scope', '$resource', function ($scope, 
 	}
 
 	$scope.createNewNote = function() {
-		var newNote = new NotesBasic();
-		console.log(newNote);
-		newNote.phoneNumber = "7143158255";
-		newNote.studentName = { first: "Matin", last: "Fouladi"};
-		newNote.schoolName = "FPA"
-		newNote.gpa = "4.0";
-		newNote.graduationYear = "2010";
+		NotesBasic.query({phoneNumber : $scope.phoneNumber}, function (results){
+			if(results.length == 0){
+				var newNote = new NotesBasicCreate();
+				console.log(newNote);
+				newNote.phoneNumber = $scope.phoneNumber;
+				newNote.studentName = { first: $scope.firstName, last: $scope.lastName};
+				newNote.schoolName = $scope.schoolName;
+				newNote.currentYear = $scope.currentYear;
 
-		newNote.$save(function(result){
-			console.log(result);
+				newNote.$save(function(result){
+					console.log(result);
+					$scope.phoneNumber = '';
+					$scope.firstName = '';
+					$scope.lastName = '';
+					$scope.schoolName = '';
+					$scope.currentYear = '';
+				});
+			}
+			else
+			{
+				var newNote = new NotesBasicUpdate();
+				console.log(newNote);
+				newNote.phoneNumber = $scope.phoneNumber;
+				newNote.studentName = { first: $scope.firstName, last: $scope.lastName};
+				newNote.schoolName = $scope.schoolName;
+				newNote.currentYear = $scope.currentYear;
+
+				newNote.$save(function(result){
+					console.log(result);
+					$scope.phoneNumber = '';
+					$scope.firstName = '';
+					$scope.lastName = '';
+					$scope.schoolName = '';
+					$scope.currentYear = '';
+				});
+			}
 		});
+		
 	}
 
 }]);
