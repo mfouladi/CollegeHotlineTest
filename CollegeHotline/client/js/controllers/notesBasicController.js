@@ -7,10 +7,10 @@ app.controller('notesBasicController',['$scope', '$resource', function ($scope, 
 	$scope.phoneSearch = function() {
 		var searchNote = new NotesBasic();
 		searchNote.phoneNumber = $scope.phoneNumberSearch;
-		console.log(searchNote);
+
 		NotesBasic.query(searchNote, function (results){
 			if(results.length > 0){
-				console.log(results[0]);
+
 				$scope.phoneNumber = results[0].phoneNumber;
 				$scope.firstName = results[0].studentName.first;
 				$scope.lastName = results[0].studentName.last;
@@ -27,14 +27,12 @@ app.controller('notesBasicController',['$scope', '$resource', function ($scope, 
 		NotesBasic.query({phoneNumber : $scope.phoneNumber}, function (results){
 			if(results.length == 0){
 				var newNote = new NotesBasicCreate();
-				console.log(newNote);
 				newNote.phoneNumber = $scope.phoneNumber;
 				newNote.studentName = { first: $scope.firstName, last: $scope.lastName};
 				newNote.schoolName = $scope.schoolName;
 				newNote.currentYear = $scope.currentYear;
 
 				newNote.$save(function(result){
-					console.log(result);
 					$scope.phoneNumber = '';
 					$scope.firstName = '';
 					$scope.lastName = '';
@@ -45,14 +43,12 @@ app.controller('notesBasicController',['$scope', '$resource', function ($scope, 
 			else
 			{
 				var newNote = new NotesBasicUpdate();
-				console.log(newNote);
 				newNote.phoneNumber = $scope.phoneNumber;
 				newNote.studentName = { first: $scope.firstName, last: $scope.lastName};
 				newNote.schoolName = $scope.schoolName;
 				newNote.currentYear = $scope.currentYear;
 
 				newNote.$save(function(result){
-					console.log(result);
 					$scope.phoneNumber = '';
 					$scope.firstName = '';
 					$scope.lastName = '';
