@@ -1,49 +1,51 @@
 var Message 		= require('../models/message.js');
 var Conversation 	= require('../models/conversation.js')
-/*
-module.exports.createMessage = function(req, res){
-	var message = new Message(req.body);
-	message.save(function (err, result){
-		res.json(result);
-	});
-}
 
-module.exports.listMessages = function(req, res){
-	Message.find(req.query, function (err, results){
-		res.json(results);
-	});
-}
 
-module.exports.removeMessage = function(req, res){
-	Message.find(req.params, function ( err, message ){
-	    message[0].remove( function ( err, message ){
-	    	res.json(message);
-	    });
-  	});
-}
-*/
 module.exports.createConversation = function(req, res){
-	var conversation = new Conversation();
-	//var message = new Message(req.body);
-	conversation.messages[0] = {
-							text			: req.body.text,
-							timeStamp		: Date.now,
-							isVolunteer		: false,
-							volunteerID		: 0, 
-							hasBeenRead		: false,
-							phoneNumber		: req.body.phoneNumber,
-							active			: false
-						  };
-  	
-	//conversation.messages.push(message);
-	//console.log(req.body);
-	conversation.phoneNumber = conversation.messages[0].phoneNumber;
-	console.log("Received new conversation parameters:\n", req.body, "\n");
-	console.log("Created new conversation:\n", conversation, "\n");
-	conversation.save(function (err, result){
-		console.log(err);
-		res.json(result);
-		console.log("Added new conversation:\n", result, "\n");
+	console.log("Received New Message:", req.body, "\n");
+	Conversation.find({phoneNumber: req.body.phoneNumber}, function (err, result){
+		console.log("Found", result.length, "existing conversation with phone number", req.body.phoneNumber, "\n");
+		if(result.length == 0){
+
+			var conversation = new Conversation();
+			var newMessage = {
+								text			: req.body.text,
+								timeStamp		: Date.now(),
+								isVolunteer		: false,
+								volunteerID		: 0, 
+								hasBeenRead		: false,
+								phoneNumber		: req.body.phoneNumber,
+								active			: false
+							 };
+			conversation.messages.push(newMessage);
+			conversation.phoneNumber = req.body.phoneNumber
+			conversation.save(function (err, result){
+				res.json(result);
+				console.log("Added new conversation:\n", result, "\n");
+			});
+
+		}
+		else{
+			Conversation.update({phoneNumber: req.body.phoneNumber}, 
+								{$push: {"messages": 
+											{
+												text			: req.body.text,
+												timeStamp		: Date.now(),
+												isVolunteer		: false,
+												volunteerID		: 0, 
+												hasBeenRead		: false,
+												phoneNumber		: req.body.phoneNumber,
+												active			: false
+											}
+										},
+								$inc: {messageCount : 1, unreadMessageCount : 1, unansweredMessageCount : 1}
+								}, 
+								function (err, result){
+									res.json(result);
+								});
+			console.log("Added new message to conversation with phone number", req.body.phoneNumber, "\n");
+		}
 	});
 }
 
@@ -67,7 +69,6 @@ module.exports.deactivateConversation = function(req, res){
 
 module.exports.listConversations = function(req, res){
 	Conversation.find(req.query, function (err, results){
-	//Conversation.find({messages: {"$elemMatch": {phoneNumber: 1234}}}, function (results){
 		res.json(results);
 		console.log("Found conversations:\n ", results, "\n");
 	});
@@ -80,3 +81,25 @@ module.exports.openConversation = function (req, res){
 		res.json(conversation);
 	});
 }
+
+//Old Create Conversation
+// module.exports.createConversation = function(req, res){
+// 	var conversation = new Conversation();
+// 	console.log("Received New Message:\n", req.body, "\n");
+// 	var newMessage = {
+// 						text			: req.body.text,
+// 						timeStamp		: Date.now(),
+// 						isVolunteer		: false,
+// 						volunteerID		: 0, 
+// 						hasBeenRead		: false,
+// 						phoneNumber		: req.body.phoneNumber,
+// 						active			: false
+// 					 };
+// 	conversation.messages.push(newMessage);
+// 	conversation.phoneNumber = req.body.phoneNumber
+// 	conversation.save(function (err, result){
+// 		console.log(err);
+// 		res.json(result);
+// 		console.log("Added new conversation:\n", result, "\n");
+// 	});
+// }

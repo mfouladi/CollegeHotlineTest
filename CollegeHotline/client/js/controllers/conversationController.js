@@ -5,7 +5,7 @@ app.controller('conversationController',['$scope', '$resource', function ($scope
 	$scope.currentConversation		= [ ];
 	$scope.currentConversationPhoneNumber = 0;
 
-	var Message 		= $resource('/api/conversation');//to be removed
+	var Message 		= $resource('/api/conversation/create');//to be removed
 	var Accept 			= $resource('/api/message/:mid');//to be removed
 
 	var Conversation 	= $resource('/api/conversation');
@@ -13,27 +13,34 @@ app.controller('conversationController',['$scope', '$resource', function ($scope
 	var Deactivate 		= $resource('/api/conversation/deactivate/:phoneNumber');
 	var Open 			= $resource('/api/conversation/open/:phoneNumber');
 	
-	//Query inactive conversations
-	Conversation.query({active: false}, function (results){
-		$scope.inactiveConversations = results;
-	});
 
+	updatePage();
+
+	//Query inactive conversations
+	function updatePage(){
+		Conversation.query({active: false}, function (results){
+		$scope.inactiveConversations = results;
+		});
+		Conversation.query({active: true}, function (results){
+			$scope.activeConversations = results;
+		});
+	}
+	
+	setInterval(function(){updatePage()}, 1000);
 	//db.test.find({shapes: {"$elemMatch": {color: "red"}}}, {"shapes.color":1})
 
 	//Query active conversations
-	Conversation.query({active: true}, function (results){
-		$scope.activeConversations = results;
-	});
 
 	//All info for this should be coming from the phone API
 	$scope.createConversation = function() {
-		var conversation = new Conversation();
+		var conversation = new Message();
 		conversation.text = $scope.newText;
 		conversation.phoneNumber = $scope.newNumber;
 		conversation.$save(function (result){
-			//console.log(result);
-			//console.log(result.messages[0]);
-			$scope.inactiveConversations.push(result);
+			console.log(result);
+			if (result.phoneNumber != null){
+				$scope.inactiveConversations.push(result);
+			}
 			$scope.newText = '';
 			$scope.newNumber = '';
 		});
@@ -41,7 +48,6 @@ app.controller('conversationController',['$scope', '$resource', function ($scope
 
 	$scope.activateConversation = function(index, activatePhoneNumber) {
 		Activate.query({phoneNumber : activatePhoneNumber}, function (results){
-			//console.log(results[0]);
 			$scope.activeConversations.push(results[0]);
 		});
 		$scope.inactiveConversations.splice(index, 1);
@@ -49,7 +55,6 @@ app.controller('conversationController',['$scope', '$resource', function ($scope
 
 	$scope.deactivateConversation = function(index, deactivatePhoneNumber) {
 		Deactivate.query({phoneNumber : deactivatePhoneNumber}, function (results){
-			//console.log(results[0]);
 			$scope.inactiveConversations.push(results[0]);
 		});
 		if($scope.activeConversations[index].phoneNumber == $scope.currentConversationPhoneNumber){

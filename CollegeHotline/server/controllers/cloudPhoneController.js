@@ -3,8 +3,11 @@ var plivo = require('plivo-node');
 var p = plivo.RestAPI(require('./configPlivo'));
 
 module.exports.receiveMsg = function(req, res){
-	var msg = new Message(req.query);
+	console.log(req.query);
+	var msg = new Message();
+	msg.phoneNumber = req.query.From;
 	msg.active = true;
+	msg.text = req.query.Text;
 	msg.save(function (err, result){
 		res.json(result);
 	});
@@ -40,12 +43,12 @@ module.exports.forwardCall = function(req, res){
 	//look in volunteers and pick a free one with heuristics function
 	//save said volunteer and mark him as unavailable
 	//using this, construct the appropriate XML
-
-	var srcNumber = 1234567890  //number for some volunteer eventually
-
+	console.log(req.query);
+	var srcNumber = 1234567890;  //number for some volunteer eventually
+	var dstNumber = 18313926314;
 	var responseForPlivo = plivo.Response();
 	var dial = responseForPlivo.addDial({callerId: srcNumber})
-	dial.addNumber(req.query.phoneNumber);
+	dial.addNumber(dstNumber);
 	res.set({'Content-Type': 'text/xml'});
 	res.end(responseForPlivo.toXML());
 }
