@@ -17,7 +17,7 @@ module.exports.sendMsg = function(req, res){
 	//use plivo api to send the msg
 	//update database to reflect said change
 	var params = {
- 	   'src': '14156568811', // Caller Id
+ 	   'src': '18582565412', // Caller Id
  	   'dst' : req.query.phoneNumber, // User Number to Call
  	   'text' : req.query.text,
  	   'type' : "sms",
@@ -44,11 +44,17 @@ module.exports.forwardCall = function(req, res){
 	//save said volunteer and mark him as unavailable
 	//using this, construct the appropriate XML
 	console.log(req.query);
-	var srcNumber = 1234567890;  //number for some volunteer eventually
-	var dstNumber = 18313926314;
+	//var srcNumber = 1234567890;  
+	var dstNumber = 18313926314;  //this should be set to the number of some volunteer
 	var responseForPlivo = plivo.Response();
-	var dial = responseForPlivo.addDial({callerId: srcNumber})
+	var dial = responseForPlivo.addDial();//{callerId: srcNumber})
 	dial.addNumber(dstNumber);
 	res.set({'Content-Type': 'text/xml'});
 	res.end(responseForPlivo.toXML());
+}
+
+module.exports.hangUp = function(req, res){
+	console.log(req.query);
+	var callerNumber = req.query.From; //could now update database, mark volunteer taking a call from callerNumber as free
+
 }
