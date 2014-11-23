@@ -3,7 +3,13 @@ var Conversation 	= require('../models/conversation.js')
 
 
 module.exports.createConversation = function(req, res){
-	
+	//PATRICK: DO NOT REMOVE THIS... MING
+	if (req.body.From){
+		req.body.phoneNumber = req.body.From;
+	}
+	if (req.body.Text){
+		req.body.text = req.body.Text;		
+	}
 	Conversation.find({phoneNumber: req.body.phoneNumber}, function (err, result){
 		if(result.length == 0){
 
@@ -30,7 +36,7 @@ module.exports.createConversation = function(req, res){
 											{
 												text			: req.body.text,
 												timeStamp		: Date.now(),
-												isVolunteer		: false,
+												isVolunteer		: req.body.isVolunteer,
 												volunteerID		: 0, 
 												hasBeenRead		: false,
 												phoneNumber		: req.body.phoneNumber,
