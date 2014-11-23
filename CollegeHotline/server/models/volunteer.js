@@ -1,11 +1,12 @@
 var mongoose = require('mongoose');
+var bcrypt 	 = require('bcrypt-nodejs');
 
-module.exports = mongoose.model('Volunteer',{
+var volunteerSchema = mongoose. Schema({
 	firstName				: String,
 	lastName				: String,
-	username				: Number, 
+	username				: String, 
 	password				: String,
-	volunteerID				: Number,
+	vid						: String,
 	phoneNumber				: Number,
 	email					: String,
 	online					: Boolean,
@@ -15,5 +16,15 @@ module.exports = mongoose.model('Volunteer',{
 								firstName	: String,
 								lastName 	: String,
 								phoneNumber : Number,
-							}];
+							}]
 });
+
+volunteerSchema.methods.generateHash = function(password) {
+	return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
+
+volunteerSchema.methods.validPassword = function(password){
+	return bcrypt.compareSync(password, this.password);
+};
+
+module.exports = mongoose.model('Volunteer', volunteerSchema);

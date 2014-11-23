@@ -10,7 +10,8 @@ app.controller('conversationController',['$scope', '$resource', function ($scope
 	var Activate 		= $resource('/api/conversation/activate/:phoneNumber');
 	var Deactivate 		= $resource('/api/conversation/deactivate/:phoneNumber');
 	var Open 			= $resource('/api/conversation/open/:phoneNumber');
-	
+
+	var sendUrl = $resource('/api/cloudPhone/sendMsg');	
 
 	updatePage();
 
@@ -65,6 +66,27 @@ app.controller('conversationController',['$scope', '$resource', function ($scope
 		});
 		$scope.currentConversation = $scope.activeConversations[index].messages;
 		$scope.currentConversationPhoneNumber = $scope.activeConversations[index].phoneNumber;
+	}
+
+
+	$scope.sendMsg = function() {
+		var conversation = new Message();
+		conversation.text = $scope.text;
+		conversation.phoneNumber = $scope.currentConversationPhoneNumber;
+		conversation.isVolunteer = true
+		console.log(conversation);
+		//get volunteer id with matin's things
+
+		sendUrl.query(conversation, function(result){console.log(result);});
+
+		conversation.$save(function (result){
+			console.log(result);
+			if (result.phoneNumber != null){
+				$scope.inactiveConversations.push(result);
+			}
+			$scope.newText = '';
+			$scope.newNumber = '';
+		});
 	}
 
  }]);

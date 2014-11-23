@@ -38,10 +38,10 @@
 							</form>
 						</div>
 					</div>
-					<form ng-submit="createTextMessage()">
+					<!--<form ng-submit="createTextMessage()">
 						<input ng-model="newMessage" placeholder="Message Text" class="form-control" rows="3"></input>
 						<button type="submit" class = "btn-lg"> Send</button>
-					</form>
+					</form>-->
 				</div>
 				<div class = "col-sm-7">
 					<div class = "row">
@@ -59,12 +59,16 @@
 					</div>
 					<div class = "row">
 						<div class = "panel-footer text-center">
-							<button class = "btn-lg"> Help this student</button>
+							<!--<button class = "btn-lg"> Help this student</button>
 
 							<form ng-submit="createConversation()">
 								<input ng-model="newText" placeholder="Message Text" class="form-control" rows="3"></input>
 								<input ng-model="newNumber" placeholder="Phone Number" class="form-control" rows='1'></input>
 								<button type="submit" class = "btn-lg"> Send</button>
+							</form>-->
+							<form ng-submit="sendMsg()">
+								<input ng-model="text" placeholder = "Your Reply" class = "form-control"></input>
+								<button type = "submit" class = "btn-lg"> Send </button>
 							</form>
 						</div>
 					</div>
