@@ -28,6 +28,8 @@ app.use('/views', express.static(__dirname+'/client/views'));
 app.get('/api/notes/basic', notesBasicController.list);
 app.post('/api/notes/basic/create', notesBasicController.create);
 app.post('/api/notes/basic/update', notesBasicController.update);
+app.post('/api/notes/basic/updateShortGoals', notesBasicController.updateShortGoals);
+app.post('/api/notes/basic/updateLongGoals', notesBasicController.updateLongGoals);
 app.post('/api/notes/short/goal', notesShortTermController.create);
 
 //Conversation Calls

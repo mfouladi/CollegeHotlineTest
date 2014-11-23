@@ -38,11 +38,43 @@ module.exports.update = function(req, res){
 			{$set: 
 					{studentName : req.body.studentName, 
 					schoolName : req.body.schoolName, 
-					currentYear : req.body.currentYear
+					currentYear : req.body.currentYear,
 					} 
 			},
 			function (err, results)
 			{
+				res.json(results);
+			}
+	);
+}
+
+module.exports.updateShortGoals = function(req, res){
+	NotesBasic.update(
+			{phoneNumber : req.body.phoneNumber}, 
+			{$push: 
+					{
+						goals : {body : req.body.goals}
+					} 
+			},
+			function (err, results)
+			{
+				console.log(req.body);
+				res.json(results);
+			}
+	);
+}
+
+module.exports.updateLongGoals = function(req, res){
+	NotesBasic.update(
+			{phoneNumber : req.body.phoneNumber}, 
+			{$push: 
+					{
+						ltgoals : {body : req.body.ltgoals}
+					} 
+			},
+			function (err, results)
+			{
+				console.log(req.body);
 				res.json(results);
 			}
 	);
