@@ -17,7 +17,7 @@ mongoose.connect('mongodb://localhost:27017/CollegeHotline');
 
 require('./server/controllers/passport.js')(passport);
 
-//app.use(morgan('dev'));
+app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(bodyParser());
 app.use(session({ secret : 'keyboard cat'}));
@@ -106,6 +106,7 @@ app.post('/signup', passport.authenticate('local-signup', {
       failureFlash : true // allow flash messages
   })
 );
+
 
 function isLoggedIn(req, res, next){
   if(req.isAuthenticated())

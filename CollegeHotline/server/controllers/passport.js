@@ -43,7 +43,7 @@ module.exports = function(passport) {
                         var newUser = new Volunteer();
 
                         // set the user's local credentials
-                       // newUser.phoneNumber = req.body.phoneNumber;
+                        newUser.phoneNumber = req.body.phoneNumber;
                         newUser.username = username;
                         newUser.password = newUser.generateHash(password);
 
