@@ -3,9 +3,9 @@ var Conversation 	= require('../models/conversation.js')
 
 
 module.exports.createConversation = function(req, res){
-	console.log("Received New Message:", req.body, "\n");
+	req.body.text = req.body.Text;
+    req.body.phoneNumber = req.body.From;
 	Conversation.find({phoneNumber: req.body.phoneNumber}, function (err, result){
-		console.log("Found", result.length, "existing conversation with phone number", req.body.phoneNumber, "\n");
 		if(result.length == 0){
 
 			var conversation = new Conversation();
@@ -22,7 +22,6 @@ module.exports.createConversation = function(req, res){
 			conversation.phoneNumber = req.body.phoneNumber
 			conversation.save(function (err, result){
 				res.json(result);
-				console.log("Added new conversation:\n", result, "\n");
 			});
 
 		}
@@ -44,13 +43,11 @@ module.exports.createConversation = function(req, res){
 								function (err, result){
 									res.json(result);
 								});
-			console.log("Added new message to conversation with phone number", req.body.phoneNumber, "\n");
 		}
 	});
 }
 
 module.exports.activateConversation = function(req, res){
-	console.log("Activating conversation:\n", req.params, "\n")
 	Conversation.update(req.params, {$set: {active : true}}, function (err, result){
 	});
 	Conversation.find(req.params, function (err, conversation){
@@ -59,7 +56,6 @@ module.exports.activateConversation = function(req, res){
 }
 
 module.exports.deactivateConversation = function(req, res){
-	console.log("Deactivating conversation:\n", req.params, "\n")
 	Conversation.update(req.params, {$set: {active : false}}, function (err, conversation){
 	});
 	Conversation.find(req.params, function (err, conversation){
@@ -70,7 +66,6 @@ module.exports.deactivateConversation = function(req, res){
 module.exports.listConversations = function(req, res){
 	Conversation.find(req.query, function (err, results){
 		res.json(results);
-		console.log("Found conversations:\n ", results, "\n");
 	});
 }
 
