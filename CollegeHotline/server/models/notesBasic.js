@@ -8,7 +8,19 @@ var basicNoteSchema = new mongoose.Schema({
 					    last: String
  				 	},
  	schoolName		: String,
- 	currentYear 	: String
+ 	currentYear 	: String, 
+ 	goals 			: [{body : String}],
+ 	ltgoals			: [{body : String}]
+ 	/*
+	goals			:[
+						{
+							body : String
+							// dateSet : Date,
+							// dueDate : Date,
+							// dateCompleted: Date
+						}
+					]
+	*/
 });
 
 module.exports = mongoose.model('basicnote', basicNoteSchema);
