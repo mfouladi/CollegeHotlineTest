@@ -55,7 +55,7 @@ module.exports.createConversation = function(req, res){
 												}
 											},
 									$inc: {messageCount : 1},
-									$set: {unansweredMessageCount: 0}
+									$set: {unansweredMessageCount: 0, unreadMessageCount: 0}
 									}, 
 									function (err, result){
 										res.json(result);
@@ -66,7 +66,7 @@ module.exports.createConversation = function(req, res){
 }
 
 module.exports.activateConversation = function(req, res){
-	console.log(req.user);
+	//console.log(req.user);
 	Conversation.update(req.params, {$set: {active : true, currentVolunteerID: req.user[0].id}}, function (err, result){
 	});
 	Conversation.find(req.params, function (err, conversation){
@@ -83,13 +83,14 @@ module.exports.deactivateConversation = function(req, res){
 }
 
 module.exports.listInactiveConversations = function(req, res){
-	Conversation.find({active: req.query.active, unreadMessageCount: {$gt : 0}}, function (err, results){
+	Conversation.find({$and: [{active: false}, {unansweredMessageCount : {$gt: 0}}]}, function (err, results){
 		res.json(results);
 	});
 }
 
 module.exports.listActiveConversations = function(req, res){
-	Conversation.find({active: req.query.active, currentVolunteerID: req.user[0].id}, function (err, results){
+	//console.log(req.user);
+	Conversation.find({currentVolunteerID: req.user[0].id}, function (err, results){
 		res.json(results);
 	});
 }
