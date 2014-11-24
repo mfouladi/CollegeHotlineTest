@@ -9,7 +9,7 @@ module.exports = function(passport) {
     });
 
     passport.deserializeUser(function(username, done) {
-      Volunteer.find(username, function(err, user) {
+      Volunteer.find( {username: username}, function(err, user) {
         done(err, user);
       });
     });

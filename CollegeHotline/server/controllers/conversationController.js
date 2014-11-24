@@ -54,7 +54,6 @@ module.exports.createConversation = function(req, res){
 }
 
 module.exports.activateConversation = function(req, res){
-	console.log(req.user);
 	Conversation.update(req.params, {$set: {active : true}}, function (err, result){
 	});
 	Conversation.find(req.params, function (err, conversation){
