@@ -57,10 +57,22 @@ var forwardHelper = function(req, res){
 	//if so, update their status to unavailable and route them the call
 	//recurse with next volunteer other wise
 	if (volunteerQueue.length == 0){
-			var responseForPlivo = plivo.Response();
-			responseForPlivo.addSpeak(unavailableText);
-			res.set({'Content-Type': 'text/xml'});
-			res.end(responseForPlivo.toXML());			
+			//var responseForPlivo = plivo.Response();
+			//responseForPlivo.addSpeak(unavailableText);
+			//res.set({'Content-Type': 'text/xml'});
+			//res.end(responseForPlivo.toXML());	
+		Volunteer.find({available:true, online:true}, function(err, result){
+			volunteerQueue = volunteerQueue.concat(result);
+			if (volunteerQueue.length == 0){
+				var responseForPlivo = plivo.Response();
+				responseForPlivo.addSpeak(unavailableText);
+				res.set({'Content-Type': 'text/xml'});
+				res.end(responseForPlivo.toXML());			
+			}
+			else{
+				forwardHelper(req, res);
+			}
+		});		
 	}
 	else{
 		Volunteer.find({phoneNumber: volunteerQueue[0].phoneNumber}, function(err, result){
@@ -110,7 +122,15 @@ module.exports.forwardCall = function(req, res){
 		//console.log("pulling new");
 		Volunteer.find({available:true, online:true}, function(err, result){
 			volunteerQueue = volunteerQueue.concat(result);
-			forwardHelper(req, res);
+			if (volunteerQueue.length == 0){
+				var responseForPlivo = plivo.Response();
+				responseForPlivo.addSpeak(unavailableText);
+				res.set({'Content-Type': 'text/xml'});
+				res.end(responseForPlivo.toXML());			
+			}
+			else{
+				forwardHelper(req, res);
+			}
 		});
 	}
 	else{
