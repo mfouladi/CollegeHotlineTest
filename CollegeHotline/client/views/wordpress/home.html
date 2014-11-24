@@ -10,7 +10,7 @@
 <html id="ie8" lang="en-US">
 <![endif]-->
 <!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
-<html lang="en-US">
+<html lang="en" ng-app="CH_Messaging_App">
 <!--<![endif]-->
 <head>
 	<meta charset="UTF-8" />
@@ -93,34 +93,40 @@ padding-bottom: 25px;
 <body class="home page page-id-36 page-template-default siteorigin-panels siteorigin-panels-home et_cover_background osx et_pb_pagebuilder_layout et_right_sidebar chrome et_includes_sidebar">
 	<div id="page-container">
 
-	
-		<header id="main-header" class="et_nav_text_color_dark">
-			<div class="container clearfix">
+		<div ng-controller="loginController" >
+			<div ng-switch="isLoggedIn">
+				<div ng-switch-when="false" >
+					<header id="main-header" class="et_nav_text_color_dark">
+						<div class="container clearfix">
 							<a href="home">
-					<img src="LogoSolidGuy1.gif" alt="College Hotline" id="logo" />
-				</a>
-
-				<div id="et-top-navigation">
-					<nav id="top-menu-nav">
-											<ul id="top-menu" class="nav">
-															<li ><a href="home">Home</a></li>
-							
-							<li class="page_item page-item-5"><a href="about">About</a></li>
-<li class="page_item page-item-217"><a href="login">Login</a></li>
-<li class="page_item page-item-217 current_page_item"><a href="signup">Sign Up</a></li>
-													</ul>
-										</nav>
-
-					
-					
-					<div id="et_mobile_nav_menu">
-			<a href="#" class="mobile_nav closed">
-				<span class="select_page">Select Page</span>
-				<span class="mobile_menu_bar"></span>
-			</a>
-		</div>				</div> <!-- #et-top-navigation -->
-			</div> <!-- .container -->
-		</header> <!-- #main-header -->
+								<img src="LogoSolidGuy1.gif" alt="College Hotline" id="logo" />
+							</a>
+							<div id="et-top-navigation">
+								<nav id="top-menu-nav">
+									<ul id="top-menu" class="nav">
+										<li ><a href="home">Home</a></li>
+										<li ><a href="about">About</a></li>
+										<li ><a href="login">Login</a></li>
+										<li ><a href="signup">Sign Up</a></li>
+									</ul>
+								</nav>
+								<div id="et_mobile_nav_menu">
+									<a href="#" class="mobile_nav closed">
+										<span class="select_page">Select Page</span>
+										<span class="mobile_menu_bar"></span>
+									</a>
+								</div>				
+							</div> <!-- #et-top-navigation -->
+						</div> <!-- .container -->
+					</header> <!-- #main-header -->
+				</div>
+				<div ng-switch-when="true" >
+					<!-- Bootstrap core CSS -->
+					<link href="css/bootstrap.css" rel="stylesheet">
+					<div ng-include src="'/views/navbar.html'"></div>
+				</div>
+			</div>
+		</div>
 
 		<div id="et-main-area">
 <div id="main-content">
@@ -172,7 +178,7 @@ padding-bottom: 25px;
 			<div class="et_pb_column et_pb_column_1_3">
 			<div class="et_pb_blurb et_pb_bg_layout_light et_pb_text_align_center et_pb_blurb_position_top">
 			<div class="et_pb_blurb_content">
-				<div class="et_pb_main_blurb_image"><span class="et-pb-icon et-waypoint et_pb_animation_top" style="color: #dd9933;"></span></div>
+				<div class="et_pb_main_blurb_image"><span class="et-pb-icon et-waypoint et_pb_animation_top" style="color: #dd9933;"><img src="question.jpeg"/></span></div>
 				<h4>Question</h4>
 				
 <p>Ask any question about the college process.</p>
@@ -182,7 +188,7 @@ padding-bottom: 25px;
 		</div> <!-- .et_pb_column --><div class="et_pb_column et_pb_column_1_3">
 			<div class="et_pb_blurb et_pb_bg_layout_light et_pb_text_align_center et_pb_blurb_position_top">
 			<div class="et_pb_blurb_content">
-				<div class="et_pb_main_blurb_image"><span class="et-pb-icon et-waypoint et_pb_animation_top" style="color: #81d742;"></span></div>
+				<div class="et_pb_main_blurb_image"><span class="et-pb-icon et-waypoint et_pb_animation_top" style="color: #81d742;"><img src="conversation.jpeg"/></span></div>
 				<h4>Converse</h4>
 				
 <p>Text or call to get advice from a knowledgeable college mentor.</p>
@@ -192,7 +198,7 @@ padding-bottom: 25px;
 		</div> <!-- .et_pb_column --><div class="et_pb_column et_pb_column_1_3">
 			<div class="et_pb_blurb et_pb_bg_layout_light et_pb_text_align_center et_pb_blurb_position_top">
 			<div class="et_pb_blurb_content">
-				<div class="et_pb_main_blurb_image"><span class="et-pb-icon et-waypoint et_pb_animation_top" style="color: #f06656;"></span></div>
+				<div class="et_pb_main_blurb_image"><span class="et-pb-icon et-waypoint et_pb_animation_top" style="color: #f06656;"><img src="engage.png"/></span></div>
 				<h4>Engage</h4>
 				
 <p>Make connections with your mentors and be supported every step of the way.</p>
@@ -269,11 +275,7 @@ padding-bottom: 25px;
 			<div class="et_pb_promo et_pb_bg_layout_dark et_pb_text_align_center" style="background-color: #ebaf3c;">
 			<div class="et_pb_promo_description">
 				<h2>Get Involved!</h2>
-				
-<p>Contact us to get involved.</p>
-
 			</div>
-			<a class="et_pb_promo_button" href="/contact">Contact Us.</a>
 		</div>
 		</div> <!-- .et_pb_column -->
 		</div> <!-- .et_pb_row -->
@@ -289,40 +291,7 @@ padding-bottom: 25px;
 </div> <!-- #main-content -->
 
 
-			<footer id="main-footer">
-				
-
-		
-				<div id="footer-bottom">
-					<div class="container clearfix">
-				<ul class="et-social-icons">
-
-	<li class="et-social-icon et-social-facebook">
-		<a href="#" class="icon">
-			<span>Facebook</span>
-		</a>
-	</li>
-	<li class="et-social-icon et-social-twitter">
-		<a href="#" class="icon">
-			<span>Twitter</span>
-		</a>
-	</li>
-	<li class="et-social-icon et-social-google-plus">
-		<a href="#" class="icon">
-			<span>Google</span>
-		</a>
-	</li>
-	<li class="et-social-icon et-social-rss">
-		<a href="https://collegehotline.org/comments/feed/" class="icon">
-			<span>RSS</span>
-		</a>
-	</li>
-
-</ul>
-						<!--<p id="footer-info">Designed by <a href="http://www.elegantthemes.com" title="Premium WordPress Themes">Elegant Themes</a> | Powered by <a href="http://www.wordpress.org">WordPress</a></p>-->
-					</div>	<!-- .container -->
-				</div>
-			</footer> <!-- #main-footer -->
+			
 		</div> <!-- #et-main-area -->
 
 
@@ -337,5 +306,15 @@ var et_custom = {"ajaxurl":"https:\/\/collegehotline.org\/wp-admin\/admin-ajax.p
 /* ]]> */
 </script>
 <script type='text/javascript' src='custom.js'></script>
+
+		<!-- Local Angular-->
+		<script type="text/javascript" src="/js/client_modules/angular.js"></script>
+		<script type="text/javascript" src="/js/client_modules/angular-resource.js"></script>
+
+		 
+		<!--Local Scripts-->
+		<script type="text/javascript" src="/js/app.js"></script>
+		<script type="text/javascript" src="/js/controllers/loginController.js"></script>
+
 </body>
 </html>

@@ -37,6 +37,7 @@ app.controller('notesBasicController',['$scope', '$resource', function ($scope, 
 				newNote.studentName = { first: $scope.firstName, last: $scope.lastName};
 				newNote.schoolName = $scope.schoolName;
 				newNote.currentYear = $scope.currentYear;
+				$scope.phoneNumberSearch = newNote.phoneNumber;
 
 				newNote.$save(function(result){
 					$scope.phoneNumber = '';
@@ -50,7 +51,6 @@ app.controller('notesBasicController',['$scope', '$resource', function ($scope, 
 					while ($scope.ltgoals.length > 0) {
 						$scope.ltgoals.pop();
 					}
-					$scope.phoneNumberSearch = newNote.phoneNumber;
 					$scope.phoneSearch();
 				});
 			}
@@ -68,7 +68,8 @@ app.controller('notesBasicController',['$scope', '$resource', function ($scope, 
 					$scope.lastName = '';
 					$scope.schoolName = '';
 					$scope.currentYear = '';
-					$scope.phoneNumberSearch = newNote.phoneNumber;
+					$scope.phoneSearch();
+
 				});
 			}
 		});

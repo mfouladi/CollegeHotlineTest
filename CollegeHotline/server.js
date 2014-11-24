@@ -17,7 +17,7 @@ mongoose.connect('mongodb://localhost:27017/CollegeHotline');
 
 require('./server/controllers/passport.js')(passport);
 
-app.use(morgan('dev'));
+//app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(bodyParser());
 app.use(session({ secret : 'keyboard cat'}));
@@ -88,7 +88,20 @@ app.get('/signup', function(req, res){
   res.sendFile(__dirname + '/client/views/wordpress/signup.html' , { errorMessage: req.flash('signupMessage')});
 });
 
+
+var Volunteer       = require('./server/models/volunteer.js');
 app.get('/logout', function(req,res){
+  var updateUser = {};
+  updateUser.online = false;
+  updateUser.available = false;
+
+  // save the user
+  Volunteer.update({ 'username' :  req.user[0].username }, 
+                  {$set : updateUser},
+                  function(err, result) {
+      if (err)
+          throw err;
+  });
   req.logout();
   res.redirect('/login');
 });
@@ -115,6 +128,10 @@ function isLoggedIn(req, res, next){
 }
 
 
-app.listen(3000, function(){
+app.get('/loggedin', function(req, res) { 
+  res.send(req.isAuthenticated() ? req.user : '0'); 
+});
+
+app.listen(80, function(){
 	console.log('I\'m Listening...');
 });

@@ -46,6 +46,8 @@ module.exports = function(passport) {
                         newUser.phoneNumber = req.body.phoneNumber;
                         newUser.username = username;
                         newUser.password = newUser.generateHash(password);
+                        newUser.online = true;
+                        newUser.available = true;
 
                         // save the user
                         newUser.save(function(err) {
@@ -89,6 +91,22 @@ module.exports = function(passport) {
                     if (!user.validPassword(password)){
                          return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
                     }
+
+                     // set the user's local credentials
+                    // create the user
+                    var updateUser = {};
+                    updateUser.online = true;
+                    updateUser.available = true;
+
+                    // save the user
+                    Volunteer.update({ 'username' :  user.username }, 
+                                    {$set : updateUser},
+                                    function(err, result) {
+                        if (err)
+                            throw err;
+                    });
+
+
 
                     return done(null, user);
 

@@ -4,6 +4,7 @@ var Conversation 	= require('../models/conversation.js')
 
 module.exports.createConversation = function(req, res){
 	//PATRICK: DO NOT REMOVE THIS... MING
+	console.log(req.user);
 	if (req.body.From){
 		req.body.phoneNumber = req.body.From;
 	}
@@ -53,6 +54,7 @@ module.exports.createConversation = function(req, res){
 }
 
 module.exports.activateConversation = function(req, res){
+	console.log(req.user);
 	Conversation.update(req.params, {$set: {active : true}}, function (err, result){
 	});
 	Conversation.find(req.params, function (err, conversation){
