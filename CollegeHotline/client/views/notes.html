@@ -27,8 +27,13 @@
 
 		<!--header navbar-->
 		<div ng-include src="'/views/navbar.html'"></div>
-	
+		
 		<div ng-controller="notesBasicController" class = "container-fluid" style = "margin-top: 70px">
+			<div class = "row">
+				<form ng-submit = "loadCaller()" class = "text-center">
+					<button align = "center" type = "submit" > Load Current Caller Info </button>
+				</form>
+			</div>
 			<div class = "row">
 				<!-- <div ng-controller="notesBasicController" class = "col-resize" > -->
 				<div class = "col-resize" >
@@ -36,12 +41,20 @@
 						<h2 class = "text-center">Basic Information</h2>
 					</div>
 					<div class="panel panel-default pre-scrollable">
-						<form ng-submit="phoneSearch()">
-							<!-- <label>{{phoneNumber.placeholder}}</label> -->
-							<label> Search for phone number </label>
-							<input type="text" class="form-control" placeholder="Search For Phone Number" value = "{{phoneNumberSearch}}" ng-model="phoneNumberSearch" >
-							<button align="center" type ="submit">Search</button>
-						</form> 
+						<div class = "row">
+							<!--
+							<div class = "col-xs-2">
+								<h2 class = "text-center"> Or </h2>
+							</div>
+							<div class = "col-xs-5 pull-right">
+								<form ng-submit="phoneSearch()">
+									
+									<label> Search for phone number </label>
+									<input type="text" class="form-control" placeholder="Search For Phone Number" value = "{{phoneNumberSearch}}" ng-model="phoneNumberSearch" >
+									<button align="center" type ="submit">Search</button>
+								</form> 
+							</div>-->
+						</div>
 						<div>		
 							<form ng-submit="createNewNote()">
 								<div class="form-group" >

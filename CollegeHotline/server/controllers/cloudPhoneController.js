@@ -6,7 +6,15 @@ var p = plivo.RestAPI(require('./configPlivo'));
 var appNumber = "18582565412";
 var appEndPoint = "mapscallcenter141120025606@phone.plivo.com";
 var volunteerQueue = [];
+var callerCalleeDict = {};
 var unavailableText = "Thank you for calling the college hotline. Unfortunatly, all our volunteers are currently occupied. If you'd like, you could send your inquiries to us by text or you could call us at a later time. Have nice day."
+
+function hash(value) {
+    return (typeof value) + ' ' + (value instanceof Object ?
+        (value.__hash || (value.__hash = ++arguments.callee.current)) :
+        value.toString());
+}
+
 
 module.exports.receiveMsg = function(req, res){
 	//console.log(req.query);
@@ -61,10 +69,16 @@ var forwardHelper = function(req, res){
 				//console.log("calledfind");
 				var srcNumber = appNumber;  
 				var dstNumber = volunteerQueue[0].phoneNumber;
-				Volunteer.update({phoneNumber: volunteerQueue[0].phoneNumber}, {$set:{numCalls:0}}, function (err, result){
-					console.log(result);
-				});
+				Volunteer.update({phoneNumber: volunteerQueue[0].phoneNumber}, {
+					$set:{currentCall: req.query.From, 
+						availabe: false
+					}}, 
+					function (err, result){
+						console.log(result);
+					}
+				);
 				//Volunteer.update({phoneNumber: volunteerQueue[0].phoneNumber}, {$set:{available:false}})
+				callerCalleeDict[hash(req.query.From)] = dstNumber;
 				volunteerQueue.shift();
 
 				var responseForPlivo = plivo.Response();
@@ -92,7 +106,6 @@ module.exports.forwardCall = function(req, res){
 	//if queueu empty, look in database to fill it
 	//using this, construct the appropriate XML
 	//console.log(req.query.From);
-	
 	if (volunteerQueue.length == 0){
 		//console.log("pulling new");
 		Volunteer.find({available:true, online:true}, function(err, result){
@@ -111,7 +124,12 @@ module.exports.forwardCall = function(req, res){
 
 module.exports.hangUp = function(req, res){
 	//not doing anything currently, this may be useful, maybe
-	//console.log(req.query);
-	var callerNumber = req.query.From; 
-
+	console.log(req.query);
+	console.log(callerCalleeDict);
+	var calleeNumber = callerCalleeDict[hash(req.query.From)]; 
+	Volunteer.update({phoneNumber: calleeNumber}, {
+		$set:{available: true}}, function (err, result){
+			console.log(result);
+	});
+	delete callerCalleeDict[hash(req.query.From)];
 }

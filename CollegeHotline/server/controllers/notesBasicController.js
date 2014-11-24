@@ -1,4 +1,5 @@
 var NotesBasic = require('../models/notesBasic.js');
+var Volunteer = require('../models/volunteer.js');
 
 module.exports.list = function(req, res){
 	NotesBasic.find(req.query, function (err, results){
@@ -66,4 +67,11 @@ module.exports.updateLongGoals = function(req, res){
 				res.json(results);
 			}
 	);
+}
+
+module.exports.load = function(req, res){
+	console.log(req.user);
+	Volunteer.find({phoneNumber: req.user[0].phoneNumber}, function(err, results){
+		res.json(results);
+	})
 }

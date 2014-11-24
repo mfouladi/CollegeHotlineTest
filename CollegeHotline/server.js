@@ -61,6 +61,8 @@ app.post('/api/notes/basic/updateShortGoals', notesBasicController.updateShortGo
 app.post('/api/notes/basic/updateLongGoals', notesBasicController.updateLongGoals);
 app.post('/api/notes/short/goal', notesShortTermController.create);
 
+app.get('/api/notes/load', notesBasicController.load);
+
 //Conversation Calls
 app.get('/api/conversation', conversationController.listConversations);
 app.post('/api/conversation/create', conversationController.createConversation);
