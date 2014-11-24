@@ -64,7 +64,8 @@ app.post('/api/notes/short/goal', notesShortTermController.create);
 app.get('/api/notes/load', notesBasicController.load);
 
 //Conversation Calls
-app.get('/api/conversation', conversationController.listConversations);
+app.get('/api/conversation/inactive', conversationController.listInactiveConversations);
+app.get('/api/conversation/active', conversationController.listActiveConversations);
 app.post('/api/conversation/create', conversationController.createConversation);
 app.get('/api/conversation/activate/:phoneNumber', conversationController.activateConversation);
 app.get('/api/conversation/deactivate/:phoneNumber', conversationController.deactivateConversation);

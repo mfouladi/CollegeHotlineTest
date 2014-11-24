@@ -10,7 +10,7 @@
 
 		<!-- Bootstrap core CSS -->
 		<link href="css/bootstrap.css" rel="stylesheet">
-
+		<!--style> .badge{background: red; color: black; !important} </style-->
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -67,7 +67,7 @@
 								<button type="submit" class = "btn-lg"> Send</button>
 							</form>-->
 							<form ng-submit="sendMsg()">
-								<input ng-model="text" placeholder = "Your Reply" class = "form-control"></input>
+								<input ng-model="newResponse" placeholder = "Your Reply" class = "form-control"></input>
 								<button type = "submit" class = "btn-lg"> Send </button>
 							</form>
 						</div>
@@ -78,9 +78,9 @@
 					<ul class="list-group pre-scrollable">
 						<li ng-repeat="conversation in activeConversations" class="list-group-item">
 							<form ng-submit="deactivateConversation( $index, conversation.phoneNumber)">
-								<span class="badge">{{conversation.unreadMessageCount}} Unread</span>
+								<span class="badge">{{conversation.unansweredMessageCount}} Unanswered</span>
 								<!-- <p>{{conversation.phoneNumber}}</p> -->
-								<h4>{{conversation.messages[conversation.messageCount-1].text}}</h4>
+								<h6>{{conversation.messages[conversation.messageCount-1].text}}</h6>
 								<button type ="submit">Return to Queue</button>
 							</form>
 							<form ng-submit="openConversation( $index, conversation.phoneNumber)">
