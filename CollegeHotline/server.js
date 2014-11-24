@@ -17,7 +17,7 @@ mongoose.connect('mongodb://localhost:27017/CollegeHotline');
 
 require('./server/controllers/passport.js')(passport);
 
-app.use(morgan('dev'));
+//app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(bodyParser());
 app.use(session({ secret : 'keyboard cat'}));
@@ -60,6 +60,8 @@ app.post('/api/notes/basic/update', notesBasicController.update);
 app.post('/api/notes/basic/updateShortGoals', notesBasicController.updateShortGoals);
 app.post('/api/notes/basic/updateLongGoals', notesBasicController.updateLongGoals);
 app.post('/api/notes/short/goal', notesShortTermController.create);
+
+app.get('/api/notes/load', notesBasicController.load);
 
 //Conversation Calls
 app.get('/api/conversation', conversationController.listConversations);

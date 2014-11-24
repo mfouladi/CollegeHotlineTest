@@ -5,13 +5,19 @@ app.controller('notesBasicController',['$scope', '$resource', function ($scope, 
 	var NotesBasicUpdate = $resource('/api/notes/basic/update'); 
 	var NotesBasicUpdateShortGoals = $resource('/api/notes/basic/updateShortGoals');
 	var NotesBasicUpdateLongGoals = $resource('/api/notes/basic/updateLongGoals');
+
+	var NotesBasicLoad = $resource('/api/notes/load');
+
+
 	$scope.goals = [];
 	$scope.ltgoals = [];
 
-	$scope.phoneSearch = function() {
+	
+	var phoneSearch = function(){
 		var searchNote = new NotesBasic();
 		searchNote.phoneNumber = $scope.phoneNumberSearch;
-
+		if (searchNote.phoneNumber != null && searchNote.phoneNumber !== undefined) {
+        	
 		NotesBasic.query(searchNote, function (results){
 			if(results.length > 0){
 
@@ -24,10 +30,26 @@ app.controller('notesBasicController',['$scope', '$resource', function ($scope, 
 				$scope.ltgoals = results[0].ltgoals;
 			}
 			else{
-				alert("Phone Number Does Not Exist");
+				alert("Phone Number Does Not Exist. Please Fill Out Basic Info and Submit.");
 			}
 		});
+		}
+		else{
+			alert("Phone Number Does Not Exist. Please Fill Out Basic Info and Submit.");
+		}
 	}
+
+
+	$scope.loadCaller = function(){
+		NotesBasicLoad.query(new NotesBasic(), function(results){
+			console.log(results);
+			$scope.phoneNumberSearch = results[0].callerNumber;
+			console.log($scope.phoneNumberSearch);
+			phoneSearch();
+		})
+	}
+
+	$scope.phoneSearch = phoneSearch;
 
 	$scope.createNewNote = function() {
 		NotesBasic.query({phoneNumber : $scope.phoneNumber}, function (results){
@@ -114,5 +136,6 @@ app.controller('notesBasicController',['$scope', '$resource', function ($scope, 
 			}	
 		});
 	}
+
 
 }]);

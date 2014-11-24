@@ -12,6 +12,7 @@ var volunteerSchema = mongoose. Schema({
 	online					: Boolean,
 	available				: Boolean,
 	numCalls				: Number,
+	currentCall				: Number,
 	callHistory				: [{
 								firstName	: String,
 								lastName 	: String,
