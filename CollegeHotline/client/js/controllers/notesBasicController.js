@@ -31,6 +31,7 @@ app.controller('notesBasicController',['$scope', '$resource', function ($scope, 
 			}
 			else{
 				alert("Phone Number Does Not Exist. Please Fill Out Basic Info and Submit.");
+				$scope.phoneNumber = $scope.phoneNumberSearch;
 			}
 		});
 		}
@@ -43,7 +44,9 @@ app.controller('notesBasicController',['$scope', '$resource', function ($scope, 
 	$scope.loadCaller = function(){
 		NotesBasicLoad.query(new NotesBasic(), function(results){
 			console.log(results);
-			$scope.phoneNumberSearch = results[0].callerNumber;
+			console.log(results[0]);
+
+			$scope.phoneNumberSearch = results[0].currentCall;
 			console.log($scope.phoneNumberSearch);
 			phoneSearch();
 		})

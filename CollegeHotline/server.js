@@ -71,7 +71,7 @@ app.get('/api/conversation/deactivate/:phoneNumber', conversationController.deac
 app.get('/api/conversation/open/:phoneNumber', conversationController.openConversation);
 
 //CloudPhone things
-app.get('/api/cloudPhone/receiveMsg', cloudPhoneController.receiveMsg);
+app.get('/api/cloudPhone/receiveMsg', conversationController.createConversation);
 app.get('/api/cloudPhone/sendMsg', cloudPhoneController.sendMsg);
 app.get('/api/cloudPhone/forwardCall', cloudPhoneController.forwardCall);
 app.get('/api/cloudPhone/hangUp', cloudPhoneController.hangUp);
