@@ -93,6 +93,7 @@ app.get('/signup', function(req, res){
 
 
 var Volunteer       = require('./server/models/volunteer.js');
+var Conversation  = require('./server/models/conversation.js')
 app.get('/logout', function(req,res){
   var updateUser = {};
   updateUser.online = false;
@@ -105,6 +106,13 @@ app.get('/logout', function(req,res){
       if (err)
           throw err;
   });
+
+  Conversation.update({currentVolunteerID: req.user[0].id}, 
+    {$set: {active : false, currentVolunteerID: "none"}},
+    {upsert: false, multi: true},
+    function (err, conversation){
+  });
+
   req.logout();
   res.redirect('/login');
 });
