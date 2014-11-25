@@ -4,8 +4,8 @@ var Conversation 	= require('../models/conversation.js')
 
 module.exports.createConversation = function(req, res){
 	//PATRICK: DO NOT REMOVE THIS... MING
-	console.log(req.user);
-	console.log(req.body);
+	//console.log(req.user);
+	//console.log(req.body);
 	if (req.body.From){
 		req.body.phoneNumber = req.body.From;
 	}

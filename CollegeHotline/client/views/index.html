@@ -10,7 +10,9 @@
 
 		<!-- Bootstrap core CSS -->
 		<link href="css/bootstrap.css" rel="stylesheet">
-		<!--style> .badge{background: red; color: black; !important} </style-->
+		<style> .badgeUnanswered{background: red; color: black; !important} </style>
+		<style> .volunteerTimestamp{text-align: right} </style>
+		<style> .volunteerMessage{text-align: right} </style>}
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -27,16 +29,16 @@
 		<div ng-controller="conversationController" class = "container-fluid" style = "margin-top: 70px">
 			<div class = "row">
 				<div class = "col-sm-3">
-					<div class="panel panel-default pre-scrollable">
-						<div ng-repeat="conversation in inactiveConversations" class="list-group-item">
-							<!-- <form ng-submit="activateConversation( conversation.phoneNumber )"> -->
-							<form ng-submit="activateConversation( $index, conversation.phoneNumber )">
-								<h4>{{conversation.messages[conversation.messageCount-1].text}}</h4>
-								<!-- <p>{{conversation.phoneNumber}}</p> -->
-								<p>{{message.timeStamp}}</p>
-								<button align="center" type ="submit">Answer</button>
-							</form>
-						</div>
+					<h2 align = "center"> Incoming Messages </h2>
+					<!--div class="panel panel-default pre-scrollable"-->
+					<div>
+						<ul class="list-group pre-scrollable">
+							<li ng-repeat="conversation in inactiveConversations" class="list-group-item" ng-click="activateConversation($index, conversation.phoneNumber)">
+								<form>
+									<h4>{{conversation.messages[conversation.messageCount-1].text}}</h4>
+								</form>
+							</li>
+						</ul>
 					</div>
 					<!--<form ng-submit="createTextMessage()">
 						<input ng-model="newMessage" placeholder="Message Text" class="form-control" rows="3"></input>
@@ -50,41 +52,35 @@
 						<div>
 							<ul class="list-group pre-scrollable">
 								<li ng-repeat="message in currentConversation" class="list-group-item">
-									<!--p>{{message.timeStamp}}</p-->
-									<p>{{message.timeStamp}}</p>
-									<h4>{{message.text}}</h4>
+									<form>
+										<p ng-class="(message.isVolunteer==true) ? 'volunteerTimestamp' : ''">{{message.timeStamp}}</p>
+										<h4 ng-class="(message.isVolunteer==true) ? 'volunteerMessage' : ''">{{message.text}}</h4>
+									</form>
 								</li>	
 							</ul>
 						</div>
 					</div>
 					<div class = "row">
 						<div class = "panel-footer text-center">
-							<!--<button class = "btn-lg"> Help this student</button>
-
-							<form ng-submit="createConversation()">
-								<input ng-model="newText" placeholder="Message Text" class="form-control" rows="3"></input>
-								<input ng-model="newNumber" placeholder="Phone Number" class="form-control" rows='1'></input>
-								<button type="submit" class = "btn-lg"> Send</button>
-							</form>-->
 							<form ng-submit="sendMsg()">
-								<input ng-model="newResponse" placeholder = "Your Reply" class = "form-control"></input>
+								<input ng-model="newResponse" placeholder="Your Reply" class="form-control" rows="3"></input>
 								<button type = "submit" class = "btn-lg"> Send </button>
 							</form>
 						</div>
 					</div>
-
 				</div>
 				<div class = "col-sm-2">
+					<h2> Your Queue</h2>
 					<ul class="list-group pre-scrollable">
-						<li ng-repeat="conversation in activeConversations" class="list-group-item">
-							<form ng-submit="deactivateConversation( $index, conversation.phoneNumber)">
-								<span class="badge">{{conversation.unansweredMessageCount}} Unanswered</span>
-								<!-- <p>{{conversation.phoneNumber}}</p> -->
-								<h6>{{conversation.messages[conversation.messageCount-1].text}}</h6>
-								<button type ="submit">Return to Queue</button>
-							</form>
-							<form ng-submit="openConversation( $index, conversation.phoneNumber)">
-								<button type ="submit">Open</button>
+						<li ng-repeat="conversation in activeConversations" class="list-group-item" ng-click="openConversation($index, conversation.phoneNumber)">
+							<form>
+
+								<button align="right" class='pull-right' ng-click="deactivateConversation( $index, conversation.phoneNumber)">x</button>
+							<!--ng-show="conversation.unansweredMessageCount>0"-->
+								<span  class="badge" ng-class = "(conversation.unansweredMessageCount>0) ? 'badgeUnanswered' : ''">{{conversation.unansweredMessageCount}}</span>
+								
+								<h5 align="center">{{conversation.messages[conversation.messageCount-1].text}}</h5>
+								<!--button type ="submit">Return to Queue</button-->
 							</form>
 						</li>
 					</ul>
