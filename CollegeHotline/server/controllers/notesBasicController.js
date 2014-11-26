@@ -9,7 +9,6 @@ module.exports.list = function(req, res){
 
 module.exports.create = function(req, res){
 	var newNote = new NotesBasic();
-	console.log(req.body);
 		
 	newNote.phoneNumber = req.body.phoneNumber;
 	newNote.studentName = req.body.studentName;
@@ -47,30 +46,42 @@ module.exports.updateShortGoals = function(req, res){
 			},
 			function (err, results)
 			{
-				console.log(req.body);
 				res.json(results);
 			}
 	);
 }
 
-module.exports.updateLongGoals = function(req, res){
+module.exports.saveQuestion1 = function(req, res){
 	NotesBasic.update(
 			{phoneNumber : req.body.phoneNumber}, 
 			{$push: 
 					{
-						ltgoals : {body : req.body.ltgoals}
+						question1 : {body : req.body.question1}
 					} 
 			},
 			function (err, results)
 			{
-				console.log(req.body);
+				res.json(results);
+			}
+	);
+}
+
+module.exports.saveQuestion2 = function(req, res){
+	NotesBasic.update(
+			{phoneNumber : req.body.phoneNumber}, 
+			{$push: 
+					{
+						question2 : {body : req.body.question2}
+					} 
+			},
+			function (err, results)
+			{
 				res.json(results);
 			}
 	);
 }
 
 module.exports.load = function(req, res){
-	console.log(req.user);
 	Volunteer.find({phoneNumber: req.user[0].phoneNumber}, function(err, results){
 		res.json(results);
 	})

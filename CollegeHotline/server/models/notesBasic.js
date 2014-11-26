@@ -10,7 +10,8 @@ var basicNoteSchema = new mongoose.Schema({
  	schoolName		: String,
  	currentYear 	: String, 
  	goals 			: [{body : String}],
- 	ltgoals			: [{body : String}]
+ 	question1		: [{body : String}],
+ 	question2		: [{body : String}]
  	/*
 	goals			:[
 						{

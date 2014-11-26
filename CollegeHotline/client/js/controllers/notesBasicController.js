@@ -5,6 +5,8 @@ app.controller('notesBasicController',['$scope', '$resource', function ($scope, 
 	var NotesBasicUpdate = $resource('/api/notes/basic/update'); 
 	var NotesBasicUpdateShortGoals = $resource('/api/notes/basic/updateShortGoals');
 	var NotesBasicUpdateLongGoals = $resource('/api/notes/basic/updateLongGoals');
+	var NotesBasicSaveQuestion1 = $resource('/api/notes/basic/saveQuestion1');
+	var NotesBasicSaveQuestion2 = $resource('/api/notes/basic/saveQuestion2');
 
 	var NotesBasicLoad = $resource('/api/notes/load');
 
@@ -121,24 +123,55 @@ app.controller('notesBasicController',['$scope', '$resource', function ($scope, 
 		});
 	}
 
-	$scope.createNewLTGoal = function(){
-		NotesBasic.query({phoneNumber : $scope.phoneNumber}, function (results){
-			if(results.length == 0){
-				//need alert to handle cases where user not found
-			}
-			else
-			{
-				var updateNoteLongGoals = new NotesBasicUpdateLongGoals();
-				console.log($scope.newGoal);
-				updateNoteLongGoals.phoneNumber = $scope.phoneNumber;
-				updateNoteLongGoals.ltgoals = $scope.newLTGoal;
-				updateNoteLongGoals.$save(function(result){
-					console.log(result);
-					$scope.ltgoals.push({body: $scope.newLTGoal});
-					$scope.newLTGoal = '';
-				});
-			}	
-		});
+	$scope.saveQuestion1 = function(){
+		if(!$scope.question1.match(/\S/)){
+			//do nothing
+			console.log("empty")
+		}
+		else{
+			NotesBasic.query({phoneNumber : $scope.phoneNumber}, function (results){
+				if(results.length == 0){
+					//need alert to handle cases where user not found
+				}
+				else if(results[0].question1.length != 0 &&  results[0].question1[0].body == $scope.question1){
+					//do nothing
+				}
+				else{
+					var updateNoteLongGoals = new NotesBasicSaveQuestion1();
+					updateNoteLongGoals.phoneNumber = $scope.phoneNumber;
+					updateNoteLongGoals.question1 = $scope.question1;
+					updateNoteLongGoals.$save(function(result){
+						console.log(result);
+					});
+				}	
+			});
+		}
+	}
+
+	$scope.saveQuestion2 = function(){
+		if(!$scope.question1.match(/\S/)){
+			//do nothing
+			console.log("empty")
+		}
+		else{
+			NotesBasic.query({phoneNumber : $scope.phoneNumber}, function (results){
+				if(results.length == 0){
+						//need alert to handle cases where user not found
+				}
+				else if(results[0].question2.length != 0 &&  results[0].question2[0].body == $scope.question2){
+					//do nothing
+				}
+				else
+				{
+					var updateNoteLongGoals = new NotesBasicSaveQuestion2();
+					updateNoteLongGoals.phoneNumber = $scope.phoneNumber;
+					updateNoteLongGoals.question2 = $scope.question2;
+					updateNoteLongGoals.$save(function(result){
+						console.log(result);
+					});
+				}	
+			});
+		}
 	}
 
 

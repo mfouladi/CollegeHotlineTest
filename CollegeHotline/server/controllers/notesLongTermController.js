@@ -1,1 +1,0 @@
-var NotesLongTerm  = require('../models/NotesLongTerm');

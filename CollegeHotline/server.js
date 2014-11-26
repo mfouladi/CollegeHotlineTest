@@ -10,7 +10,6 @@ var express      = require('express'),
   morgan         = require('morgan'),
 	conversationController   = require('./server/controllers/conversationController'),
 	notesBasicController     = require("./server/controllers/notesBasicController"),
-	notesShortTermController = require("./server/controllers/notesShortTermController"),
 	cloudPhoneController     = require("./server/controllers/cloudPhoneController.js");
 
 mongoose.connect('mongodb://localhost:27017/CollegeHotline');
@@ -58,9 +57,8 @@ app.get('/api/notes/basic', notesBasicController.list);
 app.post('/api/notes/basic/create', notesBasicController.create);
 app.post('/api/notes/basic/update', notesBasicController.update);
 app.post('/api/notes/basic/updateShortGoals', notesBasicController.updateShortGoals);
-app.post('/api/notes/basic/updateLongGoals', notesBasicController.updateLongGoals);
-app.post('/api/notes/short/goal', notesShortTermController.create);
-
+app.post('/api/notes/basic/saveQuestion1', notesBasicController.saveQuestion1);
+app.post('/api/notes/basic/saveQuestion2', notesBasicController.saveQuestion2);
 app.get('/api/notes/load', notesBasicController.load);
 
 //Conversation Calls

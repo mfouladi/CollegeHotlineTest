@@ -70,15 +70,51 @@
 									<label>Current Year in School</label>
 									<input ng-model="currentYear" type="text" class="form-control" placeholder="Example: Sophomore">
 								</div>
-								<input type="submit" align="center"/>
+								<button type="submit" align="center">Save</input>
 							</form>
 						</div>
 					</div>
 				</div>
-				<!-- <div class = "col-resize" ng-controller="notesShortTermController" > -->
+				<div  class = "col-resize">
+					<div class = "panel-header">
+						<h2 class = "text-center">Notes</h2>
+					</div>
+					<div class="panel panel-default pre-scrollable">
+						<form class="form-horizontal" ng-submit="saveQuestion1()">
+							<div class="form-group" >
+								<h3 class="text-center">Why are you calling today?</h3>
+								<textarea ng-model="question1" class="form-control" rows="3" placeholder="Write a reply..."></textarea>
+							</div>
+							<div class="center-block">
+								<button class="center-block" type="submit" >Save</button>
+							</div>
+						</form>
+
+						<form class="form-horizontal" ng-submit="saveQuestion2()">
+							<div class="form-group" >
+								<h3 class="text-center">What was discussed during this call?</h3>
+								<textarea ng-model="question2" class="form-control" rows="3" placeholder="Write a reply..."></textarea>
+							</div>
+							<div class="center-block">
+								<button class="center-block" type="submit" >Save</button>
+							</div>
+						</form>
+					</div>
+
+
+					<!-- <div class="panel panel-default pre-scrollable">
+						<div ng-repeat = "ltgoal in ltgoals">
+							<input type="checkbox"> {{ltgoal.body}}</input>
+						</div>
+					</div>
+					<form ng-submit="createNewLTGoal()">
+						<input ng-model="newLTGoal" placeholder="Enter a long term goal" class="form-control" rows="3"></input>
+						<button type="submit" class = "btn-md"> Update</button>
+					</form> -->
+				</div>
 				<div class = "col-resize">
 					<div class = "panel-header">
-						<h2 class = "text-center">Short Term Goals</h2>
+						<h2 class = "text-center">Action Plan</h2>
 					</div>
 					<div class="panel panel-default pre-scrollable">
 						<div ng-repeat = "goal in goals">
@@ -87,20 +123,6 @@
 					</div>
 					<form ng-submit="createNewGoal()">
 						<input ng-model="newGoal" placeholder="Enter a short term goal" class="form-control" rows="3"></input>
-						<button type="submit" class = "btn-md"> Update</button>
-					</form>
-				</div>
-				<div  class = "col-resize">
-					<div class = "panel-header">
-						<h2 class = "text-center">Long Term Goals</h2>
-					</div>
-					<div class="panel panel-default pre-scrollable">
-						<div ng-repeat = "ltgoal in ltgoals">
-							<input type="checkbox"> {{ltgoal.body}}</input>
-						</div>
-					</div>
-					<form ng-submit="createNewLTGoal()">
-						<input ng-model="newLTGoal" placeholder="Enter a long term goal" class="form-control" rows="3"></input>
 						<button type="submit" class = "btn-md"> Update</button>
 					</form>
 				</div>
