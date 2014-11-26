@@ -83,7 +83,7 @@ var forwardHelper = function(req, res){
 				var dstNumber = volunteerQueue[0].phoneNumber;
 				Volunteer.update({phoneNumber: volunteerQueue[0].phoneNumber}, {
 					$set:{currentCall: req.query.From, 
-						availabe: false
+						available: false
 					}}, 
 					function (err, result){
 						console.log(result);
