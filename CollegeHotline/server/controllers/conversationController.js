@@ -1,4 +1,3 @@
-var Message 		= require('../models/message.js');
 var Conversation 	= require('../models/conversation.js')
 
 

@@ -14,6 +14,7 @@ module.exports.create = function(req, res){
 	newNote.studentName = req.body.studentName;
 	newNote.schoolName = req.body.schoolName;
 	newNote.currentYear = req.body.currentYear;
+	newNote.studentAddress = req.body.studentAddress;
 	
 	newNote.save(function (err, result){
 		res.json(result);
@@ -27,6 +28,7 @@ module.exports.update = function(req, res){
 					{studentName : req.body.studentName, 
 					schoolName : req.body.schoolName, 
 					currentYear : req.body.currentYear,
+					studentAddress : req.body.studentAddress
 					} 
 			},
 			function (err, results)

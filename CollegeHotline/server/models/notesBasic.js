@@ -8,20 +8,20 @@ var basicNoteSchema = new mongoose.Schema({
 					    last: String
  				 	},
  	schoolName		: String,
- 	currentYear 	: String, 
- 	goals 			: [{body : String}],
- 	question1		: [{body : String}],
- 	question2		: [{body : String}]
- 	/*
-	goals			:[
-						{
-							body : String
-							// dateSet : Date,
-							// dueDate : Date,
-							// dateCompleted: Date
-						}
-					]
-	*/
+ 	currentYear 	: String,
+ 	studentAddress 	: String, 
+ 	goals 			: [{
+ 						body : String,
+ 						checked: Boolean
+ 					}],
+ 	question1		: [{
+ 						body : String,
+ 						timeStamp : {type : Date, default: Date.now()}
+ 					}],
+ 	question2		: [{
+ 						body : String,
+ 						timeStamp : {type : Date, default: Date.now()}
+ 					}]
 });
 
 module.exports = mongoose.model('basicnote', basicNoteSchema);

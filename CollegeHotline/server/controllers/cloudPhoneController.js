@@ -1,4 +1,4 @@
-var Message = require('../models/message.js');
+var Conversation = require('../models/conversation.js');
 var Volunteer = require('../models/volunteer.js');
 var plivo = require('plivo-node');
 var p = plivo.RestAPI(require('./configPlivo'));
@@ -17,12 +17,16 @@ function hash(value) {
 
 
 module.exports.receiveMsg = function(req, res){
-	//console.log(req.query);
-	var msg = new Message();
-	msg.phoneNumber = req.query.From;
-	msg.active = true;
-	msg.text = req.query.Text;
-	msg.save(function (err, result){
+	var conversation = new Conversation();
+	var newMessage = {
+						text			: req.query.Text,
+						timeStamp		: Date.now(),
+						isVolunteer		: false,
+						volunteerID		: "none",
+					 };
+	conversation.messages.push(newMessage);
+	conversation.phoneNumber = req.query.From;
+	conversation.save(function (err, result){
 		res.json(result);
 	});
 }
@@ -41,7 +45,7 @@ module.exports.sendMsg = function(req, res){
 	p.send_message(params, function (status, response) {
 		//console.log(params);
 		if (status == 202){
-			var msg = new Message(req.query);
+			var msg = new Conversation(req.query);
 			msg.active = true;
 			msg.isVolunteer = true;
 			msg.hasBeenRead = true;

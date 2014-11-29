@@ -1,6 +1,5 @@
-var mongoose 	= require('mongoose')
-var Schema 		= mongoose.Schema
-var Message 	= require('../models/message.js');
+var mongoose 	= require('mongoose');
+var Schema 		= mongoose.Schema;
 
 module.exports = mongoose.model('Conversation',{
 	phoneNumber				: Number,
@@ -16,5 +15,3 @@ module.exports = mongoose.model('Conversation',{
 								volunteerID		: String,
 						 	  }]
 });
-
-//users : [{ type : Mongoose.Schema.ObjectId, ref : 'users' }]

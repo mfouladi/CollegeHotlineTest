@@ -112,7 +112,7 @@ app.get('/logout', function(req,res){
   });
 
   req.logout();
-  res.redirect('/login');
+  res.redirect('https://www.surveymonkey.com/s/5YLGC5N');
 });
 
 app.post('/login', passport.authenticate('local-login', {
