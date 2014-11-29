@@ -7,7 +7,7 @@ var appNumber = "18582565412";
 var appEndPoint = "mapscallcenter141120025606@phone.plivo.com";
 var volunteerQueue = [];
 var callerCalleeDict = {};
-var unavailableText = "Thank you for calling the college hotline. Unfortunatly, all our volunteers are currently occupied. If you'd like, you could send your inquiries to us by text or you could call us at a later time. Have nice day."
+var unavailableText = "Thank you for calling the college hotline. Unfortunatly, all our volunteers are currently occupied. If you'd like, you could send your inquiries to us by text or you could call us at a later time. Have a nice day."
 
 function hash(value) {
     return (typeof value) + ' ' + (value instanceof Object ?
@@ -45,13 +45,7 @@ module.exports.sendMsg = function(req, res){
 	p.send_message(params, function (status, response) {
 		//console.log(params);
 		if (status == 202){
-			var msg = new Conversation(req.query);
-			msg.active = true;
-			msg.isVolunteer = true;
-			msg.hasBeenRead = true;
-			msg.save(function (err, result){
-				res.json([result]);
-			});
+			res.json(response);
 		}
 	});
 }
