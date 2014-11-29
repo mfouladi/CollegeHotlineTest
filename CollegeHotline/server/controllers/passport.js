@@ -44,6 +44,9 @@ module.exports = function(passport) {
 
                         // set the user's local credentials
                         newUser.phoneNumber = req.body.phoneNumber;
+                        newUser.firstName = req.body.firstName;
+                        newUser.lastName = req.body.lastName;
+                        newUser.email = req.body.email;
                         newUser.username = username;
                         newUser.password = newUser.generateHash(password);
                         newUser.online = true;

@@ -117,7 +117,7 @@ app.get('/logout', function(req,res){
 
 app.post('/login', passport.authenticate('local-login', {
       successRedirect : '/conversations', // redirect to the secure profile section
-      failureRedirect : '/signup', // redirect back to the signup page if there is an error
+      failureRedirect : '/login', // redirect back to the signup page if there is an error
       failureFlash : true // allow flash messages
   })
 );

@@ -11,4 +11,6 @@ app.controller('loginController',['$scope', '$resource', function ($scope, $reso
 			$scope.isLoggedIn = false;
 	});
 
+	
+
 }]);
