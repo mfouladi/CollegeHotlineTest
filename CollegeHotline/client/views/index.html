@@ -12,8 +12,10 @@
 		<link href="css/bootstrap.css" rel="stylesheet">
 		<style> .badgeUnanswered{background: #00FF00; color: black; !important} </style>
 		<style> .exit{background: red; color: white; !important} </style>
-		<style> .volunteerTimestamp{text-align: right} </style>
-		<style> .volunteerMessage{text-align: right} </style>}
+		<style> .timeStamp{text-align: center} </style>
+		<style> .currentVolunteerMessage{text-align: right; background-color: lightgreen;} </style>}
+		<style> .otherVolunteerMessage{text-align: right; background-color: lightblue} </style>
+		<style> .studentMessage{text-align: left; background-color: whitesmoke;} </style>
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -62,12 +64,15 @@
 						<!--div class="panel panel-default pre-scrollable"-->
 						<div>
 							<ul class="list-group pre-scrollable">
-								<li ng-repeat="message in currentConversation" class="list-group-item">
-									<form>
-										<p ng-class="(message.isVolunteer==true) ? 'volunteerTimestamp' : ''">{{message.timeStamp}}</p>
-										<h4 ng-class="(message.isVolunteer==true) ? 'volunteerMessage' : ''">{{message.text}}</h4>
-									</form>
-								</li>	
+								<!--li ng-repeat="message in currentConversation" class="list-group-item" ng-class="(message.isVolunteer==true) ? 'volunteerMessage' : 'studentMessage'"-->
+								<div width="200px">
+									<li ng-repeat="message in currentConversation" class="list-group-item" ng-class="(message.isVolunteer==true) ? ((message.volunteerID==user._id) ? 'currentVolunteerMessage' : 'otherVolunteerMessage') : 'studentMessage'">
+										<form>
+											<h3>{{message.text}}</h3>
+											<p ng-class="(message.isVolunteer==true) ? 'volunteerTimestamp' : ''">{{message.timeStampString}}</p>
+										</form>
+									</li>	
+								</div>
 							</ul>
 						</div>
 					</div>

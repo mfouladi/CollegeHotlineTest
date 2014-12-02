@@ -10,7 +10,8 @@ module.exports = mongoose.model('Conversation',{
 	currentVolunteerID 		: {type: String, default: "none"},
 	messages				: [{
 								text			: String,
-								timeStamp		: {type : Date, default: Date.now()},
+								timeStamp		: {type : Date, default: Date()},
+								timeStampString : String,
 								isVolunteer		: {type: Boolean, default: false},
 								volunteerID		: String,
 						 	  }]

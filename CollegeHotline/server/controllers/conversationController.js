@@ -11,13 +11,43 @@ module.exports.createConversation = function(req, res){
 	if (req.body.Text){
 		req.body.text = req.body.Text;		
 	}
+
+	d = new Date();
+	year = d.getFullYear();
+	month = d.getMonth();
+	day = d.getDate();
+	hour = d.getHours();
+	minute = d.getMinutes();
+	
+	if(hour < 12)
+		label = "AM"
+	else
+		label = "PM"
+
+	if(hour > 12)
+		hour = hour % 12;
+
+	if(day < 10)
+		day = "0"+day;
+
+	if(minute < 10)
+		minute = "0"+minute;
+
+	if(hour == 0)
+		hour = 12;
+
+	stamp = month+"/"+day+"/"+year+", "+hour+":"+minute+label;
+	
+	console.log(stamp);
+
 	Conversation.find({phoneNumber: req.body.phoneNumber}, function (err, result){
 		if(result.length == 0){
 
 			var conversation = new Conversation();
 			var newMessage = {
 								text			: req.body.text,
-								timeStamp		: Date.now(),
+								timeStamp		: Date(),
+								timeStampString : stamp,
 								isVolunteer		: false,
 								volunteerID		: "none",
 							 };
@@ -34,7 +64,8 @@ module.exports.createConversation = function(req, res){
 									{$push: {"messages": 
 												{
 													text			: req.body.text,
-													timeStamp		: Date.now(),
+													timeStamp		: Date(),
+													timeStampString : stamp,
 													isVolunteer		: false,
 													volunteerID		: "none",
 												}
@@ -50,7 +81,8 @@ module.exports.createConversation = function(req, res){
 									{$push: {"messages": 
 												{
 													text			: req.body.text,
-													timeStamp		: Date.now(),
+													timeStamp		: Date(),
+													timeStampString : stamp,
 													isVolunteer		: true,
 													volunteerID		: req.user[0].id,
 												}
