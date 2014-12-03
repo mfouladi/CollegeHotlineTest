@@ -40,13 +40,23 @@ app.controller('conversationController',['$scope', '$resource', function ($scope
 			$scope.activeConversations = results;
 		});
 
+		len = $scope.currentConversation.length;
+
 		for(i = 0; i < $scope.activeConversations.length; i++){
-				if ($scope.activeConversations[i].phoneNumber == $scope.currentConversationPhoneNumber){
-					$scope.currentConversation = $scope.activeConversations[i].messages;
-				}
-			}	
+			if ($scope.activeConversations[i].phoneNumber == $scope.currentConversationPhoneNumber){
+				$scope.currentConversation = $scope.activeConversations[i].messages;
+			}
+		}
+
+		if ($scope.currentConversation.length > len)
+			setTimeout(function(){scrollConversation()}, 5);	
 	}
 	
+	function scrollConversation(){
+		var elem = document.getElementById('currentMessage');
+  		elem.scrollTop = elem.scrollHeight;
+  	}
+
 	//update conversations every second
 	setInterval(function(){updatePage()}, 1000);
 
@@ -57,12 +67,13 @@ app.controller('conversationController',['$scope', '$resource', function ($scope
 		conversation.text = $scope.newText;
 		conversation.phoneNumber = $scope.currentConversationPhoneNumber;
 		conversation.$save(function (result){
-			console.log(result);
+			//console.log(result);
 			if (result.phoneNumber != null){
 				$scope.inactiveConversations.push(result);
 			}
 			$scope.newText = '';
 			$scope.newNumber = '';
+				
 		});
 	}
 
@@ -73,10 +84,11 @@ app.controller('conversationController',['$scope', '$resource', function ($scope
 			$scope.currentConversation = results[0].phoneNumber;
 		});
 		$scope.inactiveConversations.splice(index, 1);
+		setTimeout(function(){scrollConversation()}, 5);
 	}
 
 	$scope.deactivateConversation = function(index, deactivatePhoneNumber) {
-		Deactivate.query({phoneNumber : deactivatePhoneNumber}, function (results){
+		Deactivate.query({phoneNumnctber : deactivatePhoneNumber}, function (results){
 			if(results[0].unansweredMessageCount > 0)
 				$scope.inactiveConversations.push(results[0]);
 		});
@@ -93,6 +105,8 @@ app.controller('conversationController',['$scope', '$resource', function ($scope
 		});
 		$scope.currentConversation = $scope.activeConversations[index].messages;
 		$scope.currentConversationPhoneNumber = $scope.activeConversations[index].phoneNumber;
+		//scrollConversation();
+		setTimeout(function(){scrollConversation()}, 5);
 	}
 
 

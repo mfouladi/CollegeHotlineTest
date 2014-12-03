@@ -69,7 +69,7 @@
 						<h2 align = "center"> My Current Message </h2>
 						<!--div class="panel panel-default pre-scrollable"-->
 						<div>
-							<ul class="list-group pre-scrollable">
+							<ul id="currentMessage" class="list-group pre-scrollable">
 								<!--li ng-repeat="message in currentConversation" class="list-group-item" ng-class="(message.isVolunteer==true) ? 'volunteerMessage' : 'studentMessage'"-->
 								<li ng-repeat="message in currentConversation" class="list-group-item" ng-class="(message.isVolunteer==true) ? ((message.volunteerID==user._id) ? 'currentVolunteerMessage' : 'otherVolunteerMessage') : 'studentMessage'">
 									<form>
