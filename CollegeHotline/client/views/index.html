@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="CH_Messaging_App">
+<html  lang="en" ng-app="CH_Messaging_App">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,9 +19,12 @@
 		<style> .studentMessage{         margin-right:33%;text-align: left;  border:solid; border-width:0px; border-color:gray;} </style>
 		<style> .message{margin:0px; display:inline-block; padding:15px; border:solid; border-width:2px} </style>
 		
-		<style> .light-green{background-color: lightgreen; border-radius: 10px; border-color:white} </style>
-		<style> .light-blue {background-color: lightblue; border-radius: 10px; border-color:white} </style>
-		<style> .light-gray {background-color: lightgray; border-radius: 10px; border-color:white} </style> 
+		<style> .light-green{text-align: left;background-color: lightgreen; border-radius: 15px; border-color:white} </style>
+		<style> .light-blue {text-align: left;background-color: lightblue; border-radius: 15px; border-color:white} </style>
+		<style> .light-gray {background-color:lightgray; border-radius: 15px; border-color:white} </style>
+		<style> .background {background-color:whitesmoke;} </style>
+		<style> .foreground {background-color:white} </style>
+
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -38,7 +41,7 @@
 		<script type="text/javascript" src="/js/controllers/conversationController.js"></script>
 	</head>
 
-	<body>
+	<body class="background">
 
 		<!--header navbar-->
 		<div ng-include src="'/views/navbar.html'"></div>
@@ -66,9 +69,10 @@
 				</div>
 				<div class = "col-sm-6">
 					<div class = "row">
-						<h2 align = "center"> My Current Message </h2>
+						<h2 align = "center"> My Current Messages </h2>
+						<p align = "center"> Send a text to assist this student! </p>
 						<!--div class="panel panel-default pre-scrollable"-->
-						<div>
+						<div class='foreground'>
 							<ul id="currentMessage" class="list-group pre-scrollable">
 								<!--li ng-repeat="message in currentConversation" class="list-group-item" ng-class="(message.isVolunteer==true) ? 'volunteerMessage' : 'studentMessage'"-->
 								<li ng-repeat="message in currentConversation" class="list-group-item" ng-class="(message.isVolunteer==true) ? ((message.volunteerID==user._id) ? 'currentVolunteerMessage' : 'otherVolunteerMessage') : 'studentMessage'">
@@ -91,7 +95,7 @@
 				</div>
 				<div class = "col-sm-3">
 					<h2 align = "center">My Inbox</h2>
-					<p align = "center"> Messages only you can see.</p>
+					<p align = "center"> Messages only you can see</p>
 					<ul class="list-group pre-scrollable">
 						<li ng-repeat="conversation in activeConversations" class="list-group-item" ng-click="openConversation($index, conversation.phoneNumber)">
 							<form>
@@ -100,7 +104,7 @@
 							<!--ng-show="conversation.unansweredMessageCount>0"-->
 								<span  class="badge" ng-class = "(conversation.unansweredMessageCount>0) ? 'badgeUnanswered' : ''">{{conversation.unansweredMessageCount}}</span>
 								
-								<h5 align="center">{{conversation.messages[conversation.messageCount-1].text}}</h5>
+								<h5>{{conversation.messages[conversation.messageCount-1].text}}</h5>
 								<!--button type ="submit">Return to Queue</button-->
 							</form>
 						</li>

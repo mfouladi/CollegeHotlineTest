@@ -80,15 +80,17 @@ app.controller('conversationController',['$scope', '$resource', function ($scope
 	$scope.activateConversation = function(index, activatePhoneNumber) {
 		Activate.query({phoneNumber : activatePhoneNumber}, function (results){
 			$scope.activeConversations.push(results[0]);
-			$scope.currentConversationPhoneNumber = results[0].phoneNumber;
-			$scope.currentConversation = results[0].phoneNumber;
+			//$scope.currentConversationPhoneNumber = results[0].phoneNumber;
+			//$scope.currentConversation = results[0].messages;
+			$scope.inactiveConversations.splice(index, 1);
+			//setTimeout(function(){scrollConversation()}, 5);
+			//console.log($scope.activeConversations.length - 1);
+			setTimeout(function(){$scope.openConversation($scope.activeConversations.length - 1, activatePhoneNumber)}, 5);
 		});
-		$scope.inactiveConversations.splice(index, 1);
-		setTimeout(function(){scrollConversation()}, 5);
 	}
 
 	$scope.deactivateConversation = function(index, deactivatePhoneNumber) {
-		Deactivate.query({phoneNumnctber : deactivatePhoneNumber}, function (results){
+		Deactivate.query({phoneNumber : deactivatePhoneNumber}, function (results){
 			if(results[0].unansweredMessageCount > 0)
 				$scope.inactiveConversations.push(results[0]);
 		});
