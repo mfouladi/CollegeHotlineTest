@@ -48,7 +48,7 @@ app.controller('conversationController',['$scope', '$resource', function ($scope
 	}
 	
 	//update conversations every second
-	//setInterval(function(){updatePage()}, 1000);
+	setInterval(function(){updatePage()}, 1000);
 
 
 	//All info for this should be coming from the phone API

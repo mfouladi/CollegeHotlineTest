@@ -14,5 +14,6 @@ module.exports = mongoose.model('Conversation',{
 								timeStampString : String,
 								isVolunteer		: {type: Boolean, default: false},
 								volunteerID		: String,
+								volunteerName	: String
 						 	  }]
 });

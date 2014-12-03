@@ -36,10 +36,10 @@ module.exports.createConversation = function(req, res){
 	if(hour == 0)
 		hour = 12;
 
-	stamp = month+"/"+day+"/"+year+", "+hour+":"+minute+label;
+	stamp = month+"/"+day+"/"+year+" at "+hour+":"+minute+label;
 	
 	console.log(stamp);
-
+	console.log(req.user[0])
 	Conversation.find({phoneNumber: req.body.phoneNumber}, function (err, result){
 		if(result.length == 0){
 
@@ -85,6 +85,7 @@ module.exports.createConversation = function(req, res){
 													timeStampString : stamp,
 													isVolunteer		: true,
 													volunteerID		: req.user[0].id,
+													volunteerName	: req.user[0].username
 												}
 											},
 									$inc: {messageCount : 1},
