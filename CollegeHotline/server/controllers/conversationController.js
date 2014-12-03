@@ -38,8 +38,8 @@ module.exports.createConversation = function(req, res){
 
 	stamp = month+"/"+day+"/"+year+" at "+hour+":"+minute+label;
 	
-	console.log(stamp);
-	console.log(req.user[0])
+	//console.log(stamp);
+	//console.log(req.user[0])
 	Conversation.find({phoneNumber: req.body.phoneNumber}, function (err, result){
 		if(result.length == 0){
 

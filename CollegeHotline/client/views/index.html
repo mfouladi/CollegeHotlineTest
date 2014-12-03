@@ -12,11 +12,16 @@
 		<link href="css/bootstrap.css" rel="stylesheet">
 		<style> .badgeUnanswered{background: #00FF00; color: black; !important} </style>
 		<style> .exit{background: red; color: white; !important} </style>
-		<style> .align-right{text-align: right} </style>
-		<style> .currentVolunteerMessage{text-align: right; background-color: lightgreen; border:solid; border-width:2px; border-color:gray;} </style>}
-		<style> .otherVolunteerMessage{text-align: right; background-color: lightblue; border:solid; border-width:2px; border-color:gray;} </style>
-		<style> .studentMessage{text-align: left; background-color: lightgray; border:solid; border-width:2px; border-color:gray;} </style>
-
+		<style> .align-right{margin-bottom:0px; margin-right:10px;text-align: right} </style>
+		<style> .align-left {margin-bottom:0px; margin-left: 10px; text-align: left} </style>
+		<style> .currentVolunteerMessage{margin-left:33%; text-align: right; border:solid; border-width:0px; border-color:gray;} </style>
+		<style> .otherVolunteerMessage{  margin-left:33%; text-align: right; border:solid; border-width:0px; border-color:gray;} </style>
+		<style> .studentMessage{         margin-right:33%;text-align: left;  border:solid; border-width:0px; border-color:gray;} </style>
+		<style> .message{margin:0px; display:inline-block; padding:15px; border:solid; border-width:2px} </style>
+		
+		<style> .light-green{background-color: lightgreen; border-radius: 10px; border-color:white} </style>
+		<style> .light-blue {background-color: lightblue; border-radius: 10px; border-color:white} </style>
+		<style> .light-gray {background-color: lightgray; border-radius: 10px; border-color:white} </style> 
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -68,8 +73,8 @@
 								<!--li ng-repeat="message in currentConversation" class="list-group-item" ng-class="(message.isVolunteer==true) ? 'volunteerMessage' : 'studentMessage'"-->
 								<li ng-repeat="message in currentConversation" class="list-group-item" ng-class="(message.isVolunteer==true) ? ((message.volunteerID==user._id) ? 'currentVolunteerMessage' : 'otherVolunteerMessage') : 'studentMessage'">
 									<form>
-										<p ng-class="(message.isVolunteer==true) ? 'align-right' : ''">{{(message.isVolunteer==true) ? message.volunteerName : "Student"}} <br> {{message.timeStampString}}</p>
-										<h3>{{message.text}}</h3>
+										<p ng-class="(message.isVolunteer==true) ? 'align-right' : 'align-left'">{{(message.isVolunteer==true) ? message.volunteerName : "Student"}} on {{message.timeStampString}}</p>
+										<h3 class="message" ng-class="(message.isVolunteer==true) ? ((message.volunteerID==user._id) ? 'light-green' : 'light-blue') : 'light-gray'">{{message.text}}</h3>
 									</form>
 								</li>
 							</ul>
