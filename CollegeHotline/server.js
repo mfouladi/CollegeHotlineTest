@@ -27,6 +27,7 @@ app.use(flash());
 app.use('/js', express.static(__dirname+'/client/js'));
 app.use('/css', express.static(__dirname+'/client/views/css'));
 app.use('/views', express.static(__dirname+'/client/views'));
+app.use('/images', express.static(__dirname+'/client/views/images'));
 app.use('/', express.static(__dirname+'/client/views/wordpress'));
 
 //If not logged in
