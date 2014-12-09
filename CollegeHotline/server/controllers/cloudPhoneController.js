@@ -151,7 +151,7 @@ module.exports.hangUp = function(req, res){
 	Volunteer.update({phoneNumber: calleeNumber}, {
 		$set:{available: true}}, function (err, result){
 			console.log(result);
+			res.json(result);
 	});
 	delete callerCalleeDict[hash(req.query.From)];
-	res.json(req);
 }
