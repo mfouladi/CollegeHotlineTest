@@ -35,7 +35,12 @@ module.exports.sendMsg = function(req, res){
 	//use plivo api to send the msg
 	//update database to reflect said change
 	//console.log(req.query);
-
+	var params = {
+ 	   'src': appNumber, // Caller Id
+ 	   'dst' : req.query.phoneNumber, // User Number to Call
+ 	   'text' : req.query.text,
+ 	   'type' : "sms",
+	};
 
 	p.send_message(params, function (status, response) {
 		//console.log(params);
@@ -114,7 +119,7 @@ module.exports.forwardCall = function(req, res){
 	if (volunteerQueue.length == 0){
 		//console.log("pulling new");
 		Volunteer.find({available:true, online:true}, function(err, result){
-			if (volunteerQueueu.length == 0){
+			if (volunteerQueue.length == 0){
 				volunteerQueue = volunteerQueue.concat(result);
 			}
 			
