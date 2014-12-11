@@ -43,7 +43,7 @@ module.exports.updateShortGoals = function(req, res){
 			{phoneNumber : req.body.phoneNumber}, 
 			{$push: 
 					{
-						goals : {body : req.body.goals}
+						goals : {body : req.body.goals, checked: req.body.checked}
 					} 
 			},
 			function (err, results)

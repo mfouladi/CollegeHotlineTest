@@ -120,6 +120,7 @@ app.controller('notesBasicController',['$scope', '$resource', function ($scope, 
 				console.log($scope.newGoal);
 				updateNoteShortGoals.phoneNumber = $scope.phoneNumber;
 				updateNoteShortGoals.goals = $scope.newGoal;
+				updateNoteShortGoals.checked = false;
 				updateNoteShortGoals.$save(function(result){
 					console.log(result);
 					$scope.goals.push({body: $scope.newGoal});
@@ -131,8 +132,8 @@ app.controller('notesBasicController',['$scope', '$resource', function ($scope, 
 
 	$scope.saveQuestion1 = function(){
 		if(!$scope.question1.match(/\S/)){
-			//do nothing
-			console.log("empty")
+			//if quetions is empty, do nothing
+			console.log("empty");
 		}
 		else{
 			NotesBasic.query({phoneNumber : $scope.phoneNumber}, function (results){
@@ -156,8 +157,8 @@ app.controller('notesBasicController',['$scope', '$resource', function ($scope, 
 
 	$scope.saveQuestion2 = function(){
 		if(!$scope.question1.match(/\S/)){
-			//do nothing
-			console.log("empty")
+			//if quetions is empty, do nothing
+			console.log("empty");
 		}
 		else{
 			NotesBasic.query({phoneNumber : $scope.phoneNumber}, function (results){
