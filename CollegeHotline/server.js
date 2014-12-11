@@ -45,7 +45,7 @@ app.get('/about', function(req, res){
 
 //If logged in
 app.get('/conversations', isLoggedIn, function (req, res){
-  res.sendFile(__dirname + '/client/views/index.html');
+  res.sendFile(__dirname + '/client/views/chat.html');
 });
 
 app.get('/notes', isLoggedIn, function (req, res){
