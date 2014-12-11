@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<title>College Hotline - Notes</title>
+		<title>College Hotline - Volunteers</title>
 
 		<!-- Bootstrap core CSS -->
 		<link href="css/bootstrap.css" rel="stylesheet">
@@ -25,6 +25,9 @@
 		</style>
 		<style> .background {background-color: black; background:url('/images/chalkboard.jpg') center center fixed} </style>
 		<style> .section 	{opacity:0.9;font-family:'Shadows Into Light';color:white; font-weight:bold} </style>
+		<style> .full-width {width: 100% } </style>
+		<style> .light-green{text-align: left;background-color: lightgreen; border-radius: 15px; border-width:0px;} </style>
+		<style> .light-red {text-align: left;background-color: pink; border-radius: 15px; border-width:0px; } </style>
 
 		<!-- Client Side Scripts-->
 		<script src="/js/client_modules/jquery.min.js"></script>
@@ -45,31 +48,34 @@
 		<div ng-include src="'/views/navbar.html'"></div>
 		
 		<div ng-controller="volunteerController" class = "container-fluid" style = "margin-top: 70px">
-			<div class = "row">
-				<div class = "col-sm-3 "></div>
-				<div class = "col-sm-6 ">
-					<div class="panel panel-default pre-scrollable">
-						<table class="table table-striped">
-							<thead>
-								<th>#</th>
-								<th>First Name</th>
-								<th>Last Name</th>
-								<th>Online</th>
-								<th>Available</th>
-							</thead>
-							<tbody>
-								<tr ng-repeat="volunteer in volunteers">
-									<td>{{$index+1}}</td>
-									<td>{{volunteer.firstName}}</td>
-									<td>{{volunteer.lastName}}</td>
-									<td>{{volunteer.online}}</td>
-									<td>{{volunteer.available}}</td>
-								</tr>
-							</tbody>
-						</table>
+			<div class="container-fluid">
+				<div class = "row">
+					<div class = "col-sm-2 "></div>
+					<div class = "col-sm-8 ">
+						<div class="panel panel-default pre-scrollable">
+							<table class="full-width table table-bordered">
+								<thead>
+									<th>#</th>
+									<th>First Name</th>
+									<th>Last Name</th>
+									<th>Online</th>
+									<th>Available</th>
+								</thead>
+								<tbody>
+									<tr ng-repeat="volunteer in volunteers" ng-class="(volunteer.available==true) ? 'light-green' : 'light-red'">
+										<td>{{$index+1}}</td>
+										<td>{{volunteer.firstName}}</td>
+										<td>{{volunteer.lastName}}</td>
+										<td>{{volunteer.online}}</td>
+										<td>{{volunteer.available}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</div>
+					<div class = "col-sm-2 "></div>
 				</div>
-				<div class = "col-sm-3 "></div>
+			</div>
 		</div>
 
   	</body>
