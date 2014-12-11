@@ -10,7 +10,8 @@ var express      = require('express'),
   morgan         = require('morgan'),
 	conversationController   = require('./server/controllers/conversationController'),
 	notesBasicController     = require("./server/controllers/notesBasicController"),
-	cloudPhoneController     = require("./server/controllers/cloudPhoneController.js");
+	cloudPhoneController     = require("./server/controllers/cloudPhoneController.js"),
+  volunteerController      = require("./server/controllers/volunteerController.js");
 
 mongoose.connect('mongodb://localhost:27017/CollegeHotline');
 
@@ -52,6 +53,10 @@ app.get('/notes', isLoggedIn, function (req, res){
   res.sendFile(__dirname + '/client/views/notes.html');
 });
 
+app.get('/volunteers', isLoggedIn, function (req, res){
+  res.sendFile(__dirname + '/client/views/volunteers.html');
+});
+
 
 //REST API
 app.get('/api/notes/basic', notesBasicController.list);
@@ -75,6 +80,9 @@ app.get('/api/cloudPhone/receiveMsg', conversationController.createConversation)
 app.get('/api/cloudPhone/sendMsg', cloudPhoneController.sendMsg);
 app.get('/api/cloudPhone/forwardCall', cloudPhoneController.forwardCall);
 app.get('/api/cloudPhone/hangUp', cloudPhoneController.hangUp);
+
+//Volunteer
+app.get('/api/volunteers/status', volunteerController.listVolunteers);
 
 //Volunteer Login
 
