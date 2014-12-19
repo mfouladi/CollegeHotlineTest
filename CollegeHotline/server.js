@@ -2,7 +2,6 @@ var express      = require('express'),
 	app	           = express(),
 	bodyParser 		 = require('body-parser'),
 	mongoose       = require('mongoose'),
-  mysql          = require('mysql'),
   cookieParser   = require('cookie-parser'),
   session        = require('express-session'),
   flash          = require('connect-flash'),
@@ -16,6 +15,8 @@ var express      = require('express'),
 mongoose.connect('mongodb://localhost:27017/CollegeHotline');
 
 require('./server/controllers/passport.js')(passport);
+var http         = require('http').Server(app);
+var io             = require('socket.io')(http);
 
 //app.use(morgan('dev'));
 app.use(cookieParser());
@@ -150,6 +151,16 @@ app.get('/loggedin', function(req, res) {
   res.send(req.isAuthenticated() ? req.user : '0'); 
 });
 
-app.listen(80, function(){
+/*
+  socket.io functions
+*/
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+});
+
+http.listen(80, function(){
 	console.log('I\'m Listening...');
 });
