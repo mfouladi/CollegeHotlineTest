@@ -16,12 +16,5 @@ app.controller('volunteerController',['$scope', '$resource', function ($scope, $
 	updatePage();
 
 	//update conversations every 30 seconds
-	setInterval(function(){updatePage()}, 30000);
-
-	// // Socket IO Version
-	// socket.on('send:volunteers', function (data) {
- //      $scope.volunteers = data.name;
- //      $scope.$apply();
- //    });
-
+	setInterval(function(){updatePage()}, 10000);
 }]);

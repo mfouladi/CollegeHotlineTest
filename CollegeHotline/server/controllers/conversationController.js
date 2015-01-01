@@ -2,9 +2,6 @@ var Conversation 	= require('../models/conversation.js')
 
 
 module.exports.createConversation = function(req, res){
-	//PATRICK: DO NOT REMOVE THIS... MING
-	//console.log(req.user);
-	//console.log(req.body);
 	if (req.body.From){
 		req.body.phoneNumber = req.body.From;
 	}
@@ -37,9 +34,6 @@ module.exports.createConversation = function(req, res){
 		hour = 12;
 
 	stamp = month+"/"+day+"/"+year+" at "+hour+":"+minute+label;
-	
-	//console.log(stamp);
-	//console.log(req.user[0])
 	Conversation.find({phoneNumber: req.body.phoneNumber}, function (err, result){
 		if(result.length == 0){
 
@@ -123,7 +117,6 @@ module.exports.listInactiveConversations = function(req, res){
 }
 
 module.exports.listActiveConversations = function(req, res){
-	//console.log(req.user);
 	Conversation.find({currentVolunteerID: req.user[0].id}, function (err, results){
 		res.json(results);
 	});
@@ -137,25 +130,3 @@ module.exports.openConversation = function (req, res){
 		res.json(conversation);
 	});
 }
-
-//Old Create Conversation
-// module.exports.createConversation = function(req, res){
-// 	var conversation = new Conversation();
-// 	console.log("Received New Message:\n", req.body, "\n");
-// 	var newMessage = {
-// 						text			: req.body.text,
-// 						timeStamp		: Date.now(),
-// 						isVolunteer		: false,
-// 						volunteerID		: 0, 
-// 						hasBeenRead		: false,
-// 						phoneNumber		: req.body.phoneNumber,
-// 						active			: false
-// 					 };
-// 	conversation.messages.push(newMessage);
-// 	conversation.phoneNumber = req.body.phoneNumber
-// 	conversation.save(function (err, result){
-// 		console.log(err);
-// 		res.json(result);
-// 		console.log("Added new conversation:\n", result, "\n");
-// 	});
-// }

@@ -27,6 +27,7 @@ app.use(passport.session());
 app.use(flash());
 
 app.use('/js', express.static(__dirname+'/client/js'));
+app.use('/bower_components', express.static(__dirname+'/bower_components'));
 app.use('/css', express.static(__dirname+'/client/views/css'));
 app.use('/views', express.static(__dirname+'/client/views'));
 app.use('/images', express.static(__dirname+'/client/views/images'));
@@ -151,18 +152,7 @@ app.get('/loggedin', function(req, res) {
   res.send(req.isAuthenticated() ? req.user : '0'); 
 });
 
-/*
-  socket.io functions
-*/
-// io.on('connection', function(socket){
-//   console.log('a user connected');
-//   socket.on('disconnect', function(){
-//     console.log('user disconnected');
-//   });
-// });
 
-io.sockets.on('connection', require('./server/controllers/socket'));
-
-http.listen(80, function(){
+app.listen(80, function(){
 	console.log('I\'m Listening...');
 });
