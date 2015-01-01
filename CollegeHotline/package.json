@@ -1,6 +1,16 @@
 {
   "name": "CollegeHotline",
   "version": "0.0.1",
+  "homepage": "https://github.com/mfouladi/CollegeHotlineTest",
+  "authors": [
+    "mfouladi <fouladimatin@gmail.com>"
+  ],
+  "description": "Mentorship service for high school students.",
+  "license": "MIT",
+  "repository" :{ 
+    "type" : "git"
+  , "url" : "https://github.com/mfouladi/CollegeHotlineTest"
+  },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.9.1",
@@ -16,6 +26,7 @@
     "morgan": "^1.5.0",
     "passport": "^0.2.1",
     "passport-local": "^1.0.0",
-    "socket.io": "^1.2.1"
+    "socket.io": "^1.2.1",
+    "underscore": "^1.7.0"
   }
 }

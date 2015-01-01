@@ -154,12 +154,14 @@ app.get('/loggedin', function(req, res) {
 /*
   socket.io functions
 */
-io.on('connection', function(socket){
-  console.log('a user connected');
-  socket.on('disconnect', function(){
-    console.log('user disconnected');
-  });
-});
+// io.on('connection', function(socket){
+//   console.log('a user connected');
+//   socket.on('disconnect', function(){
+//     console.log('user disconnected');
+//   });
+// });
+
+io.sockets.on('connection', require('./server/controllers/socket'));
 
 http.listen(80, function(){
 	console.log('I\'m Listening...');

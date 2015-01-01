@@ -18,14 +18,14 @@ app.controller('conversationController',['$scope', '$resource', function ($scope
 
 
 	Login.query({}, function (results){
-			//console.log(results[0]._id);
-			if(results.length > 0){
-				$scope.isLoggedIn = true;
-				$scope.user = results[0];
-			}
-			else
-				$scope.isLoggedIn = false;
-		});
+		//console.log(results[0]._id);
+		if(results.length > 0){
+			$scope.isLoggedIn = true;
+			$scope.user = results[0];
+		}
+		else
+			$scope.isLoggedIn = false;
+	});
 
 
 
@@ -51,6 +51,11 @@ app.controller('conversationController',['$scope', '$resource', function ($scope
 		if ($scope.currentConversation.length > len)
 			setTimeout(function(){scrollConversation()}, 5);	
 	}
+
+	// socket.on('send:inactiveConversations', function (data) {
+ //      $scope.inactiveConversations = data.inactiveConversations;
+ //      $scope.$apply();
+ //    });
 	
 	function scrollConversation(){
 		var elem = document.getElementById('currentMessage');
