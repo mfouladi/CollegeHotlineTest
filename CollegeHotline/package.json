@@ -29,5 +29,8 @@
     "plivo-node": "^0.2.5",
     "socket.io": "^1.2.1",
     "underscore": "^1.7.0"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5"
   }
 }
