@@ -16,5 +16,5 @@ app.controller('volunteerController',['$scope', '$resource', function ($scope, $
 	updatePage();
 
 	//update conversations every 30 seconds
-	setInterval(function(){updatePage()}, 10000);
+	setInterval(function(){updatePage()}, 1000);
 }]);

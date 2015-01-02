@@ -45,16 +45,6 @@ article, aside, footer, header, hgroup, nav, section { display: block; }
 /*-----------------[BASIC STYLES]-----------------*/
 /*------------------------------------------------*/
 
-@font-face {
-	font-family: 'ETmodules';
-	src:url('fonts/ETmodules_v2.eot');
-	src:url('fonts/ETmodules_v2.eot?#iefix') format('embedded-opentype'),
-		url('fonts/ETmodules_v2.ttf') format('truetype'),
-		url('fonts/ETmodules_v2.woff') format('woff'),
-		url('fonts/ETmodules_v2.svg#ETmodules') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
 body { font-family: 'Open Sans', Arial, sans-serif; font-size: 14px; color: #666; background-color: #fff; line-height: 1.7em; font-weight: 500; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 body.et_fixed_nav.et_boxed_layout #page-container { padding-top: 80px; }
 body.page-template-page-template-blank-php #page-container { padding-top: 0 !important; }
@@ -301,7 +291,7 @@ table.shop_table { margin-bottom: 30px !important; }
 		.et_pb_testimonial_no_image .et_pb_testimonial_description { padding-left: 0 !important; }
 	.et_pb_column_1_3 .et_pb_testimonial_portrait, .et_pb_column_1_4 .et_pb_testimonial_portrait, .et_pb_column_3_8 .et_pb_testimonial_portrait { float: none; width: 90px; margin: 0 auto 20px; }
 
-.et-pb-arrow-prev:before, .et-pb-arrow-next:before, .et_pb_testimonial:before, .et_pb_toggle_title:before, .et_overlay:before, #et_search_icon:before, .mobile_menu_bar:before, .et-social-icon a:before, .et_pb_social_icon a.icon:before, .et_pb_font_icon:before, .et_audio_container .mejs-playpause-button button:before, .et_audio_container .mejs-volume-button button:before, .mfp-arrow-left:after, .mfp-arrow-left .mfp-a, .mfp-arrow-right:after, .mfp-arrow-right .mfp-a, #et-info-phone:before, #et-info-email:before, .et-cart-info span:before, .et_pb_pricing_table_button:after, .et_pb_promo_button:after, a.et_pb_more_button:after, .et_pb_newsletter_button:after, .comment-reply-link:after, .form-submit input:after, .et_pb_contact_submit:after, .et_pb_contact_reset:after { font-family: 'ETmodules'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+.et-pb-arrow-prev:before, .et-pb-arrow-next:before, .et_pb_testimonial:before, .et_pb_toggle_title:before, .et_overlay:before, #et_search_icon:before, .mobile_menu_bar:before, .et-social-icon a:before, .et_pb_social_icon a.icon:before, .et_pb_font_icon:before, .et_audio_container .mejs-playpause-button button:before, .et_audio_container .mejs-volume-button button:before, .mfp-arrow-left:after, .mfp-arrow-left .mfp-a, .mfp-arrow-right:after, .mfp-arrow-right .mfp-a, #et-info-phone:before, #et-info-email:before, .et-cart-info span:before, .et_pb_pricing_table_button:after, .et_pb_promo_button:after, a.et_pb_more_button:after, .et_pb_newsletter_button:after, .comment-reply-link:after, .form-submit input:after, .et_pb_contact_submit:after, .et_pb_contact_reset:after { font-family: 'times, serif'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
 	#et_search_icon:before { content: "\55"; font-size: 17px; left: 0; position: absolute; top: -3px; }
 	#et_search_icon:hover { cursor: pointer; }
@@ -1260,7 +1250,7 @@ li.et_pb_social_icon a span { display: none; }
 .et_pb_preload { position: relative; background: #464646 !important; }
 .et_pb_preload:before { content: ''; position: absolute; top: 50%; left: 50%; background: url( images/preloader.gif ) no-repeat; -moz-border-radius: 32px; -webkit-border-radius: 32px; border-radius: 32px; width: 32px; height: 32px; margin: -16px 0 0 -16px; }
 
-.et-pb-icon { font-family: 'ETmodules'; content: attr(data-icon); speak: none; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; -webkit-font-smoothing: antialiased; font-size: 96px; display: inline-block; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+.et-pb-icon { font-family: 'times, serif'; content: attr(data-icon); speak: none; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; -webkit-font-smoothing: antialiased; font-size: 96px; display: inline-block; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 	.et-pb-icon-circle { font-size: 48px; -moz-border-radius: 100px; -webkit-border-radius: 100px; border-radius: 100px; padding: 25px; }
 	.et-pb-icon-circle-border { border: 3px solid; }
 

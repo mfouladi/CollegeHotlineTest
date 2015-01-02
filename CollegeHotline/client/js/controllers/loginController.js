@@ -4,7 +4,6 @@ app.controller('loginController',['$scope', '$resource', function ($scope, $reso
 	var Login = $resource('/loggedin');
 
 	Login.query({}, function (results){
-		console.log(results);
 		if(results.length > 0)
 			$scope.isLoggedIn = true;
 		else

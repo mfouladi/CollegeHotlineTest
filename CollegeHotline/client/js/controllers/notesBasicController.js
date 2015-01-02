@@ -19,7 +19,6 @@ app.controller('notesBasicController',['$scope', '$resource', function ($scope, 
 		cols.addClass("col-sm-3");
 		cols.first().removeClass("col-sm-3");
 		cols.first().addClass("col-sm-6");
-		console.log(cols);
 		
 		$(".col-resize").click(function(){
 			$(this).removeClass("col-sm-3");
@@ -77,11 +76,7 @@ app.controller('notesBasicController',['$scope', '$resource', function ($scope, 
 
 	$scope.loadCaller = function(){
 		NotesBasicLoad.query(new NotesBasic(), function(results){
-			console.log(results);
-			console.log(results[0]);
-
 			$scope.phoneNumberSearch = results[0].currentCall;
-			console.log($scope.phoneNumberSearch);
 			phoneSearch();
 		})
 	}
@@ -148,12 +143,10 @@ app.controller('notesBasicController',['$scope', '$resource', function ($scope, 
 			else
 			{
 				var updateNoteShortGoals = new NotesBasicUpdateShortGoals();
-				console.log($scope.newGoal);
 				updateNoteShortGoals.phoneNumber = $scope.phoneNumber;
 				updateNoteShortGoals.goals = $scope.newGoal;
 				updateNoteShortGoals.checked = false;
 				updateNoteShortGoals.$save(function(result){
-					console.log(result);
 					$scope.goals.push({body: $scope.newGoal});
 					$scope.newGoal = '';
 				});
@@ -164,7 +157,6 @@ app.controller('notesBasicController',['$scope', '$resource', function ($scope, 
 	$scope.saveQuestion1 = function(){
 		if(!$scope.question1.match(/\S/)){
 			//if quetions is empty, do nothing
-			console.log("empty");
 		}
 		else{
 			NotesBasic.query({phoneNumber : $scope.phoneNumber}, function (results){
@@ -178,9 +170,7 @@ app.controller('notesBasicController',['$scope', '$resource', function ($scope, 
 					var updateNoteLongGoals = new NotesBasicSaveQuestion1();
 					updateNoteLongGoals.phoneNumber = $scope.phoneNumber;
 					updateNoteLongGoals.question1 = $scope.question1;
-					updateNoteLongGoals.$save(function(result){
-						console.log(result);
-					});
+					updateNoteLongGoals.$save(function(result){});
 				}	
 			});
 		}
@@ -189,7 +179,6 @@ app.controller('notesBasicController',['$scope', '$resource', function ($scope, 
 	$scope.saveQuestion2 = function(){
 		if(!$scope.question1.match(/\S/)){
 			//if quetions is empty, do nothing
-			console.log("empty");
 		}
 		else{
 			NotesBasic.query({phoneNumber : $scope.phoneNumber}, function (results){
@@ -204,9 +193,7 @@ app.controller('notesBasicController',['$scope', '$resource', function ($scope, 
 					var updateNoteLongGoals = new NotesBasicSaveQuestion2();
 					updateNoteLongGoals.phoneNumber = $scope.phoneNumber;
 					updateNoteLongGoals.question2 = $scope.question2;
-					updateNoteLongGoals.$save(function(result){
-						console.log(result);
-					});
+					updateNoteLongGoals.$save(function(result){});
 				}	
 			});
 		}
