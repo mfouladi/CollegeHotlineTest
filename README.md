@@ -37,6 +37,7 @@ _Downloading the Application:_
 1. Choose a location that is best fit for the application. This is a personal choice that does not affect the app.
 2. Make sure you have git installed. `sudo apt-get install git`
 3. Run the following command to download the app: `git clone https://github.com/mfouladi/CollegeHotlineTest.git`
+4. Run the following two commands: `npm install` and `bower install` to install all the server and client dependencies
 
 _Setting Up Plivo:_
 -----------------
