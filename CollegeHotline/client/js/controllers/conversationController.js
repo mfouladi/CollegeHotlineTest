@@ -111,9 +111,8 @@ app.controller('conversationController',['$scope', '$resource', function ($scope
 		conversation.text = $scope.newResponse;
 		conversation.phoneNumber = $scope.currentConversationPhoneNumber;
 		conversation.isVolunteer = true;
-		sendUrl.query(conversation, function(result){console.log(result);});
+		sendUrl.query(conversation, function(result){});
 		conversation.$save(function (result){
-			console.log(result);
 			if (result.phoneNumber != null){
 				$scope.inactiveConversations.push(result);
 			}
