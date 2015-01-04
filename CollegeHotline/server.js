@@ -7,6 +7,7 @@ var express      = require('express'),
   flash          = require('connect-flash'),
   passport       = require('passport'),
   morgan         = require('morgan'),
+  availibilityController   = require('./server/controllers/availibilityController'),
 	conversationController   = require('./server/controllers/conversationController'),
 	notesBasicController     = require("./server/controllers/notesBasicController"),
 	cloudPhoneController     = require("./server/controllers/cloudPhoneController.js"),
@@ -59,71 +60,21 @@ app.get('/volunteers', isLoggedIn, function (req, res){
   res.sendFile(__dirname + '/client/views/volunteers.html');
 });
 
-
-//REST API
-app.get('/api/notes/basic', notesBasicController.list);
-app.post('/api/notes/basic/create', notesBasicController.create);
-app.post('/api/notes/basic/update', notesBasicController.update);
-app.post('/api/notes/basic/updateShortGoals', notesBasicController.updateShortGoals);
-app.post('/api/notes/basic/saveQuestion1', notesBasicController.saveQuestion1);
-app.post('/api/notes/basic/saveQuestion2', notesBasicController.saveQuestion2);
-app.get('/api/notes/load', notesBasicController.load);
-
-//Conversation Calls
-app.get('/api/conversation/inactive', conversationController.listInactiveConversations);
-app.get('/api/conversation/active', conversationController.listActiveConversations);
-app.post('/api/conversation/create', conversationController.createConversation);
-app.get('/api/conversation/activate/:phoneNumber', conversationController.activateConversation);
-app.get('/api/conversation/deactivate/:phoneNumber', conversationController.deactivateConversation);
-app.get('/api/conversation/open/:phoneNumber', conversationController.openConversation);
-
-//CloudPhone things
-app.get('/api/cloudPhone/receiveMsg', conversationController.createConversation);
-app.get('/api/cloudPhone/sendMsg', cloudPhoneController.sendMsg);
-app.get('/api/cloudPhone/forwardCall', cloudPhoneController.forwardCall);
-app.get('/api/cloudPhone/hangUp', cloudPhoneController.hangUp);
-
-//Volunteer
-app.get('/api/volunteers/status', volunteerController.listVolunteers);
-
 //Volunteer Login
 
 /*
   To access user info from anywhere, use req.user
 
 */
+
+app.get('/logout', volunteerController.logoutVolunteer);
+
 app.get('/login', function(req, res){
   res.sendFile(__dirname + '/client/views/wordpress/login.html' , { errorMessage: req.flash('loginMessage')});
 });
 
 app.get('/signup', function(req, res){
   res.sendFile(__dirname + '/client/views/wordpress/signup.html' , { errorMessage: req.flash('signupMessage')});
-});
-
-
-var Volunteer       = require('./server/models/volunteer.js');
-var Conversation  = require('./server/models/conversation.js')
-app.get('/logout', function(req,res){
-  var updateUser = {};
-  updateUser.online = false;
-  updateUser.available = false;
-
-  // save the user
-  Volunteer.update({ 'username' :  req.user[0].username }, 
-                  {$set : updateUser},
-                  function(err, result) {
-      if (err)
-          throw err;
-  });
-
-  Conversation.update({currentVolunteerID: req.user[0].id}, 
-    {$set: {active : false, currentVolunteerID: "none"}},
-    {upsert: false, multi: true},
-    function (err, conversation){
-  });
-
-  req.logout();
-  res.redirect('/home');
 });
 
 app.post('/login', passport.authenticate('local-login', {
@@ -152,6 +103,36 @@ app.get('/loggedin', function(req, res) {
   res.send(req.isAuthenticated() ? req.user : []); 
 });
 
+
+//REST API
+app.get('/api/notes/basic', notesBasicController.list);
+app.post('/api/notes/basic/create', notesBasicController.create);
+app.post('/api/notes/basic/update', notesBasicController.update);
+app.post('/api/notes/basic/updateShortGoals', notesBasicController.updateShortGoals);
+app.post('/api/notes/basic/saveQuestion1', notesBasicController.saveQuestion1);
+app.post('/api/notes/basic/saveQuestion2', notesBasicController.saveQuestion2);
+app.get('/api/notes/load', notesBasicController.load);
+
+//Conversation Calls
+app.get('/api/conversation/inactive', conversationController.listInactiveConversations);
+app.get('/api/conversation/active', conversationController.listActiveConversations);
+app.post('/api/conversation/create', conversationController.createConversation);
+app.get('/api/conversation/activate/:phoneNumber', conversationController.activateConversation);
+app.get('/api/conversation/deactivate/:phoneNumber', conversationController.deactivateConversation);
+app.get('/api/conversation/open/:phoneNumber', conversationController.openConversation);
+
+//CloudPhone things
+app.get('/api/cloudPhone/receiveMsg', conversationController.createConversation);
+app.get('/api/cloudPhone/sendMsg', cloudPhoneController.sendMsg);
+app.get('/api/cloudPhone/forwardCall', cloudPhoneController.forwardCall);
+app.get('/api/cloudPhone/hangUp', cloudPhoneController.hangUp);
+
+//Volunteer
+app.get('/api/volunteers/status', volunteerController.listVolunteers);
+
+//Availibility
+app.get('/api/availibility/start', availibilityController.startAvailibilityTimer);
+app.get('/api/availibility/stop', availibilityController.stopAvailibilityTimer);
 
 app.listen(80, function(){
 	console.log('I\'m Listening...');

@@ -1,4 +1,6 @@
-app.controller('volunteerController',['$scope', '$resource', function ($scope, $resource) {
+app.controller('volunteerController',['$scope', '$resource', 'availibilityTimer',function ($scope, $resource, availibilityTimer) {
+
+	availibilityTimer.timer();
 
 	var VolunteerStatus = $resource('/api/volunteers/status');
 
@@ -17,4 +19,5 @@ app.controller('volunteerController',['$scope', '$resource', function ($scope, $
 
 	//update conversations every 30 seconds
 	setInterval(function(){updatePage()}, 1000);
+	
 }]);

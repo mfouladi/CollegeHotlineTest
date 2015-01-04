@@ -86,5 +86,5 @@ module.exports.saveQuestion2 = function(req, res){
 module.exports.load = function(req, res){
 	Volunteer.find({phoneNumber: req.user[0].phoneNumber}, function(err, results){
 		res.json(results);
-	})
+	});
 }

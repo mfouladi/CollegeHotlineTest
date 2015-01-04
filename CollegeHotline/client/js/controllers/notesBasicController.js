@@ -1,5 +1,7 @@
-app.controller('notesBasicController',['$scope', '$resource', function ($scope, $resource) {
+app.controller('notesBasicController',['$scope', '$resource', 'availibilityTimer', function ($scope, $resource, availibilityTimer) {
 
+	availibilityTimer.timer();
+	
 	var NotesBasic = $resource('/api/notes/basic');
 	var NotesBasicCreate = $resource('/api/notes/basic/create');
 	var NotesBasicUpdate = $resource('/api/notes/basic/update'); 

@@ -1,4 +1,7 @@
-app.controller('loginController',['$scope', '$resource', function ($scope, $resource) {
+app.controller('loginController',['$scope', '$resource', 'availibilityTimer', function ($scope, $resource, availibilityTimer) {
+	
+	//availibilityTimer.timer();
+
 	$scope.isLoggedIn = false;
 
 	var Login = $resource('/loggedin');
