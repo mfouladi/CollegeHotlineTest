@@ -20,7 +20,7 @@
 		<script type="text/javascript" src="/js/controllers/loginController.js"></script>
 
 		<meta content="Divi v.2.1.4" name="generator"/><link rel='stylesheet' id='divi-fonts-css'  href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,700,800&#038;subset=latin,latin-ext' type='text/css' media='all' />	
-		<link rel='stylesheet' id='divi-style-css'  href='style.css' type='text/css' media='all' />
+		<link rel='stylesheet' id='divi-style-css'  href='/css/style.css' type='text/css' media='all' />
 		<script type='text/javascript' src='/bower_components/jquery/dist/jquery.min.js'></script>
 		<script type='text/javascript' src='/bower_components/jquery-migrate/jquery-migrate.min.js'></script>
 		<script type='text/javascript' src='jquery.tools.min.js'></script>
@@ -121,60 +121,43 @@
 											<div class="et_pb_container clearfix">
 								
 												<div class="et_pb_slide_description">
-													<h2><a href="#login">Welcome Back</a></h2>
+													<h2><a>Welcome Back</a></h2>
 													<div class="et_pb_slide_content">
 														<h3>We&#8217;re happy to see you too.</h3>
-													</div>	
+													</div>
+													<div class="et_pb_slide_content">
+														<form class="form-signin" action="/login" method="post">
+													        <h2 class="form-signin-heading">Login</h2>
+													        <div class="row">
+														        <div class="col-sm-4"></div>
+														        <div class="col-sm-4">
+															        <label for="user_login" class="sr-only">Username</label>
+															        <input id="user_login" placeholder="Username" class="form-control" type="username" name="username" required>
+															    </div>
+														        <div class="col-sm-1"></div>
+														    </div>
+														    <div class="row">
+														        <div class="col-sm-4"></div>
+														        <div class="col-sm-4">
+															        <label for="user_pass" class="sr-only">Password</label>
+															        <input id="user_pass" placeholder="Password" class="form-control" type="password" name="password"  required>
+															    </div>
+														        <div class="col-sm-1"></div>
+														    </div>
+														    <div class="row">
+														        <div class="col-sm-4"></div>
+														        <div class="col-sm-4">
+													        		<button class="btn btn-lg btn-primary btn-block btn-warning" type="submit">Sign In</button>
+													        	</div>
+														        <div class="col-sm-1"></div>
+														    </div>
+													      </form>
+													</div>
 												</div> <!-- .et_pb_slide_description -->
 											</div> <!-- .et_pb_container -->
 										</div> <!-- .et_pb_slide -->
 									</div> <!-- .et_pb_slides -->
 								</div> <!-- .et_pb_slider -->	
-							</div> <!-- .et_pb_section -->
-							<div class="et_pb_section et_section_regular">
-								<div class="et_pb_row">
-									<div class="et_pb_column et_pb_column_1_3">
-										<div class="et_pb_blurb et_pb_bg_layout_light et_pb_text_align_center et_pb_blurb_position_top">
-											<div class="et_pb_blurb_content">
-												<div class="et_pb_main_blurb_image">
-													<span class="et-pb-icon et-waypoint et_pb_animation_top" style="color: #dddddd;"></span>
-												</div>
-											</div> <!-- .et_pb_blurb_content -->
-										</div> <!-- .et_pb_blurb -->
-									</div> <!-- .et_pb_column -->
-									<div id="login" class="et_pb_column et_pb_column_1_3">
-										<div class="et_pb_newsletter et_pb_login clearfix et_pb_bg_layout_dark et_pb_text_align_center" style="background-color: #ebaf3c;">
-											<div class="et_pb_newsletter_description">
-												<h2>Login</h2>
-												
-											</div>
-											<div class="et_pb_newsletter_form et_pb_login_form">
-												<form action="/login" method="post">
-													<p>
-														<label class="et_pb_contact_form_label" for="user_login" style="display: none;">Username</label>
-														<input id="user_login" placeholder="Username" class="input" type="text" value="" name="username" />
-													</p>
-													<p>
-														<label class="et_pb_contact_form_label" for="user_pass" style="display: none;">Password</label>
-														<input id="user_pass" placeholder="Password" class="input" type="password" value="" name="password" />
-													</p>
-													<p>
-														<button type="submit" class="et_pb_newsletter_button">Login</button>
-													</p>
-												</form>
-											</div>
-										</div>
-									</div> <!-- .et_pb_column -->
-									<div class="et_pb_column et_pb_column_1_3">
-										<div class="et_pb_blurb et_pb_bg_layout_light et_pb_text_align_center et_pb_blurb_position_top">
-											<div class="et_pb_blurb_content">
-												<div class="et_pb_main_blurb_image">
-													<span class="et-pb-icon et-waypoint et_pb_animation_top" style="color: #dddddd;"></span>
-												</div>
-											</div> <!-- .et_pb_blurb_content -->
-										</div> <!-- .et_pb_blurb -->
-									</div> <!-- .et_pb_column -->
-								</div> <!-- .et_pb_row -->	
 							</div> <!-- .et_pb_section -->
 						</div> <!-- .entry-content -->				
 					</article> <!-- .et_pb_post -->
