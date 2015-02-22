@@ -1,4 +1,5 @@
-app.controller('volunteerController',['$scope', '$resource', 'availibilityTimer',function ($scope, $resource, availibilityTimer) {
+app.controller('volunteerController',['$scope', '$resource', 'availibilityTimer', 
+	function ($scope, $resource, availibilityTimer) {
 
 	availibilityTimer.timer();
 
