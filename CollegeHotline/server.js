@@ -60,6 +60,10 @@ app.get('/volunteers', isLoggedIn, function (req, res){
   res.sendFile(__dirname + '/client/views/volunteers.html');
 });
 
+app.get('/profile', function (req, res){
+  res.sendFile(__dirname + '/client/views/profile.html');
+});
+
 //Volunteer Login
 
 /*
@@ -105,6 +109,9 @@ app.get('/loggedin', function(req, res) {
 
 
 //REST API
+app.all('/api/*', isLoggedIn);
+
+//Notes
 app.get('/api/notes/basic', notesBasicController.list);
 app.post('/api/notes/basic/create', notesBasicController.create);
 app.post('/api/notes/basic/update', notesBasicController.update);
