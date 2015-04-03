@@ -87,7 +87,7 @@
 											<li ><a href="home">Home</a></li>
 											<li ><a href="about">About</a></li>
 											<li ><a href="login">Login</a></li>
-											<!-- <li ><a href="signup">Sign Up</a></li> -->
+											<li ><a href="signup">Sign Up</a></li>
 										</ul>
 									</nav>
 									<div id="et_mobile_nav_menu">
@@ -119,13 +119,12 @@
 										<div class="et_pb_slide et_pb_bg_layout_dark et_pb_media_alignment_center" style='background-color:#ffffff;background-image:url(/images/862490_29326952t.jpg);'>
 							
 											<div class="et_pb_container clearfix">
-								
 												<div class="et_pb_slide_description">
 													<h2>Welcome Back</h2>
 													<div class="et_pb_slide_content">
 														<h3>We&#8217;re happy to see you too.</h3>
 													</div>
-													<div class="et_pb_slide_content">
+													<div ng-controller = "loginController" class="et_pb_slide_content">
 														<form class="form-signin" action="/login" method="post">
 													        <h2 class="form-signin-heading">Login</h2>
 													        <div class="row">

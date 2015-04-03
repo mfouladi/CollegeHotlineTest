@@ -89,7 +89,7 @@
 											<li ><a href="home">Home</a></li>
 											<li ><a href="about">About</a></li>
 											<li ><a href="login">Login</a></li>
-											<!-- <li ><a href="signup">Sign Up</a></li> -->
+											<li ><a href="signup">Sign Up</a></li>
 										</ul>
 									</nav>
 									<div id="et_mobile_nav_menu">
@@ -98,7 +98,7 @@
 												<li style="display: inline"><a href="home">Home</a></li>
 												<li style="display: inline"><a href="about">About</a></li>
 												<li style="display: inline"><a href="login">Login</a></li>
-												<!-- <li style="display: inline"><a href="signup">Sign Up</a></li> -->
+												<li style="display: inline"><a href="signup">Sign Up</a></li>
 											</ul>
 										</nav>
 									</div>				
@@ -120,87 +120,90 @@
 								<div class="et_pb_slider">
 									<div class="et_pb_slides">
 										<div class="et_pb_slide et_pb_bg_layout_dark et_pb_media_alignment_center" style='background-color:#ffffff;background-image:url(/images/862490_29326952t.jpg);'>
+
 											<div class="et_pb_container clearfix">
 												<div class="et_pb_slide_description">
-													<h2><a href="#signup">Welcome</a></h2>
+													<h2>Welcome</h2>
 													<div class="et_pb_slide_content">
 														<h3>We&#8217;re happy to see you too.</h3>
 													</div>
-								
+													<div ng-controller = "signupController" class="et_pb_slide_content">
+														<form class="form-signin" action="/signup" method="post">
+															<h2 class="form-signin-heading">Signup</h2>
+															<div ng-keyup="checkPassword()">
+																<div class="row">
+															        <div class="col-sm-4"></div>
+															        <div class="col-sm-4">
+																		<label class="sr-only" for="user_login">Username</label>
+																		<input ng-model="username" id="user_login" placeholder="Username" class="form-control" type="username" value="" name="username" />
+																	</div>
+												       				<div class="col-sm-1"></div>
+												       			</div>
+																<div class="row">
+															        <div class="col-sm-4"></div>
+															        <div class="col-sm-4">
+																		<label class="sr-only" for="phone_number">Phone Number</label>
+																		<input ng-model="phoneNumber" id="phone_number" placeholder="Phone Number" class="form-control" type="tel" value="" name="phoneNumber" pattern='\d{11}' />
+																	</div>
+												       				<div class="col-sm-1"></div>
+												       			</div>
+																<div class="row">
+															        <div class="col-sm-4"></div>
+															        <div class="col-sm-4">
+																		<label class="sr-only" for="firstName">First Name</label>
+																		<input ng-model="firstName" id="firstName" placeholder="First Name" class="form-control" type="name" value="" name="firstName" />
+																	</div>
+												       				<div class="col-sm-1"></div>
+												       			</div>
+																<div class="row">
+															        <div class="col-sm-4"></div>
+															        <div class="col-sm-4">
+																		<label class="sr-only" for="lastName">Last Name</label>
+																		<input ng-model="lastName" id="lastName" placeholder="Last Name" class="form-control" type="name" value="" name="lastName" />
+																	</div>
+												       				<div class="col-sm-1"></div>
+												       			</div>
+																<div class="row">
+															        <div class="col-sm-4"></div>
+															        <div class="col-sm-4">
+																		<label class="sr-only" for="email">Email</label>
+																		<input ng-model="email" id="email" placeholder="Email" class="form-control" type="email" value="" name="email" />
+																	</div>
+												       				<div class="col-sm-1"></div>
+												       			</div>
+																<div class="row">
+															        <div class="col-sm-4"></div>
+															        <div class="col-sm-4">
+																		<label class="sr-only" for="user_pass">Password</label>
+																		<input ng-model="password" id="user_pass" placeholder="Password" class="form-control" type="password" value="" name="password" />
+																	</div>
+												       				<div class="col-sm-1"></div>
+												       			</div>
+																<div class="row">
+															        <div class="col-sm-4"></div>
+															        <div class="col-sm-4">
+																		<label class="sr-only" for="user_pass_conf">Confirm Password</label>
+																		<input ng-model="confirmPassword" id="user_pass_conf" placeholder="Confirm Password" class="form-control" type="password" value="" name="confirmPassword" />
+																		<div ng-show="passwordMatch" style="color: white;background-color:red;"> Passwords Do Not Match </div>
+																		<div ng-show="emptyRequiredField" style="color: white;background-color:red;"> Please Fill All Fields </div>
+																	</div>
+												       				<div class="col-sm-1"></div>
+												       			</div>
+																<div class="row">
+															        <div class="col-sm-4"></div>
+															        <div class="col-sm-4">
+														        		<button class="btn btn-lg btn-primary btn-block btn-warning" type="submit">Sign Up</button>
+														        	</div>
+															        <div class="col-sm-1"></div>
+														    	</div>
+															</div>
+														</form>
+													</div> <!-- .et_pb_column -->
 												</div> <!-- .et_pb_slide_description -->
 											</div> <!-- .et_pb_container -->
 										</div> <!-- .et_pb_slide -->
 									</div> <!-- .et_pb_slides -->
 								</div> <!-- .et_pb_slider -->			
-							</div> <!-- .et_pb_section -->
-							<div class="et_pb_section et_section_regular">
-								<div class="et_pb_row">
-									<div class="et_pb_column et_pb_column_1_3">
-										<div class="et_pb_blurb et_pb_bg_layout_light et_pb_text_align_center et_pb_blurb_position_top">
-											<div class="et_pb_blurb_content">
-												<div class="et_pb_main_blurb_image">
-													<span class="et-pb-icon et-waypoint et_pb_animation_top" style="color: #dddddd;"></span>
-												</div>
-											</div> <!-- .et_pb_blurb_content -->
-										</div> <!-- .et_pb_blurb -->
-									</div> <!-- .et_pb_column -->
-									<div id="signup" class="et_pb_column et_pb_column_1_3">
-										<div class="et_pb_newsletter et_pb_login clearfix et_pb_bg_layout_dark et_pb_text_align_center" style="background-color: #ebaf3c;">
-											<div class="et_pb_newsletter_description">
-												<h2>Sign Up</h2>
-											</div>
-											<div  ng-controller = "signupController" class="et_pb_newsletter_form et_pb_login_form">
-												<form action="/signup" method="post">
-													<div ng-keyup="checkPassword()">
-														<p>
-															<label class="et_pb_contact_form_label" for="user_login" style="display: none;">Username</label>
-															<input ng-model="username" id="user_login" placeholder="Username" class="input" type="text" value="" name="username" />
-														</p>
-														<p>
-															<label class="et_pb_contact_form_label" for="phone_number" style="display: none;">Phone Number</label>
-															<input ng-model="phoneNumber" id="phone_number" placeholder="Phone Number" class="input" type="tel" value="" name="phoneNumber" pattern='\d{11}' />
-														</p>
-														<p>
-															<label class="et_pb_contact_form_label" for="firstName" style="display: none;">First Name</label>
-															<input ng-model="firstName" id="firstName" placeholder="First Name" class="input" type="text" value="" name="firstName" />
-														</p>
-														<p>
-															<label class="et_pb_contact_form_label" for="lastName" style="display: none;">Last Name</label>
-															<input ng-model="lastName" id="lastName" placeholder="Last Name" class="input" type="text" value="" name="lastName" />
-														</p>
-														<p>
-															<label class="et_pb_contact_form_label" for="email" style="display: none;">Email</label>
-															<input ng-model="email" id="email" placeholder="Email" class="input" type="email" value="" name="email" />
-														</p>
-														<p>
-															<label class="et_pb_contact_form_label" for="user_pass" style="display: none;">Password</label>
-															<input ng-model="password" id="user_pass" placeholder="Password" class="input" type="password" value="" name="password" />
-														</p>
-														<p>
-															<label class="et_pb_contact_form_label" for="user_pass_conf" style="display: none;">Confirm Password</label>
-															<input ng-model="confirmPassword" id="user_pass_conf" placeholder="Confirm Password" class="input" type="password" value="" name="confirmPassword" />
-														</p>
-														<div ng-show="passwordMatch" style="color: red"> Passwords do not match </div>
-														<div ng-show="emptyRequiredField" style="color: red"> Required field is not filled </div>
-														<p>
-															<button ng-disabled="signupError" type="submit" class="et_pb_newsletter_button">Sign Up</button>
-															
-														</p>
-													</div>
-												</form>
-											</div>
-										</div>
-									</div> <!-- .et_pb_column -->
-									<div class="et_pb_column et_pb_column_1_3">
-										<div class="et_pb_blurb et_pb_bg_layout_light et_pb_text_align_center et_pb_blurb_position_top">
-											<div class="et_pb_blurb_content">
-												<div class="et_pb_main_blurb_image">
-													<span class="et-pb-icon et-waypoint et_pb_animation_top" style="color: #dddddd;"></span>
-												</div>
-											</div> <!-- .et_pb_blurb_content -->
-										</div> <!-- .et_pb_blurb -->
-									</div> <!-- .et_pb_column -->
-								</div> <!-- .et_pb_row -->				
 							</div> <!-- .et_pb_section -->
 						</div> <!-- .entry-content -->
 					</article> <!-- .et_pb_post -->
