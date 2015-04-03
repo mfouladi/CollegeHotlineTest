@@ -60,7 +60,7 @@ app.get('/volunteers', isLoggedIn, function (req, res){
   res.sendFile(__dirname + '/client/views/volunteers.html');
 });
 
-app.get('/profile', function (req, res){
+app.get('/profile', isLoggedIn, function (req, res){
   res.sendFile(__dirname + '/client/views/profile.html');
 });
 
