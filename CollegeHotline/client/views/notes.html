@@ -41,7 +41,9 @@
 	<body class = "background">
 
 		<!--header navbar-->
-		<div ng-include src="'/views/navbar.html'"></div>
+		<!-- <div ng-include src="'/views/navbar.html'"></div> -->
+		<ch-loggedin-navbar></ch-loggedin-navbar>
+		<hello></hello>
 		
 		<div ng-controller="notesBasicController" class = "container-fluid" style = "margin-top: 70px">
 			<div class = "row">

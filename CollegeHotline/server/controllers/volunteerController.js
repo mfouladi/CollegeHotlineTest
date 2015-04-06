@@ -11,6 +11,8 @@ module.exports.logoutVolunteer = function(req, res, next){
 	console.log("im not here");
 	availibilityController.endConversations(req, res, next);
 	availibilityController.userLoggedOff(req, res, next);
+	console.log("back at logoutVolunteer");
 	req.logout();
+	//next();
 	res.redirect('/home');
 }
