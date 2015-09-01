@@ -2,19 +2,22 @@ var express      = require('express'),
 	app	           = express(),
 	bodyParser 		 = require('body-parser'),
 	mongoose       = require('mongoose'),
-  mysql          = require('mysql'),
   cookieParser   = require('cookie-parser'),
   session        = require('express-session'),
   flash          = require('connect-flash'),
   passport       = require('passport'),
   morgan         = require('morgan'),
+  availibilityController   = require('./server/controllers/availibilityController'),
 	conversationController   = require('./server/controllers/conversationController'),
 	notesBasicController     = require("./server/controllers/notesBasicController"),
-	cloudPhoneController     = require("./server/controllers/cloudPhoneController.js");
+	cloudPhoneController     = require("./server/controllers/cloudPhoneController.js"),
+  volunteerController      = require("./server/controllers/volunteerController.js");
 
 mongoose.connect('mongodb://localhost:27017/CollegeHotline');
 
 require('./server/controllers/passport.js')(passport);
+var http         = require('http').Server(app);
+var io             = require('socket.io')(http);
 
 //app.use(morgan('dev'));
 app.use(cookieParser());
@@ -25,8 +28,10 @@ app.use(passport.session());
 app.use(flash());
 
 app.use('/js', express.static(__dirname+'/client/js'));
+app.use('/bower_components', express.static(__dirname+'/bower_components'));
 app.use('/css', express.static(__dirname+'/client/views/css'));
 app.use('/views', express.static(__dirname+'/client/views'));
+app.use('/images', express.static(__dirname+'/client/views/images'));
 app.use('/', express.static(__dirname+'/client/views/wordpress'));
 
 //If not logged in
@@ -44,11 +49,58 @@ app.get('/about', function(req, res){
 
 //If logged in
 app.get('/conversations', isLoggedIn, function (req, res){
-  res.sendFile(__dirname + '/client/views/index.html');
+  res.sendFile(__dirname + '/client/views/chat.html');
 });
 
 app.get('/notes', isLoggedIn, function (req, res){
   res.sendFile(__dirname + '/client/views/notes.html');
+});
+
+app.get('/volunteers', isLoggedIn, function (req, res){
+  res.sendFile(__dirname + '/client/views/volunteers.html');
+});
+
+//Volunteer Login
+
+/*
+  To access user info from anywhere, use req.user
+
+*/
+
+app.get('/logout', volunteerController.logoutVolunteer);
+
+app.get('/login', function(req, res){
+  res.sendFile(__dirname + '/client/views/wordpress/login.html' , { errorMessage: req.flash('loginMessage')});
+});
+
+app.get('/signup', function(req, res){
+  res.sendFile(__dirname + '/client/views/wordpress/signup.html' , { errorMessage: req.flash('signupMessage')});
+});
+
+app.post('/login', passport.authenticate('local-login', {
+      successRedirect : '/conversations', // redirect to the secure profile section
+      failureRedirect : '/login', // redirect back to the signup page if there is an error
+      failureFlash : true // allow flash messages
+  })
+);
+
+app.post('/signup', passport.authenticate('local-signup', {
+      successRedirect : '/conversations', // redirect to the secure profile section
+      failureRedirect : '/signup', // redirect back to the signup page if there is an error
+      failureFlash : true // allow flash messages
+  })
+);
+
+
+function isLoggedIn(req, res, next){
+  if(req.isAuthenticated())
+    return next();
+  res.redirect('/');
+}
+
+
+app.get('/loggedin', function(req, res) { 
+  res.send(req.isAuthenticated() ? req.user : []); 
 });
 
 
@@ -75,71 +127,12 @@ app.get('/api/cloudPhone/sendMsg', cloudPhoneController.sendMsg);
 app.get('/api/cloudPhone/forwardCall', cloudPhoneController.forwardCall);
 app.get('/api/cloudPhone/hangUp', cloudPhoneController.hangUp);
 
-//Volunteer Login
+//Volunteer
+app.get('/api/volunteers/status', volunteerController.listVolunteers);
 
-/*
-  To access user info from anywhere, use req.user
-
-*/
-app.get('/login', function(req, res){
-  res.sendFile(__dirname + '/client/views/wordpress/login.html' , { errorMessage: req.flash('loginMessage')});
-});
-
-app.get('/signup', function(req, res){
-  res.sendFile(__dirname + '/client/views/wordpress/signup.html' , { errorMessage: req.flash('signupMessage')});
-});
-
-
-var Volunteer       = require('./server/models/volunteer.js');
-var Conversation  = require('./server/models/conversation.js')
-app.get('/logout', function(req,res){
-  var updateUser = {};
-  updateUser.online = false;
-  updateUser.available = false;
-
-  // save the user
-  Volunteer.update({ 'username' :  req.user[0].username }, 
-                  {$set : updateUser},
-                  function(err, result) {
-      if (err)
-          throw err;
-  });
-
-  Conversation.update({currentVolunteerID: req.user[0].id}, 
-    {$set: {active : false, currentVolunteerID: "none"}},
-    {upsert: false, multi: true},
-    function (err, conversation){
-  });
-
-  req.logout();
-  res.redirect('/home');
-});
-
-app.post('/login', passport.authenticate('local-login', {
-      successRedirect : '/conversations', // redirect to the secure profile section
-      failureRedirect : '/login', // redirect back to the signup page if there is an error
-      failureFlash : true // allow flash messages
-  })
-);
-
-app.post('/signup', passport.authenticate('local-signup', {
-      successRedirect : '/conversations', // redirect to the secure profile section
-      failureRedirect : '/signup', // redirect back to the signup page if there is an error
-      failureFlash : true // allow flash messages
-  })
-);
-
-
-function isLoggedIn(req, res, next){
-  if(req.isAuthenticated())
-    return next();
-  res.redirect('/');
-}
-
-
-app.get('/loggedin', function(req, res) { 
-  res.send(req.isAuthenticated() ? req.user : '0'); 
-});
+//Availibility
+app.get('/api/availibility/start', availibilityController.startAvailibilityTimer);
+app.get('/api/availibility/stop', availibilityController.stopAvailibilityTimer);
 
 app.listen(80, function(){
 	console.log('I\'m Listening...');

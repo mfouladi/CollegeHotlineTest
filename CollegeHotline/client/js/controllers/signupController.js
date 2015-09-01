@@ -2,7 +2,6 @@ app.controller('signupController',['$scope', '$resource', function ($scope, $res
 	$scope.passwordMatch = false;
 	$scope.emptyRequiredField = false;
 	$scope.signupError = true;
-	console.log($scope);
 
 
 	$scope.checkPassword = function(){
@@ -12,7 +11,6 @@ app.controller('signupController',['$scope', '$resource', function ($scope, $res
 		   $scope.lastName == '' || $scope.lastName === undefined ||
 		   $scope.email == '' || $scope.email === undefined ||
 		   $scope.phoneNumber == '' || $scope.phoneNumber === undefined){
-		   	console.log('here');
 			$scope.emptyRequiredField = true;
 		}
 		else{

@@ -2,29 +2,22 @@
 <html lang="en" ng-app="CH_Messaging_App">
 	<head>
 	<meta charset="UTF-8" />
-	<title>College Hotline |</title>
-	<link rel="pingback" href="https://collegehotline.org/xmlrpc.php" />
+	<title>Home | College Hotline</title>
 		<script type="text/javascript">
 			document.documentElement.className = 'js';
 		</script>
-		<link rel="alternate" type="application/rss+xml" title="College Hotline &raquo; Feed" href="https://collegehotline.org/feed/" />
-		<link rel="alternate" type="application/rss+xml" title="College Hotline &raquo; Comments Feed" href="https://collegehotline.org/comments/feed/" />
-		<link rel="alternate" type="application/rss+xml" title="College Hotline &raquo; Main Comments Feed" href="https://collegehotline.org/36-2/feed/" />
-		<meta content="Divi v.2.1.4" name="generator"/><link rel='stylesheet' id='divi-fonts-css'  href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,700,800&#038;subset=latin,latin-ext' type='text/css' media='all' />
-		<link rel='stylesheet' id='divi-style-css'  href='style.css' type='text/css' media='all' />
-		<link rel='stylesheet' id='et-shortcodes-css-css'  href='shortcodes.css' type='text/css' media='all' />
-		<link rel='stylesheet' id='et-shortcodes-responsive-css-css'  href='shortcodes_responsive.css' type='text/css' media='all' />
-		<link rel='stylesheet' id='UserAccessManagerAdmin-css'  href='uamAdmin.css' type='text/css' media='screen' />
-		<link rel='stylesheet' id='UserAccessManagerLoginForm-css'  href='uamLoginForm.css' type='text/css' media='screen' />
-		<script type='text/javascript' src='jquery.js'></script>
-		<script type='text/javascript' src='jquery-migrate.min.js'></script>
+
+		<!-- Bootstrap core CSS -->
+		<link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		
+		<meta content="Divi v.2.1.4" name="generator"/>
+		<link rel='stylesheet' id='divi-fonts-css'  href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,700,800&#038;subset=latin,latin-ext' type='text/css' media='all' />
+		<link rel='stylesheet' id='divi-style-css'  href='/css/style.css' type='text/css' media='all' />
+
+		<script type='text/javascript' src='/bower_components/jquery/dist/jquery.min.js'></script>
+		<script type='text/javascript' src='/bower_components/jquery-migrate/jquery-migrate.min.js'></script>
 		<script type='text/javascript' src='jquery.tools.min.js'></script>
 		<script type='text/javascript' src='functions.js'></script>
-		<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://collegehotline.org/xmlrpc.php?rsd" />
-		<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://collegehotline.org/wp-includes/wlwmanifest.xml" /> 
-		<meta name="generator" content="WordPress 4.0.1" />
-		<link rel='canonical' href='home' />
-		<link rel='shortlink' href='home' />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 		<style>
 			a { color: #2EA3F2; }
@@ -80,7 +73,7 @@
 						<header id="main-header" class="et_nav_text_color_dark">
 							<div class="container clearfix">
 								<a href="home">
-									<img src="LogoSolidGuy1.gif" alt="College Hotline" id="logo" />
+									<img src="/images/LogoSolidGuy1.gif" alt="College Hotline" id="logo" />
 								</a>
 								<div id="et-top-navigation">
 									<nav id="top-menu-nav">
@@ -88,7 +81,7 @@
 											<li ><a href="home">Home</a></li>
 											<li ><a href="about">About</a></li>
 											<li ><a href="login">Login</a></li>
-											<li ><a href="signup">Sign Up</a></li>
+											<!-- <li ><a href="signup">Sign Up</a></li> -->
 										</ul>
 									</nav>
 									<div id="et_mobile_nav_menu">
@@ -97,7 +90,7 @@
 												<li style="display: inline"><a href="home">Home</a></li>
 												<li style="display: inline"><a href="about">About</a></li>
 												<li style="display: inline"><a href="login">Login</a></li>
-												<li style="display: inline"><a href="signup">Sign Up</a></li>
+												<!-- <li style="display: inline"><a href="signup">Sign Up</a></li> -->
 											</ul>
 										</nav>
 									</div>				
@@ -106,8 +99,6 @@
 						</header> <!-- #main-header -->
 					</div>
 					<div ng-switch-when="true" >
-						<!-- Bootstrap core CSS -->
-						<link href="css/bootstrap.css" rel="stylesheet">
 						<div ng-include src="'/views/navbar.html'"></div>
 					</div>
 				</div>
@@ -122,12 +113,12 @@
 					
 								<div class="et_pb_slider et_pb_slider_no_arrows">
 									<div class="et_pb_slides">
-										<div class="et_pb_slide et_pb_bg_layout_dark et_pb_media_alignment_center" style='background-color:#ffffff;background-image:url(862490_29326952t.jpg);'>
+										<div class="et_pb_slide et_pb_bg_layout_dark et_pb_media_alignment_center" style='background-color:#ffffff;background-image:url(/images/862490_29326952t.jpg);'>
 											<div class="et_pb_container clearfix">
 												<div class="et_pb_slide_description">
 													<h2><a href="#howItWorks">We've Heard Your Call!</a></h2>
 													<div class="et_pb_slide_content">
-														<h3 style="text-align: justify;">We are a team passionate about education. Call or text to connect with a superstar mentor who can help.</h3>
+														<h3 style="text-align: center;">We are a team passionate about education. Call or text to connect with a superstar mentor who can help.</h3>
 													</div>
 													<a href="#howItWorks" class="et_pb_more_button">858-256-5412</a>
 												</div> <!-- .et_pb_slide_description -->
@@ -141,7 +132,7 @@
 									<div class="et_pb_column et_pb_column_4_4">
 										<div class="et_pb_text et_pb_bg_layout_light et_pb_text_align_center">
 									
-											<h1>How It Works</h1>
+											<h1><a href="#meetTheMentors">How It Works</a></h1>
 
 										</div> <!-- .et_pb_text -->
 									</div> <!-- .et_pb_column -->
@@ -152,7 +143,7 @@
 											<div class="et_pb_blurb_content">
 												<div class="et_pb_main_blurb_image">
 													<span class="et-pb-icon et-waypoint et_pb_animation_top" style="color: #dd9933;">
-														<img src="question.jpeg"/>
+														<img src="/images/question.jpeg"/>
 													</span>
 												</div>
 												<h4>Question</h4>
@@ -166,10 +157,10 @@
 											<div class="et_pb_blurb_content">
 												<div class="et_pb_main_blurb_image">
 													<span class="et-pb-icon et-waypoint et_pb_animation_top" style="color: #81d742;">
-														<img src="conversation.jpeg"/>
+														<img src="/images/conversation.jpeg"/>
 													</span>
 												</div>
-												<h4>Converse</h4>]
+												<h4>Converse</h4>
 												<p>Text or call to get advice from a knowledgeable college mentor.</p>
 
 											</div> <!-- .et_pb_blurb_content -->
@@ -180,7 +171,7 @@
 											<div class="et_pb_blurb_content">
 												<div class="et_pb_main_blurb_image">
 													<span class="et-pb-icon et-waypoint et_pb_animation_top" style="color: #f06656;">
-														<img src="engage.png"/>
+														<img src="/images/engage.png"/>
 													</span>
 												</div>
 													<h4>Engage</h4>
@@ -191,7 +182,7 @@
 									</div> <!-- .et_pb_column -->
 								</div> <!-- .et_pb_row -->						
 							</div> <!-- .et_pb_section -->
-							<div class="et_pb_section et_pb_inner_shadow et_section_regular" style='background-color:#e8e8e8;'>
+							<div id="meetTheMentors" class="et_pb_section et_pb_inner_shadow et_section_regular" style='background-color:#e8e8e8;'>
 								<div class="et_pb_row">
 									<div class="et_pb_column et_pb_column_4_4">
 										<div class="et_pb_text et_pb_bg_layout_light et_pb_text_align_center">
@@ -204,7 +195,7 @@
 									<div class="et_pb_column et_pb_column_1_3">
 										<div class="et_pb_team_member et_pb_bg_layout_light clearfix">
 											<div class="et_pb_team_member_image et-waypoint et_pb_animation_off">
-												<img src="5944_10151532146109321_1260052358_n.jpg" alt="Jener" />
+												<img src="/images/5944_10151532146109321_1260052358_n.jpg" alt="Jener" />
 											</div>
 											<div class="et_pb_team_member_description">
 												<h4>Jener</h4>
@@ -219,7 +210,7 @@
 									<div class="et_pb_column et_pb_column_1_3">
 										<div class="et_pb_team_member et_pb_bg_layout_light clearfix">
 											<div class="et_pb_team_member_image et-waypoint et_pb_animation_off">
-												<img src="20140818_200115714_iOS.jpg" alt="Maryam" />
+												<img src="/images/20140818_200115714_iOS.jpg" alt="Maryam" />
 											</div>
 											<div class="et_pb_team_member_description">
 												<h4>Maryam</h4>
@@ -231,7 +222,7 @@
 									<div class="et_pb_column et_pb_column_1_3">
 										<div class="et_pb_team_member et_pb_bg_layout_light clearfix">
 											<div class="et_pb_team_member_image et-waypoint et_pb_animation_off">
-												<img src="468347_10152770353715109_1474431856_o.jpg" alt="Ayman" />
+												<img src="/images/468347_10152770353715109_1474431856_o.jpg" alt="Ayman" />
 											</div>
 											<div class="et_pb_team_member_description">
 												<h4>Ayman</h4>
@@ -260,19 +251,13 @@
 				</div> <!-- #main-content -->
 			</div> <!-- #et-main-area -->
 		</div> <!-- #page-container -->
-		<script type='text/javascript' src='jquery.fitvids.js'></script>
-		<script type='text/javascript' src='waypoints.min.js'></script>
-		<script type='text/javascript' src='jquery.magnific-popup.js'></script>
-		<script type='text/javascript'>
-			/* <![CDATA[ */
-			var et_custom = {"ajaxurl":"https:\/\/collegehotline.org\/wp-admin\/admin-ajax.php","images_uri":"https:\/\/collegehotline.org\/wp-content\/themes\/Divi\/images","et_load_nonce":"498505dc5e","subscription_failed":"Please, check the fields below to make sure you entered the correct information.","fill":"Fill","field":"field","invalid":"Invalid email","captcha":"Captcha","prev":"Prev","next":"Next"};
-			/* ]]> */
-		</script>
+		<script type='text/javascript' src='waypoints.min.js'></script> 
+
 		<script type='text/javascript' src='custom.js'></script>
 
 		<!-- Local Angular-->
-		<script type="text/javascript" src="/js/client_modules/angular.js"></script>
-		<script type="text/javascript" src="/js/client_modules/angular-resource.js"></script>
+		<script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
+		<script type="text/javascript" src="/bower_components/angular-resource/angular-resource.min.js"></script>
 
 		 
 		<!--Local Scripts-->

@@ -4,37 +4,28 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>Login | College Hotline</title>
-		<link rel="pingback" href="https://collegehotline.org/xmlrpc.php" />
 		<script type="text/javascript">
 			document.documentElement.className = 'js';
 		</script>
 
+		<!-- Bootstrap core CSS -->
+		<link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
 		<!-- Local Angular-->
-		<script type="text/javascript" src="/js/client_modules/angular.js"></script>
-		<script type="text/javascript" src="/js/client_modules/angular-resource.js"></script>	 
+		<script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
+		<script type="text/javascript" src="/bower_components/angular-resource/angular-resource.min.js"></script>	 
 		<!--Local Scripts-->
 		<script type="text/javascript" src="/js/app.js"></script>
 		<script type="text/javascript" src="/js/controllers/loginController.js"></script>
 		<script type="text/javascript" src="/js/controllers/signupController.js"></script>
 
-		<link rel="alternate" type="application/rss+xml" title="College Hotline &raquo; Feed" href="https://collegehotline.org/feed/" />
-		<link rel="alternate" type="application/rss+xml" title="College Hotline &raquo; Comments Feed" href="https://collegehotline.org/comments/feed/" />
-		<link rel="alternate" type="application/rss+xml" title="College Hotline &raquo; Main Comments Feed" href="https://collegehotline.org/36-2/feed/" />
 		<meta content="Divi v.2.1.4" name="generator"/><link rel='stylesheet' id='divi-fonts-css'  href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,700,800&#038;subset=latin,latin-ext' type='text/css' media='all' />	
-		<link rel='stylesheet' id='divi-style-css'  href='style.css' type='text/css' media='all' />
-		<link rel='stylesheet' id='et-shortcodes-css-css'  href='shortcodes.css' type='text/css' media='all' />
-		<link rel='stylesheet' id='et-shortcodes-responsive-css-css'  href='shortcodes.css' type='text/css' media='all' />
-		<link rel='stylesheet' id='UserAccessManagerAdmin-css'  href='uamAdmin.css' type='text/css' media='screen' />
-		<link rel='stylesheet' id='UserAccessManagerLoginForm-css'  href='uamLoginForm.css' type='text/css' media='screen' />
-		<script type='text/javascript' src='jquery.js'></script>
-		<script type='text/javascript' src='jquery-migrate.min.js'></script>
+		<link rel='stylesheet' id='divi-style-css'  href='/css/style.css' type='text/css' media='all' />
+
+		<script type='text/javascript' src='/bower_components/jquery/dist/jquery.min.js'></script>
+		<script type='text/javascript' src='/bower_components/jquery-migrate/jquery-migrate.min.js'></script>
 		<script type='text/javascript' src='jquery.tools.min.js'></script>
 		<script type='text/javascript' src='functions.js'></script>
-		<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://collegehotline.org/xmlrpc.php?rsd" />
-		<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://collegehotline.org/wp-includes/wlwmanifest.xml" /> 
-		<meta name="generator" content="WordPress 4.0.1" />
-		<link rel='canonical' href='calledge.org/login/' />
-		<link rel='shortlink' href='https://calledge.org/?p=217' />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 		<style>
 			a { color: #2EA3F2; }
@@ -90,7 +81,7 @@
 						<header id="main-header" class="et_nav_text_color_dark">
 							<div class="container clearfix">
 								<a href="home">
-									<img src="LogoSolidGuy1.gif" alt="College Hotline" id="logo" />
+									<img src="/images/LogoSolidGuy1.gif" alt="College Hotline" id="logo" />
 								</a>
 								<div id="et-top-navigation">
 									<nav id="top-menu-nav">
@@ -98,7 +89,7 @@
 											<li ><a href="home">Home</a></li>
 											<li ><a href="about">About</a></li>
 											<li ><a href="login">Login</a></li>
-											<li ><a href="signup">Sign Up</a></li>
+											<!-- <li ><a href="signup">Sign Up</a></li> -->
 										</ul>
 									</nav>
 									<div id="et_mobile_nav_menu">
@@ -107,7 +98,7 @@
 												<li style="display: inline"><a href="home">Home</a></li>
 												<li style="display: inline"><a href="about">About</a></li>
 												<li style="display: inline"><a href="login">Login</a></li>
-												<li style="display: inline"><a href="signup">Sign Up</a></li>
+												<!-- <li style="display: inline"><a href="signup">Sign Up</a></li> -->
 											</ul>
 										</nav>
 									</div>				
@@ -116,8 +107,6 @@
 						</header> <!-- #main-header -->
 					</div>
 					<div ng-switch-when="true" >
-						<!-- Bootstrap core CSS -->
-						<link href="css/bootstrap.css" rel="stylesheet">
 						<div ng-include src="'/views/navbar.html'"></div>
 					</div>
 				</div>
@@ -127,13 +116,13 @@
 				<div id="main-content">
 					<article id="post-217" class="post-217 page type-page status-publish hentry">
 						<div class="entry-content">
-							<div class="et_pb_section et_pb_fullwidth_section et_section_regular">
+							<div id="welcome" class="et_pb_section et_pb_fullwidth_section et_section_regular">
 								<div class="et_pb_slider">
 									<div class="et_pb_slides">
-										<div class="et_pb_slide et_pb_bg_layout_dark et_pb_media_alignment_center" style='background-color:#ffffff;background-image:url(862490_29326952t.jpg);'>
+										<div class="et_pb_slide et_pb_bg_layout_dark et_pb_media_alignment_center" style='background-color:#ffffff;background-image:url(/images/862490_29326952t.jpg);'>
 											<div class="et_pb_container clearfix">
 												<div class="et_pb_slide_description">
-													<h2>Welcome Back</h2>
+													<h2><a href="#signup">Welcome</a></h2>
 													<div class="et_pb_slide_content">
 														<h3>We&#8217;re happy to see you too.</h3>
 													</div>
@@ -155,7 +144,7 @@
 											</div> <!-- .et_pb_blurb_content -->
 										</div> <!-- .et_pb_blurb -->
 									</div> <!-- .et_pb_column -->
-									<div class="et_pb_column et_pb_column_1_3">
+									<div id="signup" class="et_pb_column et_pb_column_1_3">
 										<div class="et_pb_newsletter et_pb_login clearfix et_pb_bg_layout_dark et_pb_text_align_center" style="background-color: #ebaf3c;">
 											<div class="et_pb_newsletter_description">
 												<h2>Sign Up</h2>
@@ -219,15 +208,5 @@
 			</div> <!-- #et-main-area -->
 		</div> <!-- #page-container -->
 
-		<script type='text/javascript' src='jquery.fitvids.js'></script>
-		<script type='text/javascript' src='waypoints.min.js'></script>
-		<script type='text/javascript' src='jquery.magnific-popup.js'></script>
-		<script type='text/javascript'>
-		/* <![CDATA[ */
-		var et_custom = {"ajaxurl":"https:\/\/collegehotline.org\/wp-admin\/admin-ajax.php","images_uri":"https:\/\/collegehotline.org\/wp-content\/themes\/Divi\/images","et_load_nonce":"498505dc5e","subscription_failed":"Please, check the fields below to make sure you entered the correct information.","fill":"Fill","field":"field","invalid":"Invalid email","captcha":"Captcha","prev":"Prev","next":"Next"};
-		/* ]]> */
-		</script>
-
-		<script type='text/javascript' src='custom.js'></script>
 	</body>
 </html>

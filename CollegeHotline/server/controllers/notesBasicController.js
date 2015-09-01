@@ -43,7 +43,7 @@ module.exports.updateShortGoals = function(req, res){
 			{phoneNumber : req.body.phoneNumber}, 
 			{$push: 
 					{
-						goals : {body : req.body.goals}
+						goals : {body : req.body.goals, checked: req.body.checked}
 					} 
 			},
 			function (err, results)
@@ -86,5 +86,5 @@ module.exports.saveQuestion2 = function(req, res){
 module.exports.load = function(req, res){
 	Volunteer.find({phoneNumber: req.user[0].phoneNumber}, function(err, results){
 		res.json(results);
-	})
+	});
 }

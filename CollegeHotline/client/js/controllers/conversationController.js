@@ -1,4 +1,6 @@
-app.controller('conversationController',['$scope', '$resource', function ($scope, $resource) {
+app.controller('conversationController',['$scope', '$resource', 'availibilityTimer', function ($scope, $resource, availibilityTimer) {
+
+	availibilityTimer.timer();	
 	
 	$scope.inactiveConversations 			= [ ];
 	$scope.activeConversations				= [ ];
@@ -18,14 +20,13 @@ app.controller('conversationController',['$scope', '$resource', function ($scope
 
 
 	Login.query({}, function (results){
-			//console.log(results[0]._id);
-			if(results.length > 0){
-				$scope.isLoggedIn = true;
-				$scope.user = results[0];
-			}
-			else
-				$scope.isLoggedIn = false;
-		});
+		if(results.length > 0){
+			$scope.isLoggedIn = true;
+			$scope.user = results[0];
+		}
+		else
+			$scope.isLoggedIn = false;
+	});
 
 
 
@@ -52,6 +53,7 @@ app.controller('conversationController',['$scope', '$resource', function ($scope
 		if ($scope.currentConversation.length > len)
 			setTimeout(function(){scrollConversation()}, 5);	
 	}
+
 	
 	function scrollConversation(){
 		var elem = document.getElementById('currentMessage');
@@ -68,7 +70,6 @@ app.controller('conversationController',['$scope', '$resource', function ($scope
 		conversation.text = $scope.newText;
 		conversation.phoneNumber = $scope.currentConversationPhoneNumber;
 		conversation.$save(function (result){
-			//console.log(result);
 			if (result.phoneNumber != null){
 				$scope.inactiveConversations.push(result);
 			}
@@ -81,11 +82,7 @@ app.controller('conversationController',['$scope', '$resource', function ($scope
 	$scope.activateConversation = function(index, activatePhoneNumber) {
 		Activate.query({phoneNumber : activatePhoneNumber}, function (results){
 			$scope.activeConversations.push(results[0]);
-			//$scope.currentConversationPhoneNumber = results[0].phoneNumber;
-			//$scope.currentConversation = results[0].messages;
 			$scope.inactiveConversations.splice(index, 1);
-			//setTimeout(function(){scrollConversation()}, 5);
-			//console.log($scope.activeConversations.length - 1);
 			setTimeout(function(){$scope.openConversation($scope.activeConversations.length - 1, activatePhoneNumber)}, 5);
 		});
 	}
@@ -108,7 +105,6 @@ app.controller('conversationController',['$scope', '$resource', function ($scope
 		});
 		$scope.currentConversation = $scope.activeConversations[index].messages;
 		$scope.currentConversationPhoneNumber = $scope.activeConversations[index].phoneNumber;
-		//scrollConversation();
 		setTimeout(function(){scrollConversation()}, 5);
 	}
 
@@ -118,13 +114,8 @@ app.controller('conversationController',['$scope', '$resource', function ($scope
 		conversation.text = $scope.newResponse;
 		conversation.phoneNumber = $scope.currentConversationPhoneNumber;
 		conversation.isVolunteer = true;
-		console.log(conversation);
-		//get volunteer id with matin's things
-
-		sendUrl.query(conversation, function(result){console.log(result);});
-
+		sendUrl.query(conversation, function(result){});
 		conversation.$save(function (result){
-			console.log(result);
 			if (result.phoneNumber != null){
 				$scope.inactiveConversations.push(result);
 			}

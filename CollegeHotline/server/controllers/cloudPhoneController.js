@@ -119,7 +119,10 @@ module.exports.forwardCall = function(req, res){
 	if (volunteerQueue.length == 0){
 		//console.log("pulling new");
 		Volunteer.find({available:true, online:true}, function(err, result){
-			volunteerQueue = volunteerQueue.concat(result);
+			if (volunteerQueue.length == 0){
+				volunteerQueue = volunteerQueue.concat(result);
+			}
+			
 			if (volunteerQueue.length == 0){
 				var responseForPlivo = plivo.Response();
 				responseForPlivo.addSpeak(unavailableText);
@@ -148,6 +151,7 @@ module.exports.hangUp = function(req, res){
 	Volunteer.update({phoneNumber: calleeNumber}, {
 		$set:{available: true}}, function (err, result){
 			console.log(result);
+			res.json(result);
 	});
 	delete callerCalleeDict[hash(req.query.From)];
 }

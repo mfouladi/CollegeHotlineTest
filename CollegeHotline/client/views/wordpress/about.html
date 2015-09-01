@@ -4,28 +4,19 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>About | College Hotline</title>
-		<link rel="pingback" href="https://collegehotline.org/xmlrpc.php" />
 		<script type="text/javascript">
 			document.documentElement.className = 'js';
 		</script>
-		<link rel="alternate" type="application/rss+xml" title="College Hotline &raquo; Feed" href="https://collegehotline.org/feed/" />
-		<link rel="alternate" type="application/rss+xml" title="College Hotline &raquo; Comments Feed" href="https://collegehotline.org/comments/feed/" />
-		<link rel="alternate" type="application/rss+xml" title="College Hotline &raquo; Main Comments Feed" href="https://collegehotline.org/36-2/feed/" />
+
+		<!-- Bootstrap core CSS -->
+		<link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
 		<meta content="Divi v.2.1.4" name="generator"/><link rel='stylesheet' id='divi-fonts-css'  href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,700,800&#038;subset=latin,latin-ext' type='text/css' media='all' />
-		<link rel='stylesheet' id='divi-style-css'  href='style.css' type='text/css' media='all' />
-		<link rel='stylesheet' id='et-shortcodes-css-css'  href='shortcodes.css' type='text/css' media='all' />
-		<link rel='stylesheet' id='et-shortcodes-responsive-css-css'  href='shortcodes.css' type='text/css' media='all' />
-		<link rel='stylesheet' id='UserAccessManagerAdmin-css'  href='uamAdmin.css' type='text/css' media='screen' />
-		<link rel='stylesheet' id='UserAccessManagerLoginForm-css'  href='uamLoginForm.css' type='text/css' media='screen' />
-		<script type='text/javascript' src='jquery.js'></script>
-		<script type='text/javascript' src='jquery-migrate.min.js'></script>
+		<link rel='stylesheet' id='divi-style-css'  href='/css/style.css' type='text/css' media='all' />
+		<script type='text/javascript' src='/bower_components/jquery/dist/jquery.min.js'></script>
+		<script type='text/javascript' src='/bower_components/jquery-migrate/jquery-migrate.min.js'></script>
 		<script type='text/javascript' src='jquery.tools.min.js'></script>
 		<script type='text/javascript' src='functions.js'></script>
-		<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://collegehotline.org/xmlrpc.php?rsd" />
-		<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://collegehotline.org/wp-includes/wlwmanifest.xml" /> 
-		<meta name="generator" content="WordPress 4.0.1" />
-		<link rel='canonical' href='home' />
-		<link rel='shortlink' href='home' />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 		<style>
 			a { color: #2EA3F2; }
@@ -81,7 +72,7 @@
 						<header id="main-header" class="et_nav_text_color_dark">
 							<div class="container clearfix">
 								<a href="home">
-									<img src="LogoSolidGuy1.gif" alt="College Hotline" id="logo" />
+									<img src="/images/LogoSolidGuy1.gif" alt="College Hotline" id="logo" />
 								</a>
 								<div id="et-top-navigation">
 									<nav id="top-menu-nav">
@@ -89,7 +80,7 @@
 											<li ><a href="home">Home</a></li>
 											<li ><a href="about">About</a></li>
 											<li ><a href="login">Login</a></li>
-											<li ><a href="signup">Sign Up</a></li>
+											<!-- <li ><a href="signup">Sign Up</a></li> -->
 										</ul>
 									</nav>
 									<div id="et_mobile_nav_menu">
@@ -98,7 +89,7 @@
 												<li style="display: inline"><a href="home">Home</a></li>
 												<li style="display: inline"><a href="about">About</a></li>
 												<li style="display: inline"><a href="login">Login</a></li>
-												<li style="display: inline"><a href="signup">Sign Up</a></li>
+												<!-- <li style="display: inline"><a href="signup">Sign Up</a></li> -->
 											</ul>
 										</nav>
 									</div>				
@@ -107,8 +98,6 @@
 						</header> <!-- #main-header -->
 					</div>
 					<div ng-switch-when="true" >
-						<!-- Bootstrap core CSS -->
-						<link href="css/bootstrap.css" rel="stylesheet">
 						<div ng-include src="'/views/navbar.html'"></div>
 					</div>
 				</div>
@@ -117,13 +106,13 @@
 				<div id="main-content">
 					<article id="post-5" class="post-5 page type-page status-publish hentry">
 						<div class="entry-content">
-							<div class="et_pb_section et_pb_fullwidth_section et_section_regular">
+							<div id="ourStory" class="et_pb_section et_pb_fullwidth_section et_section_regular">
 								<div class="et_pb_slider">
 									<div class="et_pb_slides">
-										<div class="et_pb_slide et_pb_bg_layout_dark et_pb_media_alignment_center" style='background-color:#ffffff;background-image:url(862490_29326952t.jpg);'>
+										<div class="et_pb_slide et_pb_bg_layout_dark et_pb_media_alignment_center" style='background-color:#ffffff;background-image:url(/images/862490_29326952t.jpg);'>
 											<div class="et_pb_container clearfix">
 												<div class="et_pb_slide_description">
-													<h2>Our Story</h2>
+													<h2><a href="#weAre">Our Story</a></h2>
 													<div class="et_pb_slide_content">
 														<h3>Born out of need.  In California alone, there are 945 students for every guidance counselor.</h3>
 													</div>
@@ -133,11 +122,11 @@
 									</div> <!-- .et_pb_slides -->
 								</div> <!-- .et_pb_slider -->
 							</div> <!-- .et_pb_section -->
-							<div class="et_pb_section et_pb_inner_shadow et_section_regular" style='background-color:#e8e8e8;'>
+							<div id="weAre" class="et_pb_section et_pb_inner_shadow et_section_regular" style='background-color:#e8e8e8;'>
 								<div class="et_pb_row">
 									<div class="et_pb_column et_pb_column_4_4">
 										<div class="et_pb_text et_pb_bg_layout_light et_pb_text_align_center">
-											<h1>We Are</h1>
+											<h1><a href="#knowTheTeam">We Are</a></h1>
 
 										</div> <!-- .et_pb_text -->
 									</div> <!-- .et_pb_column -->
@@ -148,7 +137,7 @@
 											<div class="et_pb_blurb_content">
 												<div class="et_pb_main_blurb_image">
 													<span class="et-pb-icon et-waypoint et_pb_animation_top et-pb-icon-circle" style="color: #f06656; background-color: #ffffff;">
-														<img src="student.png"/>
+														<img src="/images/student.png"/>
 													</span>
 												</div>
 												<h4>Students</h4>
@@ -160,7 +149,7 @@
 											<div class="et_pb_blurb_content">
 												<div class="et_pb_main_blurb_image">
 													<span class="et-pb-icon et-waypoint et_pb_animation_top et-pb-icon-circle" style="color: #66cdbb; background-color: #ffffff;">
-														<img src="educator.jpeg"/>
+														<img src="/images/educator.jpeg"/>
 													</span>
 												</div>
 												<h4>Educators</h4>
@@ -173,7 +162,7 @@
 											<div class="et_pb_blurb_content">
 												<div class="et_pb_main_blurb_image">
 													<span class="et-pb-icon et-waypoint et_pb_animation_top et-pb-icon-circle" style="color: #ddbd30; background-color: #ffffff;">
-														<img src="innovator.png"/>
+														<img src="/images/innovator.png"/>
 													</span>
 												</div>
 												<h4>Innovators</h4>
@@ -191,11 +180,11 @@
 									</div> <!-- .et_pb_column -->
 								</div> <!-- .et_pb_row -->
 							</div> <!-- .et_pb_section -->
-							<div class="et_pb_section et_section_regular" style='background-color:#ffffff;'>
+							<div id="knowTheTeam" class="et_pb_section et_section_regular" style='background-color:#ffffff;'>
 								<div class="et_pb_row">
 									<div class="et_pb_column et_pb_column_4_4">
 										<div class="et_pb_text et_pb_bg_layout_light et_pb_text_align_center">
-											<h1>Get To Know The Team</h1>
+											<h1><a href="#devTeam">Get To Know The Team</a></h1>
 
 										</div> <!-- .et_pb_text -->
 									</div> <!-- .et_pb_column -->
@@ -204,7 +193,7 @@
 									<div class="et_pb_column et_pb_column_1_4">
 										<div class="et_pb_team_member et_pb_bg_layout_light clearfix">
 											<div class="et_pb_team_member_image et-waypoint et_pb_animation_fade_in">
-												<img src="sanna-pic1.jpg" alt="Sanna Alas" />
+												<img src="/images/sanna-pic1.jpg" alt="Sanna Alas" />
 											</div>
 											<div class="et_pb_team_member_description">
 												<h4>Sanna Alas</h4>
@@ -216,7 +205,7 @@
 									<div class="et_pb_column et_pb_column_1_4">
 										<div class="et_pb_team_member et_pb_bg_layout_light clearfix">
 											<div class="et_pb_team_member_image et-waypoint et_pb_animation_fade_in">
-												<img src="10375077_10152222017970749_7275949746521206713_n.jpg" alt="Matin Fouladi" />
+												<img src="/images/10375077_10152222017970749_7275949746521206713_n.jpg" alt="Matin Fouladi" />
 											</div>
 											<div class="et_pb_team_member_description">
 												<h4>Matin Fouladi</h4>
@@ -228,7 +217,7 @@
 									<div class="et_pb_column et_pb_column_1_4">
 										<div class="et_pb_team_member et_pb_bg_layout_light clearfix">
 											<div class="et_pb_team_member_image et-waypoint et_pb_animation_fade_in">
-												<img src="1015398_10152884688665109_1456848278_o.jpg" alt="Faizan Shabbir" />
+												<img src="/images/1015398_10152884688665109_1456848278_o.jpg" alt="Faizan Shabbir" />
 											</div>
 											<div class="et_pb_team_member_description">
 												<h4>Faizan Shabbir</h4>
@@ -240,7 +229,7 @@
 									<div class="et_pb_column et_pb_column_1_4">
 										<div class="et_pb_team_member et_pb_bg_layout_light clearfix">
 											<div class="et_pb_team_member_image et-waypoint et_pb_animation_fade_in">
-												<img src="322458_329557070398967_1260027662_o.jpg" alt="Haddy Alas" />
+												<img src="/images/322458_329557070398967_1260027662_o.jpg" alt="Haddy Alas" />
 											</div>
 											<div class="et_pb_team_member_description">
 												<h4>Haddy Alas</h4>
@@ -250,7 +239,7 @@
 										</div> <!-- .et_pb_team_member -->
 									</div> <!-- .et_pb_column -->
 								</div> <!-- .et_pb_row -->
-								<div class="et_pb_section et_pb_inner_shadow et_section_regular" style='background-color:#e8e8e8;'>
+								<div id="devTeam" class="et_pb_section et_pb_inner_shadow et_section_regular" style='background-color:#e8e8e8;'>
 									<div class="et_pb_row">
 										<div class="et_pb_column et_pb_column_4_4">
 											<div class="et_pb_text et_pb_bg_layout_light et_pb_text_align_center">
@@ -261,13 +250,13 @@
 										</div> <!-- .et_pb_column -->
 									</div> <!-- .et_pb_row -->
 									<div class="et_pb_row">
-										<img src="Develpment_Team.jpg"/>
+										<img src="/images/Develpment_Team.jpg"/>
 									</div>
 									<div class="et_pb_row">
 										<div class="et_pb_column et_pb_column_4_4">
 											<div class="et_pb_text et_pb_bg_layout_light et_pb_text_align_left">
 											
-												<p>Supported by IBM Member Dean Okamura, this team of UCLA Undergraduates built the web interface from scrach using a combination of new technology, intelligence, hack-sprints, brute-force, pizza, sugar, stack overflow, google, and good fortune. The team members from left to right are David Dick Meyer, Patrick Compton, Dean Okamura, Kenny Chow, Mingyu Lu, and Jongwoo Kim.</p>
+												<p>Supported by IBM Member Dean Okamura (far right), this team of UCLA Undergraduates built the web interface from scratch using a combination of new technologies, intelligence, hack-sprints, brute-force, pizza, sugar, stack overflow, google, and good fortune. The team members from left to right are Kenny Chow, Mingyu Lu, Patrick Compton, Matin Fouladi, David Dick Meyer, Jongwoo Kim, and Dean Okamura.</p>
 
 											</div> <!-- .et_pb_text -->
 										</div> <!-- .et_pb_column -->
@@ -279,18 +268,13 @@
 				</div> <!-- #main-content -->	
 			</div> <!-- #et-main-area -->
 		</div> <!-- #page-container -->
-		<script type='text/javascript' src='jquery.fitvids.js'></script>
 		<script type='text/javascript' src='waypoints.min.js'></script>
-		<script type='text/javascript' src='jquery.magnific-popup.js'></script>
-		<script type='text/javascript'>
-		/* <![CDATA[ */
-		var et_custom = {"ajaxurl":"https:\/\/collegehotline.org\/wp-admin\/admin-ajax.php","images_uri":"https:\/\/collegehotline.org\/wp-content\/themes\/Divi\/images","et_load_nonce":"6dce36b37b","subscription_failed":"Please, check the fields below to make sure you entered the correct information.","fill":"Fill","field":"field","invalid":"Invalid email","captcha":"Captcha","prev":"Prev","next":"Next"};
-		/* ]]> */
-		</script>
+
 		<script type='text/javascript' src='custom.js'></script>
+		
 		<!-- Local Angular-->
-		<script type="text/javascript" src="/js/client_modules/angular.js"></script>
-		<script type="text/javascript" src="/js/client_modules/angular-resource.js"></script>
+		<script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
+		<script type="text/javascript" src="/bower_components/angular-resource/angular-resource.min.js"></script>
 
 		 
 		<!--Local Scripts-->

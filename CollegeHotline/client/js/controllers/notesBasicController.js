@@ -1,5 +1,7 @@
-app.controller('notesBasicController',['$scope', '$resource', function ($scope, $resource) {
+app.controller('notesBasicController',['$scope', '$resource', 'availibilityTimer', function ($scope, $resource, availibilityTimer) {
 
+	availibilityTimer.timer();
+	
 	var NotesBasic = $resource('/api/notes/basic');
 	var NotesBasicCreate = $resource('/api/notes/basic/create');
 	var NotesBasicUpdate = $resource('/api/notes/basic/update'); 
@@ -13,6 +15,36 @@ app.controller('notesBasicController',['$scope', '$resource', function ($scope, 
 
 	$scope.goals = [];
 	$scope.ltgoals = [];
+
+	angular.element(document).ready(function($) {
+		var cols = $(".col-resize");
+		cols.addClass("col-sm-3");
+		cols.first().removeClass("col-sm-3");
+		cols.first().addClass("col-sm-6");
+		
+		$(".col-resize").click(function(){
+			$(this).removeClass("col-sm-3");
+			$(this).addClass("col-sm-6");
+			$(this).siblings(".col-resize").removeClass("col-sm-6");
+			$(this).siblings(".col-resize").addClass("col-sm-3");
+		});
+
+		//hides pill, unhides contents  : prod_page
+		$(".clickable_pill").click(function(){
+			if($(this).hasClass("active")){
+			  return;
+			}
+			var id = $(this).children().attr("href");
+			if ( $(id).is(':hidden')){
+				$(this).parent().addClass("hidden-xs");
+				//window.document.location = id;
+				$(id).removeClass("hidden-xs");
+				$(id).parent().removeClass("hidden-xs");
+			}
+			$(id).children("ul").removeClass("hidden-xs");
+		});
+	});
+
 
 	
 	var phoneSearch = function(){
@@ -46,11 +78,7 @@ app.controller('notesBasicController',['$scope', '$resource', function ($scope, 
 
 	$scope.loadCaller = function(){
 		NotesBasicLoad.query(new NotesBasic(), function(results){
-			console.log(results);
-			console.log(results[0]);
-
 			$scope.phoneNumberSearch = results[0].currentCall;
-			console.log($scope.phoneNumberSearch);
 			phoneSearch();
 		})
 	}
@@ -117,11 +145,10 @@ app.controller('notesBasicController',['$scope', '$resource', function ($scope, 
 			else
 			{
 				var updateNoteShortGoals = new NotesBasicUpdateShortGoals();
-				console.log($scope.newGoal);
 				updateNoteShortGoals.phoneNumber = $scope.phoneNumber;
 				updateNoteShortGoals.goals = $scope.newGoal;
+				updateNoteShortGoals.checked = false;
 				updateNoteShortGoals.$save(function(result){
-					console.log(result);
 					$scope.goals.push({body: $scope.newGoal});
 					$scope.newGoal = '';
 				});
@@ -131,8 +158,7 @@ app.controller('notesBasicController',['$scope', '$resource', function ($scope, 
 
 	$scope.saveQuestion1 = function(){
 		if(!$scope.question1.match(/\S/)){
-			//do nothing
-			console.log("empty")
+			//if quetions is empty, do nothing
 		}
 		else{
 			NotesBasic.query({phoneNumber : $scope.phoneNumber}, function (results){
@@ -146,9 +172,7 @@ app.controller('notesBasicController',['$scope', '$resource', function ($scope, 
 					var updateNoteLongGoals = new NotesBasicSaveQuestion1();
 					updateNoteLongGoals.phoneNumber = $scope.phoneNumber;
 					updateNoteLongGoals.question1 = $scope.question1;
-					updateNoteLongGoals.$save(function(result){
-						console.log(result);
-					});
+					updateNoteLongGoals.$save(function(result){});
 				}	
 			});
 		}
@@ -156,8 +180,7 @@ app.controller('notesBasicController',['$scope', '$resource', function ($scope, 
 
 	$scope.saveQuestion2 = function(){
 		if(!$scope.question1.match(/\S/)){
-			//do nothing
-			console.log("empty")
+			//if quetions is empty, do nothing
 		}
 		else{
 			NotesBasic.query({phoneNumber : $scope.phoneNumber}, function (results){
@@ -172,9 +195,7 @@ app.controller('notesBasicController',['$scope', '$resource', function ($scope, 
 					var updateNoteLongGoals = new NotesBasicSaveQuestion2();
 					updateNoteLongGoals.phoneNumber = $scope.phoneNumber;
 					updateNoteLongGoals.question2 = $scope.question2;
-					updateNoteLongGoals.$save(function(result){
-						console.log(result);
-					});
+					updateNoteLongGoals.$save(function(result){});
 				}	
 			});
 		}

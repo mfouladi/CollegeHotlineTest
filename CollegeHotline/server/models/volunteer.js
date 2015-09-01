@@ -13,6 +13,8 @@ var volunteerSchema = mongoose. Schema({
 	available				: Boolean,
 	numCalls				: Number,
 	currentCall				: Number,
+	leftPage				: Boolean,
+	isAdmin					: Boolean,
 	callHistory				: [{
 								firstName	: String,
 								lastName 	: String,
