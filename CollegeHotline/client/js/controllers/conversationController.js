@@ -43,7 +43,8 @@ app.controller('conversationController',['$scope', '$resource', function ($scope
 		len = $scope.currentConversation.length;
 
 		for(i = 0; i < $scope.activeConversations.length; i++){
-			if ($scope.activeConversations[i].phoneNumber == $scope.currentConversationPhoneNumber){
+			if ($scope.activeConversations[i].phoneNumber == $scope.currentConversationPhoneNumber
+				&& scope.activeConversations[i].currentVolunteerID == user._id){
 				$scope.currentConversation = $scope.activeConversations[i].messages;
 			}
 		}
