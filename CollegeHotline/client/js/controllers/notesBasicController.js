@@ -47,7 +47,7 @@ app.controller('notesBasicController',['$scope', '$resource', 'availibilityTimer
 
 
 	
-	var phoneSearch = function(){
+	$scope.phoneSearch = function(){
 		var searchNote = new NotesBasic();
 		searchNote.phoneNumber = $scope.phoneNumberSearch;
 		if (searchNote.phoneNumber != null && searchNote.phoneNumber !== undefined) {
@@ -79,11 +79,9 @@ app.controller('notesBasicController',['$scope', '$resource', 'availibilityTimer
 	$scope.loadCaller = function(){
 		NotesBasicLoad.query(new NotesBasic(), function(results){
 			$scope.phoneNumberSearch = results[0].currentCall;
-			phoneSearch();
+			$scope.phoneSearch();
 		})
 	}
-
-	$scope.phoneSearch = phoneSearch;
 
 	$scope.createNewNote = function() {
 		NotesBasic.query({phoneNumber : $scope.phoneNumber}, function (results){

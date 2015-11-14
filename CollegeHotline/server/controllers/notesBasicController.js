@@ -1,13 +1,15 @@
+var express    = require('express');
+var router 	   = express.Router();
 var NotesBasic = require('../models/notesBasic.js');
 var Volunteer = require('../models/volunteer.js');
 
-module.exports.list = function(req, res){
+function list(req, res){
 	NotesBasic.find(req.query, function (err, results){
 		res.json(results);
 	});
 }
 
-module.exports.create = function(req, res){
+function create(req, res){
 	var newNote = new NotesBasic();
 		
 	newNote.phoneNumber = req.body.phoneNumber;
@@ -21,7 +23,7 @@ module.exports.create = function(req, res){
 	});
 }
 
-module.exports.update = function(req, res){
+function update(req, res){
 	NotesBasic.update(
 			{phoneNumber : req.body.phoneNumber},
 			{$set: 
@@ -38,7 +40,7 @@ module.exports.update = function(req, res){
 	);
 }
 
-module.exports.updateShortGoals = function(req, res){
+var updateShortGoals = function(req, res){
 	NotesBasic.update(
 			{phoneNumber : req.body.phoneNumber}, 
 			{$push: 
@@ -53,7 +55,7 @@ module.exports.updateShortGoals = function(req, res){
 	);
 }
 
-module.exports.saveQuestion1 = function(req, res){
+function saveQuestion1(req, res){
 	NotesBasic.update(
 			{phoneNumber : req.body.phoneNumber}, 
 			{$push: 
@@ -68,7 +70,7 @@ module.exports.saveQuestion1 = function(req, res){
 	);
 }
 
-module.exports.saveQuestion2 = function(req, res){
+function saveQuestion2(req, res){
 	NotesBasic.update(
 			{phoneNumber : req.body.phoneNumber}, 
 			{$push: 
@@ -83,8 +85,18 @@ module.exports.saveQuestion2 = function(req, res){
 	);
 }
 
-module.exports.load = function(req, res){
+function load(req, res){
 	Volunteer.find({phoneNumber: req.user[0].phoneNumber}, function(err, results){
 		res.json(results);
 	});
 }
+
+router.route('/').get(list);
+router.route('/create').post(create)
+router.route('/update').post(update);
+router.route('/updateShortGoals').put(updateShortGoals);
+router.route('/saveQuestion1').put(saveQuestion1);
+router.route('/saveQuestion2').put(saveQuestion2);
+router.route('/load').get(load);
+
+module.exports = router;

@@ -60,6 +60,10 @@ app.get('/volunteers', isLoggedIn, function (req, res){
   res.sendFile(__dirname + '/client/views/volunteers.html');
 });
 
+app.get('/profile', isLoggedIn, function (req, res){
+  res.sendFile(__dirname + '/client/views/profile.html');
+});
+
 //Volunteer Login
 
 /*
@@ -105,13 +109,12 @@ app.get('/loggedin', function(req, res) {
 
 
 //REST API
-app.get('/api/notes/basic', notesBasicController.list);
-app.post('/api/notes/basic/create', notesBasicController.create);
-app.post('/api/notes/basic/update', notesBasicController.update);
-app.post('/api/notes/basic/updateShortGoals', notesBasicController.updateShortGoals);
-app.post('/api/notes/basic/saveQuestion1', notesBasicController.saveQuestion1);
-app.post('/api/notes/basic/saveQuestion2', notesBasicController.saveQuestion2);
-app.get('/api/notes/load', notesBasicController.load);
+app.all('/api/*', isLoggedIn);
+
+//Notes
+var router = express.Router();
+router.use('/notes/basic', notesBasicController);
+app.use('/api', router);
 
 //Conversation Calls
 app.get('/api/conversation/inactive', conversationController.listInactiveConversations);
