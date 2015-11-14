@@ -112,13 +112,9 @@ app.get('/loggedin', function(req, res) {
 app.all('/api/*', isLoggedIn);
 
 //Notes
-app.get('/api/notes/basic', notesBasicController.list);
-app.post('/api/notes/basic/create', notesBasicController.create);
-app.post('/api/notes/basic/update', notesBasicController.update);
-app.post('/api/notes/basic/updateShortGoals', notesBasicController.updateShortGoals);
-app.post('/api/notes/basic/saveQuestion1', notesBasicController.saveQuestion1);
-app.post('/api/notes/basic/saveQuestion2', notesBasicController.saveQuestion2);
-app.get('/api/notes/load', notesBasicController.load);
+var router = express.Router();
+router.use('/notes/basic', notesBasicController);
+app.use('/api', router);
 
 //Conversation Calls
 app.get('/api/conversation/inactive', conversationController.listInactiveConversations);

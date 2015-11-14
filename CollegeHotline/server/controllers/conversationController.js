@@ -94,7 +94,6 @@ module.exports.createConversation = function(req, res){
 }
 
 module.exports.activateConversation = function(req, res){
-	//console.log(req.user);
 	Conversation.update(req.params, {$set: {active : true, currentVolunteerID: req.user[0].id}}, function (err, result){
 	});
 	Conversation.find(req.params, function (err, conversation){
