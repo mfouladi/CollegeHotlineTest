@@ -1,7 +1,9 @@
-var Conversation 	= require('../models/conversation.js')
+var Conversation 	= require('../models/conversation.js');
+var express    = require('express');
+var router 	   = express.Router();
 
 
-module.exports.createConversation = function(req, res){
+function createConversation(req, res){
 	if (req.body.From){
 		req.body.phoneNumber = req.body.From;
 	}
@@ -93,39 +95,42 @@ module.exports.createConversation = function(req, res){
 	});
 }
 
-module.exports.activateConversation = function(req, res){
-	Conversation.update(req.params, {$set: {active : true, currentVolunteerID: req.user[0].id}}, function (err, result){
-	});
-	Conversation.find(req.params, function (err, conversation){
+function activateConversation(req, res){
+	Conversation.findOneAndUpdate(req.params, {$set: {active : true, currentVolunteerID: req.user[0].id}}, function (err, conversation){
 		res.json(conversation);
 	});
 }
 
-module.exports.deactivateConversation = function(req, res){
-	Conversation.update(req.params, {$set: {active : false, currentVolunteerID: "none"}}, function (err, conversation){
-	});
-	Conversation.find(req.params, function (err, conversation){
+function deactivateConversation(req, res){
+	Conversation.findOneAndUpdate(req.params, {$set: {active : false, currentVolunteerID: "none"}}, function (err, conversation){
 		res.json(conversation);
 	});
 }
 
-module.exports.listInactiveConversations = function(req, res){
+function listInactiveConversations(req, res){
 	Conversation.find({$and: [{active: false}, {unansweredMessageCount : {$gt: 0}}]}, function (err, results){
 		res.json(results);
 	});
 }
 
-module.exports.listActiveConversations = function(req, res){
+function listActiveConversations(req, res){
 	Conversation.find({currentVolunteerID: req.user[0].id}, function (err, results){
 		res.json(results);
 	});
 }
 
 
-module.exports.openConversation = function (req, res){
-	Conversation.update(req.params, {$set: {unreadMessageCount : 0}}, function (err, conversation){
-	});
-	Conversation.find(req.params, function (err, conversation){
+function openConversation (req, res){
+	Conversation.findOneAndUpdate(req.params, {$set: {unreadMessageCount : 0}}, function (err, conversation){
 		res.json(conversation);
 	});
 }
+
+router.route('/inactive').get(listInactiveConversations);
+router.route('/active').get(listActiveConversations);
+router.route('/activate/:phoneNumber').get(activateConversation);
+router.route('/deactivate/:phoneNumber').get(deactivateConversation);
+router.route('/open/:phoneNumber').get(openConversation);
+router.route('/create').post(createConversation);
+
+module.exports = router;

@@ -45,7 +45,7 @@ app.controller('conversationController',['$scope', '$resource', 'availibilityTim
 
 		for(i = 0; i < $scope.activeConversations.length; i++){
 			if ($scope.activeConversations[i].phoneNumber == $scope.currentConversationPhoneNumber
-				&& scope.activeConversations[i].currentVolunteerID == user._id){
+				&& $scope.activeConversations[i].currentVolunteerID == $scope.user._id){
 				$scope.currentConversation = $scope.activeConversations[i].messages;
 			}
 		}
@@ -80,17 +80,18 @@ app.controller('conversationController',['$scope', '$resource', 'availibilityTim
 	}
 
 	$scope.activateConversation = function(index, activatePhoneNumber) {
-		Activate.query({phoneNumber : activatePhoneNumber}, function (results){
-			$scope.activeConversations.push(results[0]);
+		Activate.get({phoneNumber : activatePhoneNumber}, function (result){
+			$scope.activeConversations.push(result);
 			$scope.inactiveConversations.splice(index, 1);
 			setTimeout(function(){$scope.openConversation($scope.activeConversations.length - 1, activatePhoneNumber)}, 5);
 		});
 	}
 
 	$scope.deactivateConversation = function(index, deactivatePhoneNumber) {
-		Deactivate.query({phoneNumber : deactivatePhoneNumber}, function (results){
-			if(results[0].unansweredMessageCount > 0)
-				$scope.inactiveConversations.push(results[0]);
+		Deactivate.get({phoneNumber : deactivatePhoneNumber}, function (result){
+			if(result.unansweredMessageCount > 0){
+				$scope.inactiveConversations.push(result);
+			}
 		});
 		if($scope.activeConversations[index].phoneNumber == $scope.currentConversationPhoneNumber){
 			$scope.currentConversation = [];
@@ -100,12 +101,12 @@ app.controller('conversationController',['$scope', '$resource', 'availibilityTim
 	}
 
 	$scope.openConversation = function(index, openPhoneNumber){
-		Open.query({phoneNumber: openPhoneNumber}, function (results){
-			$scope.activeConversations[index] = results[0];
+		Open.get({phoneNumber: openPhoneNumber}, function (result){
+			$scope.activeConversations[index] = result;
+			$scope.currentConversation = $scope.activeConversations[index].messages;
+			$scope.currentConversationPhoneNumber = $scope.activeConversations[index].phoneNumber;
+			setTimeout(function(){scrollConversation()}, 5);
 		});
-		$scope.currentConversation = $scope.activeConversations[index].messages;
-		$scope.currentConversationPhoneNumber = $scope.activeConversations[index].phoneNumber;
-		setTimeout(function(){scrollConversation()}, 5);
 	}
 
 

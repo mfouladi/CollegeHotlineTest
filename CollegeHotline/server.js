@@ -114,18 +114,12 @@ app.all('/api/*', isLoggedIn);
 //Notes
 var router = express.Router();
 router.use('/notes/basic', notesBasicController);
-app.use('/api', router);
 
 //Conversation Calls
-app.get('/api/conversation/inactive', conversationController.listInactiveConversations);
-app.get('/api/conversation/active', conversationController.listActiveConversations);
-app.post('/api/conversation/create', conversationController.createConversation);
-app.get('/api/conversation/activate/:phoneNumber', conversationController.activateConversation);
-app.get('/api/conversation/deactivate/:phoneNumber', conversationController.deactivateConversation);
-app.get('/api/conversation/open/:phoneNumber', conversationController.openConversation);
+router.use('/conversation', conversationController);
 
+app.use('/api', router);
 //CloudPhone things
-app.get('/api/cloudPhone/receiveMsg', conversationController.createConversation);
 app.get('/api/cloudPhone/sendMsg', cloudPhoneController.sendMsg);
 app.get('/api/cloudPhone/forwardCall', cloudPhoneController.forwardCall);
 app.get('/api/cloudPhone/hangUp', cloudPhoneController.hangUp);
