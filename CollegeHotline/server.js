@@ -11,16 +11,18 @@ var express      = require('express'),
 	notesBasicController     = require("./server/controllers/notesBasicController"),
 	cloudPhoneController     = require("./server/controllers/cloudPhoneController.js"),
   volunteerController      = require("./server/controllers/volunteerController.js");
-
 mongoose.connect('mongodb://localhost:27017/CollegeHotline');
-
 require('./server/controllers/passport.js')(passport);
-var http         = require('http').Server(app);
 
 //app.use(morgan('dev'));
 app.use(cookieParser());
-app.use(bodyParser());
-app.use(session({ secret : 'keyboard cat'}));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
