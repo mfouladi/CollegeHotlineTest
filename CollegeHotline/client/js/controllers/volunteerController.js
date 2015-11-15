@@ -1,7 +1,5 @@
-app.controller('volunteerController',['$scope', '$resource', 'availibilityTimer', 
-	function ($scope, $resource, availibilityTimer) {
-
-	availibilityTimer.timer();
+app.controller('volunteerController',['$scope', '$resource', 
+	function ($scope, $resource) {
 
 	var VolunteerStatus = $resource('/api/volunteers/status');
 

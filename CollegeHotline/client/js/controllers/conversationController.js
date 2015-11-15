@@ -1,6 +1,4 @@
-app.controller('conversationController',['$scope', '$resource', 'availibilityTimer', function ($scope, $resource, availibilityTimer) {
-
-	availibilityTimer.timer();	
+app.controller('conversationController',['$scope', '$resource', function ($scope, $resource) {
 	
 	$scope.inactiveConversations 			= [ ];
 	$scope.activeConversations				= [ ];

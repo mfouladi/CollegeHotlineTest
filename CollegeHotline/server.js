@@ -7,7 +7,6 @@ var express      = require('express'),
   flash          = require('connect-flash'),
   passport       = require('passport'),
   morgan         = require('morgan'),
-  availibilityController   = require('./server/controllers/availibilityController'),
 	conversationController   = require('./server/controllers/conversationController'),
 	notesBasicController     = require("./server/controllers/notesBasicController"),
 	cloudPhoneController     = require("./server/controllers/cloudPhoneController.js"),
@@ -17,7 +16,6 @@ mongoose.connect('mongodb://localhost:27017/CollegeHotline');
 
 require('./server/controllers/passport.js')(passport);
 var http         = require('http').Server(app);
-var io             = require('socket.io')(http);
 
 //app.use(morgan('dev'));
 app.use(cookieParser());
@@ -126,10 +124,6 @@ app.get('/api/cloudPhone/hangUp', cloudPhoneController.hangUp);
 
 //Volunteer
 app.get('/api/volunteers/status', volunteerController.listVolunteers);
-
-//Availibility
-app.get('/api/availibility/start', availibilityController.startAvailibilityTimer);
-app.get('/api/availibility/stop', availibilityController.stopAvailibilityTimer);
 
 app.listen(80, function(){
 	console.log('I\'m Listening...');
