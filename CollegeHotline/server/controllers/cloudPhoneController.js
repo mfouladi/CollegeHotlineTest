@@ -2,6 +2,8 @@ var Conversation = require('../models/conversation.js');
 var Volunteer = require('../models/volunteer.js');
 var plivo = require('plivo-node');
 var p = plivo.RestAPI(require('./configPlivo'));
+var express    = require('express');
+var router 	   = express.Router();
 
 var appNumber = "18582565412";
 var appEndPoint = "mapscallcenter141120025606@phone.plivo.com";
@@ -15,8 +17,7 @@ function hash(value) {
         value.toString());
 }
 
-
-module.exports.receiveMsg = function(req, res){
+function receiveMsg(req, res){
 	var conversation = new Conversation();
 	var newMessage = {
 						text			: req.query.Text,
@@ -31,7 +32,7 @@ module.exports.receiveMsg = function(req, res){
 	});
 }
 
-module.exports.sendMsg = function(req, res){
+function sendMsg(req, res){
 	//use plivo api to send the msg
 	//update database to reflect said change
 	//console.log(req.query);
@@ -50,7 +51,7 @@ module.exports.sendMsg = function(req, res){
 	});
 }
 
-var forwardHelper = function(req, res){
+function forwardHelper(req, res){
 	//checks the status of voluteer, still available and online
 	//if so, update their status to unavailable and route them the call
 	//recurse with next volunteer other wise
@@ -110,8 +111,7 @@ var forwardHelper = function(req, res){
 	}
 }
 
-
-module.exports.forwardCall = function(req, res){
+function forwardCall(req, res){
 	//picks first volunteer from a queue to forward call to
 	//if queueu empty, look in database to fill it
 	//using this, construct the appropriate XML
@@ -138,12 +138,9 @@ module.exports.forwardCall = function(req, res){
 		//console.log("already exists");
 		forwardHelper(req, res);
 	}
-	
-
 }
 
-
-module.exports.hangUp = function(req, res){
+function hangUp(req, res){
 	//not doing anything currently, this may be useful, maybe
 	console.log(req.query);
 	console.log(callerCalleeDict);
@@ -155,3 +152,9 @@ module.exports.hangUp = function(req, res){
 	});
 	delete callerCalleeDict[hash(req.query.From)];
 }
+
+router.route('/sendMsg').get(sendMsg);
+router.route('/forwardCall').get(forwardCall);
+router.route('/hangUp').get(hangUp);
+
+module.exports = router;

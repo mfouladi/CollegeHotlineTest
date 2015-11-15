@@ -108,22 +108,12 @@ app.get('/loggedin', function(req, res) {
 
 //REST API
 app.all('/api/*', isLoggedIn);
-
-//Notes
 var router = express.Router();
 router.use('/notes/basic', notesBasicController);
-
-//Conversation Calls
 router.use('/conversation', conversationController);
-
+router.use('/cloudPhone', cloudPhoneController);
+router.route('/volunteers/status').get(volunteerController.listVolunteers);
 app.use('/api', router);
-//CloudPhone things
-app.get('/api/cloudPhone/sendMsg', cloudPhoneController.sendMsg);
-app.get('/api/cloudPhone/forwardCall', cloudPhoneController.forwardCall);
-app.get('/api/cloudPhone/hangUp', cloudPhoneController.hangUp);
-
-//Volunteer
-app.get('/api/volunteers/status', volunteerController.listVolunteers);
 
 app.listen(80, function(){
 	console.log('I\'m Listening...');
