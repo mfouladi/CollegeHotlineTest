@@ -27,6 +27,7 @@
 		<style> .section 	{opacity:0.9;font-family:'Shadows Into Light';color:white; font-weight:bold} </style>
 		<style> .full-width {width: 100% } </style>
 		<style> .light-green{text-align: left;background-color: lightgreen; border-radius: 15px; border-width:0px;} </style>
+		<style> .yellow{text-align: left;background-color: yellow; border-radius: 15px; border-width:0px;} </style>
 		<style> .light-red {text-align: left;background-color: pink; border-radius: 15px; border-width:0px; } </style>
 
 		<!-- Local Angular-->
@@ -58,7 +59,10 @@
 									<th>Available</th>
 								</thead>
 								<tbody>
-									<tr ng-repeat="volunteer in volunteers" ng-class="(volunteer.available==true) ? 'light-green' : 'light-red'">
+									<tr ng-repeat="volunteer in volunteers" 
+									ng-class="{	'light-green' : volunteer.available, 
+												'yellow'	  : volunteer.online && !volunteer.available,
+												'light-red'   : (!volunteer.available && !volunteer.online)}">
 										<td>{{$index+1}}</td>
 										<td>{{volunteer.firstName}}</td>
 										<td>{{volunteer.lastName}}</td>
