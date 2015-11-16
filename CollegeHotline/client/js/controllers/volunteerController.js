@@ -6,18 +6,10 @@ app.controller('volunteerController',['$scope', '$resource',
 	$scope.volunteers = [];
 
 	function sortVolunteers(a, b){
-		if(a.available && !b.available){
+		if((a.available && !b.available) || (a.online && !b.online)){
 			return -1;
-		} else if(!a.available && b.available){
+		} else if((!a.available && b.available) || (!a.online && b.online)){
 			return 1;
-		} else if(a.available && b.available){
-			return 0;
-		} else if(a.online && !b.online){
-			return -1;
-		} else if(!a.online && b.online){
-			return 1;
-		} else if(a.online && b.online){
-			return 0;
 		} else if(a.lastName < b.lastName){
 			return -1;
 		} else if(a.lastName > b.lastName){

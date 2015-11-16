@@ -60,9 +60,9 @@
 								</thead>
 								<tbody>
 									<tr ng-repeat="volunteer in volunteers" 
-									ng-class="{	'light-green' : volunteer.available, 
+									ng-class="{	'light-green' : volunteer.online && volunteer.available, 
 												'yellow'	  : volunteer.online && !volunteer.available,
-												'light-red'   : (!volunteer.available && !volunteer.online)}">
+												'light-red'   : !volunteer.online}">
 										<td>{{$index+1}}</td>
 										<td>{{volunteer.firstName}}</td>
 										<td>{{volunteer.lastName}}</td>
