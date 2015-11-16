@@ -109,7 +109,7 @@ app.get('/loggedin', function(req, res) {
 
 
 //REST API
-app.all('/api/*', isLoggedIn);
+//app.all('/api/*', isLoggedIn);
 var router = express.Router();
 router.use('/notes/basic', notesBasicController);
 router.use('/conversation', conversationController);
