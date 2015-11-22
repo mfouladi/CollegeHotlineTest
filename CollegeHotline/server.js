@@ -73,11 +73,11 @@ app.get('/profile', isLoggedIn, function (req, res){
 
 app.get('/logout', volunteerController.logoutVolunteer);
 
-app.get('/login', function(req, res){
+app.get('/signin', function(req, res){
   res.sendFile(__dirname + '/client/views/wordpress/login.html' , { errorMessage: req.flash('loginMessage')});
 });
 
-app.get('/signup', function(req, res){
+app.get('/newuser', function(req, res){
   res.sendFile(__dirname + '/client/views/wordpress/signup.html' , { errorMessage: req.flash('signupMessage')});
 });
 
