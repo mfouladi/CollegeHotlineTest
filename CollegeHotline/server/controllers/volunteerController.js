@@ -2,7 +2,9 @@ var Volunteer 	= require('../models/volunteer.js');
 var Conversation 	= require('../models/conversation.js');
 
 module.exports.listVolunteers = function(req, res){
-	Volunteer.find(req.params).sort({ available: 'desc'}).exec(function (err, volunteer){
+	//Projections used to exclude non relevant data
+	var projections = {firstName: true, lastName: true, online: true, available: true};
+	Volunteer.find(req.params, projections).sort({ available: 'desc'}).exec(function (err, volunteer){
 		res.json(volunteer);
 	});
 }
