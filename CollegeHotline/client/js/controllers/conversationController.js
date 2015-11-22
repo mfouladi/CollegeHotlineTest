@@ -18,12 +18,14 @@ app.controller('conversationController',['$scope', '$resource', function ($scope
 
 
 	Login.query({}, function (results){
+		$scope.user = {};
 		if(results.length > 0){
 			$scope.isLoggedIn = true;
-			$scope.user = results[0];
+			$scope.user._id = results[0];
 		}
-		else
+		else {
 			$scope.isLoggedIn = false;
+		}
 	});
 
 

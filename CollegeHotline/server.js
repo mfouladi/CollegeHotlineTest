@@ -104,7 +104,7 @@ function isLoggedIn(req, res, next){
 
 
 app.get('/loggedin', function(req, res) { 
-  res.send(req.isAuthenticated() ? req.user : []); 
+  res.send(req.isAuthenticated() ? [req.user[0]._id] : []); 
 });
 
 
