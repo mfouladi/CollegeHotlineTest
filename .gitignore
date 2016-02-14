@@ -1,3 +1,5 @@
 **/.DS_Store
 ./CollegeHotline/node_modules
 ./CollegeHotline/bower_components
+./ghost/node_modules
+./ghost/config.js
