@@ -124,6 +124,6 @@ router.use('/cloudPhone', cloudPhoneController);
 router.route('/volunteers/status').get(volunteerController.listVolunteers);
 app.use('/api', router);
 
-app.listen(80, function () {
+app.listen(8080, function () {
   console.log('I\'m Listening...');
 });
