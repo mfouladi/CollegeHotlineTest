@@ -1,5 +1,5 @@
 /*jshint strict: true, unused: false */
-/* globals app, $scope */
+/* globals angular, app, $scope */
 "use strict";
 
 app.controller('loginController', ['$scope', '$resource', function ($scope, $resource) {

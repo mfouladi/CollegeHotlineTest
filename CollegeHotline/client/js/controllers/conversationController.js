@@ -1,5 +1,5 @@
 /*jshint strict: true, unused: false */
-/* globals app, $scope */
+/* globals angular, app, $scope */
 "use strict";
 
 app.controller('conversationController', ['$scope', '$resource', function ($scope, $resource) {
